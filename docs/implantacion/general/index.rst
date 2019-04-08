@@ -1,0 +1,27 @@
+General
+=======
+
+Los productos creados siguiendo **KnowArkitecture** se dividen principalmente
+en dos partes: 
+
+- la capa de *aplicación*.
+- la capa de *infraestructura*.
+
+A nivel de estructura de carpetas, el primer nivel de cualquier proyecto
+tendría la siguiente forma:
+
+.. code:: bash
+    
+    project/
+        docs/
+            ...
+        <project|src>/
+            application/
+                ...
+            infrastructure/
+                ...
+        tests/
+            application/
+                ...
+            infrastructure/
+                ...
