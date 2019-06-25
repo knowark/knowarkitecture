@@ -1,5 +1,0 @@
-Definición
-==========
-
-:estimark:
-    classifiers=S

@@ -11,8 +11,8 @@ Arquitectura de Software de KnowArk.
 .. toctree::
    :maxdepth: 2
 
-   fundamentos/index
-   implantacion/index
+   1_fundamentos/index
+   2_implantacion/index
 
 
 ..
