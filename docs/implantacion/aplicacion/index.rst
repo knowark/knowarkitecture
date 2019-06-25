@@ -43,3 +43,13 @@ sería:
                 services/
             ...
         ...
+
+.. toctree::
+   :maxdepth: 1
+
+   coordinators/index
+   informers/index
+   models/index
+   repositories/index
+   services/index
+   utilities/index

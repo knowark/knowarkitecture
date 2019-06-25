@@ -9,3 +9,4 @@ Estructura y patrones de diseño para la implantación de **KnowArkitecture**.
    general/index
    aplicacion/index
    infraestructura/index
+   test/index

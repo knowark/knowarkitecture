@@ -1,6 +1,9 @@
 Principios
 ==========
 
+:estimark:
+    classifiers=S
+
 Los principios que rigen a *Knowarkitecture* son principalmente aquellos
 expuestos en la arquitectura limpia (*Clean Architecture*) definida por
 *Robert Martin* en:
