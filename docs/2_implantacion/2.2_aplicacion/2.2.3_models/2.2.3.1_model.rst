@@ -20,8 +20,6 @@ información será almacenada en memoria, formato JSON o SQL. Inicialmente
 necesite presentar los datos persistidos en otra estructura de datos, la capa de
 infraestructura se encargará de darle la respectiva prioridad de almacenamiento. 
 
-* Quién puede acceder a los modelos?
-
 
 **Definición de modelo**
 

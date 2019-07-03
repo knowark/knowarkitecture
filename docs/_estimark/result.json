@@ -49,6 +49,21 @@
       "id": "2d93f2bc-b794-4e12-a56c-8aa4588081d9",
       "name": "Project Schedule",
       "state": null
+    },
+    "3255f648-afbd-41c3-8582-b7f590c11567": {
+      "id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "name": "Project Schedule",
+      "state": null
+    },
+    "737c0afc-62fd-41b1-891d-c05538cfe00c": {
+      "id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "name": "Project Schedule",
+      "state": null
+    },
+    "e7357eb2-5c36-4c9a-93b5-625bc46e476e": {
+      "id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "name": "Project Schedule",
+      "state": "open"
     }
   },
   "slots": {
@@ -923,6 +938,447 @@
       "schedule_id": "2d93f2bc-b794-4e12-a56c-8aa4588081d9",
       "start": 36,
       "end": 39,
+      "executor_id": null
+    },
+    "7ef6e4e8-517a-4fec-affa-d09313c4c4f1": {
+      "id": "7ef6e4e8-517a-4fec-affa-d09313c4c4f1",
+      "name": "1.1 Principios",
+      "task_id": "1.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 0,
+      "end": 2,
+      "executor_id": null
+    },
+    "7e8194fd-b618-4d6e-92bf-7e03a7fb1a90": {
+      "id": "7e8194fd-b618-4d6e-92bf-7e03a7fb1a90",
+      "name": "2.1.1 General",
+      "task_id": "2.1.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 2,
+      "end": 3,
+      "executor_id": null
+    },
+    "729fc7ea-a60e-487f-b221-0c7e4b514d3a": {
+      "id": "729fc7ea-a60e-487f-b221-0c7e4b514d3a",
+      "name": "2.2.2.1 Informers",
+      "task_id": "2.2.2.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 3,
+      "end": 5,
+      "executor_id": null
+    },
+    "a56c0245-08b2-4078-b374-1b704a44bbbd": {
+      "id": "a56c0245-08b2-4078-b374-1b704a44bbbd",
+      "name": "2.2.3.1 Models",
+      "task_id": "2.2.3.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 5,
+      "end": 7,
+      "executor_id": null
+    },
+    "d885037c-528b-45fc-8249-b4a9fefd53ab": {
+      "id": "d885037c-528b-45fc-8249-b4a9fefd53ab",
+      "name": "2.2.4.1 Repository",
+      "task_id": "2.2.4.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 7,
+      "end": 9,
+      "executor_id": null
+    },
+    "4b4901bf-ee3d-40a3-875d-59555c8d6c52": {
+      "id": "4b4901bf-ee3d-40a3-875d-59555c8d6c52",
+      "name": "2.2.5.1 Services",
+      "task_id": "2.2.5.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 9,
+      "end": 11,
+      "executor_id": null
+    },
+    "3b089cd4-47cb-4208-9823-eefcebe08dbd": {
+      "id": "3b089cd4-47cb-4208-9823-eefcebe08dbd",
+      "name": "2.2.6.1 Utilities",
+      "task_id": "2.2.6.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 11,
+      "end": 14,
+      "executor_id": null
+    },
+    "2eac4687-3452-4d1b-beb5-e5c56e8edd4a": {
+      "id": "2eac4687-3452-4d1b-beb5-e5c56e8edd4a",
+      "name": "2.3.1.1 Cli",
+      "task_id": "2.3.1.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 14,
+      "end": 16,
+      "executor_id": null
+    },
+    "209d00b1-4809-4871-b811-db41e2543416": {
+      "id": "209d00b1-4809-4871-b811-db41e2543416",
+      "name": "2.3.2.1 Common",
+      "task_id": "2.3.2.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 16,
+      "end": 19,
+      "executor_id": null
+    },
+    "6595d9b9-de41-4a3d-9a68-be7623f9d01d": {
+      "id": "6595d9b9-de41-4a3d-9a68-be7623f9d01d",
+      "name": "2.3.2.2 Configuration",
+      "task_id": "2.3.2.2",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 19,
+      "end": 22,
+      "executor_id": null
+    },
+    "df18cf17-3c1c-40e8-8b15-c54d4d654a6d": {
+      "id": "df18cf17-3c1c-40e8-8b15-c54d4d654a6d",
+      "name": "2.3.2.3 Crypto",
+      "task_id": "2.3.2.3",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 22,
+      "end": 24,
+      "executor_id": null
+    },
+    "6e3054f4-dd7c-4fca-b99d-a0259332c8de": {
+      "id": "6e3054f4-dd7c-4fca-b99d-a0259332c8de",
+      "name": "2.3.2.4 Factories",
+      "task_id": "2.3.2.4",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 24,
+      "end": 27,
+      "executor_id": null
+    },
+    "bb581bb0-5b6c-415b-8e8f-f327baa399af": {
+      "id": "bb581bb0-5b6c-415b-8e8f-f327baa399af",
+      "name": "2.3.2.5 Tenancy",
+      "task_id": "2.3.2.5",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 27,
+      "end": 29,
+      "executor_id": null
+    },
+    "d015f847-e976-4ba8-b043-1eac630a6d99": {
+      "id": "d015f847-e976-4ba8-b043-1eac630a6d99",
+      "name": "2.3.3.1 Data",
+      "task_id": "2.3.3.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 29,
+      "end": 31,
+      "executor_id": null
+    },
+    "c1eb18ed-dbf1-4f27-8398-9741079bc7ab": {
+      "id": "c1eb18ed-dbf1-4f27-8398-9741079bc7ab",
+      "name": "2.3.4.1 Web",
+      "task_id": "2.3.4.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 31,
+      "end": 33,
+      "executor_id": null
+    },
+    "57a19a1e-3e3b-4b08-bb68-ad16db6b76db": {
+      "id": "57a19a1e-3e3b-4b08-bb68-ad16db6b76db",
+      "name": "2.4.1 Aplicacion",
+      "task_id": "2.4.1",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 33,
+      "end": 36,
+      "executor_id": null
+    },
+    "d2d54657-8754-4f4e-b525-4d21c17e3d03": {
+      "id": "d2d54657-8754-4f4e-b525-4d21c17e3d03",
+      "name": "2.4.2 Infraestructura",
+      "task_id": "2.4.2",
+      "schedule_id": "3255f648-afbd-41c3-8582-b7f590c11567",
+      "start": 36,
+      "end": 39,
+      "executor_id": null
+    },
+    "4cf1d291-1724-4fc4-8b98-d51dc9a59e0a": {
+      "id": "4cf1d291-1724-4fc4-8b98-d51dc9a59e0a",
+      "name": "1.1 Principios",
+      "task_id": "1.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 0,
+      "end": 2,
+      "executor_id": null
+    },
+    "49507233-c4c6-4bf8-a4ae-6c7d0dde1590": {
+      "id": "49507233-c4c6-4bf8-a4ae-6c7d0dde1590",
+      "name": "2.1.1 General",
+      "task_id": "2.1.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 2,
+      "end": 3,
+      "executor_id": null
+    },
+    "571925d4-0adc-4102-a59d-6c071cf6fdee": {
+      "id": "571925d4-0adc-4102-a59d-6c071cf6fdee",
+      "name": "2.2.2.1 Informers",
+      "task_id": "2.2.2.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 3,
+      "end": 5,
+      "executor_id": null
+    },
+    "97b4e568-0fbc-4775-be1b-dfd2732c283c": {
+      "id": "97b4e568-0fbc-4775-be1b-dfd2732c283c",
+      "name": "2.2.3.1 Models",
+      "task_id": "2.2.3.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 5,
+      "end": 7,
+      "executor_id": null
+    },
+    "91b8ed71-eee7-4d52-8616-b1f5e2629b02": {
+      "id": "91b8ed71-eee7-4d52-8616-b1f5e2629b02",
+      "name": "2.2.4.1 Repository",
+      "task_id": "2.2.4.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 7,
+      "end": 9,
+      "executor_id": null
+    },
+    "449515ec-72ca-403a-978f-45b474ea5005": {
+      "id": "449515ec-72ca-403a-978f-45b474ea5005",
+      "name": "2.2.5.1 Services",
+      "task_id": "2.2.5.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 9,
+      "end": 11,
+      "executor_id": null
+    },
+    "6c837aa9-94f4-44a1-9e4a-840f4e121977": {
+      "id": "6c837aa9-94f4-44a1-9e4a-840f4e121977",
+      "name": "2.2.6.1 Utilities",
+      "task_id": "2.2.6.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 11,
+      "end": 14,
+      "executor_id": null
+    },
+    "60ff58af-3e2c-4a15-971e-5a76f08ba71b": {
+      "id": "60ff58af-3e2c-4a15-971e-5a76f08ba71b",
+      "name": "2.3.1.1 Cli",
+      "task_id": "2.3.1.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 14,
+      "end": 16,
+      "executor_id": null
+    },
+    "27019fcc-eec2-46be-ac78-ba955d6e7598": {
+      "id": "27019fcc-eec2-46be-ac78-ba955d6e7598",
+      "name": "2.3.2.1 Common",
+      "task_id": "2.3.2.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 16,
+      "end": 19,
+      "executor_id": null
+    },
+    "c857b7ef-d2eb-41db-a00a-d16d52a04257": {
+      "id": "c857b7ef-d2eb-41db-a00a-d16d52a04257",
+      "name": "2.3.2.2 Configuration",
+      "task_id": "2.3.2.2",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 19,
+      "end": 22,
+      "executor_id": null
+    },
+    "6f93b80a-862b-469b-8a21-81a22fddf05d": {
+      "id": "6f93b80a-862b-469b-8a21-81a22fddf05d",
+      "name": "2.3.2.3 Crypto",
+      "task_id": "2.3.2.3",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 22,
+      "end": 24,
+      "executor_id": null
+    },
+    "8f59b25b-60fd-42ed-9ba0-b7eac4b0e7f5": {
+      "id": "8f59b25b-60fd-42ed-9ba0-b7eac4b0e7f5",
+      "name": "2.3.2.4 Factories",
+      "task_id": "2.3.2.4",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 24,
+      "end": 27,
+      "executor_id": null
+    },
+    "c0953a21-3b47-4229-ab9f-7b619615943b": {
+      "id": "c0953a21-3b47-4229-ab9f-7b619615943b",
+      "name": "2.3.2.5 Tenancy",
+      "task_id": "2.3.2.5",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 27,
+      "end": 29,
+      "executor_id": null
+    },
+    "0e70d057-504a-4b03-a038-54db7d52e8da": {
+      "id": "0e70d057-504a-4b03-a038-54db7d52e8da",
+      "name": "2.3.3.1 Data",
+      "task_id": "2.3.3.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 29,
+      "end": 31,
+      "executor_id": null
+    },
+    "dae57faf-7ab0-4037-b02b-c38d044b0842": {
+      "id": "dae57faf-7ab0-4037-b02b-c38d044b0842",
+      "name": "2.3.4.1 Web",
+      "task_id": "2.3.4.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 31,
+      "end": 33,
+      "executor_id": null
+    },
+    "4efb1bc5-6aad-45af-b745-118f244081f2": {
+      "id": "4efb1bc5-6aad-45af-b745-118f244081f2",
+      "name": "2.4.1 Aplicacion",
+      "task_id": "2.4.1",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 33,
+      "end": 36,
+      "executor_id": null
+    },
+    "d19c2e44-fde6-434c-83c7-f0c6d5126111": {
+      "id": "d19c2e44-fde6-434c-83c7-f0c6d5126111",
+      "name": "2.4.2 Infraestructura",
+      "task_id": "2.4.2",
+      "schedule_id": "737c0afc-62fd-41b1-891d-c05538cfe00c",
+      "start": 36,
+      "end": 39,
+      "executor_id": null
+    },
+    "52c0c397-6d32-44ce-8d9d-33cd94ab220e": {
+      "id": "52c0c397-6d32-44ce-8d9d-33cd94ab220e",
+      "name": "2.2.2.1 Informers",
+      "task_id": "2.2.2.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 0,
+      "end": 2,
+      "executor_id": null
+    },
+    "ff542a95-e196-43d3-9130-f3a5b50b6d31": {
+      "id": "ff542a95-e196-43d3-9130-f3a5b50b6d31",
+      "name": "2.2.3.1 Models",
+      "task_id": "2.2.3.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 2,
+      "end": 4,
+      "executor_id": null
+    },
+    "392bd7b4-c3f8-4941-8556-cc8418d12bfa": {
+      "id": "392bd7b4-c3f8-4941-8556-cc8418d12bfa",
+      "name": "2.2.4.1 Repository",
+      "task_id": "2.2.4.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 4,
+      "end": 6,
+      "executor_id": null
+    },
+    "7c725cc9-b824-4db4-8088-478ae873b2c7": {
+      "id": "7c725cc9-b824-4db4-8088-478ae873b2c7",
+      "name": "2.2.5.1 Services",
+      "task_id": "2.2.5.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 6,
+      "end": 8,
+      "executor_id": null
+    },
+    "1ed9ed68-dc11-4449-954a-b1fcf01e4e2c": {
+      "id": "1ed9ed68-dc11-4449-954a-b1fcf01e4e2c",
+      "name": "2.2.6.1 Utilities",
+      "task_id": "2.2.6.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 8,
+      "end": 11,
+      "executor_id": null
+    },
+    "9a17fa61-7810-45d1-89df-f635bdf77c30": {
+      "id": "9a17fa61-7810-45d1-89df-f635bdf77c30",
+      "name": "2.3.1.1 Cli",
+      "task_id": "2.3.1.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 11,
+      "end": 13,
+      "executor_id": null
+    },
+    "8a57c377-80fd-43a6-a27b-fc9bfdbb963a": {
+      "id": "8a57c377-80fd-43a6-a27b-fc9bfdbb963a",
+      "name": "2.3.2.1 Common",
+      "task_id": "2.3.2.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 13,
+      "end": 16,
+      "executor_id": null
+    },
+    "1d57c507-544a-492b-b7bc-e18470eb4f78": {
+      "id": "1d57c507-544a-492b-b7bc-e18470eb4f78",
+      "name": "2.3.2.2 Configuration",
+      "task_id": "2.3.2.2",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 16,
+      "end": 19,
+      "executor_id": null
+    },
+    "edf737dc-4063-4509-b19a-a40d1ab7ccf1": {
+      "id": "edf737dc-4063-4509-b19a-a40d1ab7ccf1",
+      "name": "2.3.2.3 Crypto",
+      "task_id": "2.3.2.3",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 19,
+      "end": 21,
+      "executor_id": null
+    },
+    "ac0b0527-0157-4444-ae15-a08f3f9a9af4": {
+      "id": "ac0b0527-0157-4444-ae15-a08f3f9a9af4",
+      "name": "2.3.2.4 Factories",
+      "task_id": "2.3.2.4",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 21,
+      "end": 24,
+      "executor_id": null
+    },
+    "68f30ae3-5833-4e04-887f-2cafd395d6ff": {
+      "id": "68f30ae3-5833-4e04-887f-2cafd395d6ff",
+      "name": "2.3.2.5 Tenancy",
+      "task_id": "2.3.2.5",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 24,
+      "end": 26,
+      "executor_id": null
+    },
+    "4c831783-6ad0-4d5e-aae6-c45eb817d5f3": {
+      "id": "4c831783-6ad0-4d5e-aae6-c45eb817d5f3",
+      "name": "2.3.3.1 Data",
+      "task_id": "2.3.3.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 26,
+      "end": 28,
+      "executor_id": null
+    },
+    "0381b6dd-9b5f-4032-ad38-ce889eb28667": {
+      "id": "0381b6dd-9b5f-4032-ad38-ce889eb28667",
+      "name": "2.3.4.1 Web",
+      "task_id": "2.3.4.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 28,
+      "end": 30,
+      "executor_id": null
+    },
+    "f009e515-2551-44a9-b6e7-bcdc2daab9dc": {
+      "id": "f009e515-2551-44a9-b6e7-bcdc2daab9dc",
+      "name": "2.4.1 Aplicacion",
+      "task_id": "2.4.1",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 30,
+      "end": 33,
+      "executor_id": null
+    },
+    "2fde4bfa-dd18-4e35-b628-3c719efc53b0": {
+      "id": "2fde4bfa-dd18-4e35-b628-3c719efc53b0",
+      "name": "2.4.2 Infraestructura",
+      "task_id": "2.4.2",
+      "schedule_id": "e7357eb2-5c36-4c9a-93b5-625bc46e476e",
+      "start": 33,
+      "end": 36,
       "executor_id": null
     }
   }
