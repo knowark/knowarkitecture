@@ -1,0 +1,49 @@
+2.2.3.1 Models
+--------------
+
+:estimark:
+    classifiers=S
+
+Los desarrollos basados en la arquitectura **KnowArkitecture** acceden y administran
+sus datos a través de objetos a los cuales se hace referencia como modelos.
+Los modelos son la estructura donde se almacenarán los datos, se especificará los tipos
+de datos de cada campo y se definirá qué campos son obligatorios.
+
+Después de haber levantado formalmente los requerimientos de la aplicación a construir es
+hora de definir qué modelos son los que almacenarán los datos del sistema, ya que de esto
+depende el buen comportamiento del programa.
+
+Los modelos ya definidos son indiferentes a la estructura de datos o motor de
+base de datos que vaya a utilizar. En esta arquitectura se ha definido que la
+información será almacenada en memoria, formato JSON o SQL. Inicialmente
+(de acuerdo al programa) la primera implementación será en memoria, en caso que se
+necesite presentar los datos persistidos en otra estructura de datos, la capa de
+infraestructura se encargará de darle la respectiva prioridad de almacenamiento. 
+
+* Quién puede acceder a los modelos?
+
+
+**Definición de modelo**
+
+.. code:: bash
+
+    class name_class:
+        def __init__(self, **attributes) -> None:
+            self.field_1 = attributes.get('field_1', '')
+            self.field_2 = attributes.get('field_2', '')
+            self.field_3 = attributes['field_3']
+
+            self.field_n = attributes.get('field_n', '')
+
+
+.. code:: bash
+
+    export class name_class{
+        constructor(
+            {field_1, field_2='', ... ,field_n} ={}) {
+            this.field_1 = field_1;
+            this.field_2 = field_2;
+
+            this.field_n = field_n;
+        }
+    }

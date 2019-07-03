@@ -1,0 +1,16 @@
+2.2.1 Coordinators
+------------------
+
+:estimark:
+    classifiers=S
+
+Son clases que se encargan de gestionar toda la lógica de negocio, aquí
+es dónde se implementan las acciones principales que determinan el comportamiento
+de la aplicación o tipo de negocio, por ejemplo, si el programa tiene
+como finalidad hacer inventarios en caso que se requiera actualizar algún
+producto, la petición no accederá directamente al modelo, para ello primero tendra
+que acceder primero al coordinator encargado de hacer esta accion de actualizar el 
+producto, donde este a su vez utilizará los repositorios para poder almacenar los datos.
+A este nivel es permitido acceder a los services, repositories y utilities.
+
+Además son las entidades que se exponen o se comunican con la capa de infraestructura.

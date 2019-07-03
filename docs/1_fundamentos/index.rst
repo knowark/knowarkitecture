@@ -12,5 +12,5 @@ prácticos de este documento, a esta arquitectura la llamaremos
 .. toctree::
    :maxdepth: 1
 
-   principios
+   1.1_principios
 
