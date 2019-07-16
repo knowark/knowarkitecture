@@ -45,7 +45,6 @@ sería:
         ...
 
 .. toctree::
-   :maxdepth: 1
 
    2.2.1_coordinators/index
    2.2.2_informers/index
