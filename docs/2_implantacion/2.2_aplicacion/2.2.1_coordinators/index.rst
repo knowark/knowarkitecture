@@ -1,15 +1,42 @@
 Coordinators
 ------------
 
-Son clases que se encargan de gestionar toda la lógica de negocio, aquí
-es dónde se implementan las acciones principales que determinan el comportamiento
-de la aplicación o tipo de negocio. Si el programa tiene
-como finalidad hacer inventarios en caso que se requiera actualizar algún
-producto, la petición no accederá directamente al **modelo**, para ello primero tendra
-que acceder primero al **coordinator** encargado de hacer esta accion de actualizar el 
-producto, donde este a su vez utilizará los repositorios usar los metodos que creen,
-lean, modifiquen o eliminen algún dato.
-A este nivel es permitido acceder a los services, repositories y utilities, además 
-son las entidades que se exponen o se comunican con la capa de infraestructura.
+Son clases que se encargan de gestionar toda la lógica de negocio, es aquí donde 
+se implementan las acciones principales que determinan el comportamiento
+de la aplicación. Si la aplicación tiene como finalidad hacer inventarios y
+necesite actualizar algún producto, la acción no se ejecutará directamente sobre
+el **modelo**, para ello primero tendrá que acceder primero al **coordinator**
+encargado de hacer esta tarea de actualizar el producto.
 
-**Ejemplo Coordinador**
+La capa de infraestructura sólo podrá acceder a la capa de aplicación por medio 
+de los **coordinators** e **Informers**.
+
+**Código Ejemplo**
+
+Python
+
+.. code:: bash
+
+    class RegistrationCoordinator:
+        def __init__(self,
+                    occurrence_repository: OccurrenceRepository,
+                    ) -> None:
+            self.occurrence_repository = occurrence_repository
+
+        def register(self, occurrence_dict) -> None:
+            occurrence = Occurrence(**occurrence_dict)
+            self.occurrence_repository.add(occurrence)
+
+
+JavaScript
+
+.. code:: bash
+
+    export class ModelCoordinator {
+        constructor(
+            private modelRepository: ModelRepository,
+        ) { }
+
+        addNewModel(model: Model): Observable<Model> {
+            return this.modelRepository.add(model);
+        }

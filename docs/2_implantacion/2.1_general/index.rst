@@ -26,18 +26,21 @@ tendría la siguiente forma:
             infrastructure/
                 ...
 
+La siguiente gráfica ilustra las dependencias entre los módulos que pertenecen
+a la capa de aplicación:
+
 .. graphviz::
 
     digraph G {
-        rankdir=LR
+        rankdir = LR
         Coordinators [shape=box, color=red]
         Informers [shape=box, color=red] 
         Models [shape=box, color=blue]
-        Repositories [shape=box, color=pink] 
+        Repositories [shape=box]
         Utilities [shape=box, color=green] 
         Services [shape=box, color=orange]
-        Coordinators -> {Services, Models, Repositories, Utilities}
         Services -> {Models, Repositories, Utilities}
         Repositories -> {Models, Utilities}
         Informers -> {Services, Models, Utilities, Repositories}
+        Coordinators -> {Services, Models, Repositories, Utilities}
     }
