@@ -2,15 +2,10 @@ Models
 ------
 
 Los desarrollos basados en la arquitectura **KnowArkitecture** acceden y administran
-sus datos a través de objetos a los cuales se hace referencia como modelos.
-Los modelos son la estructura donde se almacenarán los datos, se especificará los tipos
-de datos de cada campo y se definirá qué campos son obligatorios.
+sus datos a través de objetos a los que hacemos referencia como modelos.
 
-Los modelos ya definidos son indiferentes a la estructura de datos o motor de
-base de datos que vaya a utilizar. La primera implementación será en memoria, en caso que se
-necesite presentar los datos persistidos en otra estructura de datos, la capa de
-infraestructura se encargará de darle la respectiva prioridad de almacenamiento. 
-
+Los modelos son la estructura de datos que representan entidades y objetos de valor
+para el programa, los cuales son registrados con sus respectivos Id's.
 
 **Definición de modelo**
 
