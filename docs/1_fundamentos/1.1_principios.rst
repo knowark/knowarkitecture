@@ -7,6 +7,8 @@ expuestos en la arquitectura limpia (*Clean Architecture*) definida por
 
 http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
+.. image:: media/CleanArchitecture.jpg
+
 En esencia, esta manera de desarrollar software procura:
 
 - Crear aplicaciones flexibles que sean fáciles de mantener en el tiempo.
