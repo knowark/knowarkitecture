@@ -1,5 +1,5 @@
 General
--------
+=======
 
 Los productos creados siguiendo **KnowArkitecture** se estructuran
 principalmente alrededor de dos capas:

@@ -1,5 +1,5 @@
 Implantación
-############
+************
 
 Estructura y patrones de diseño para la implantación de **KnowArkitecture**.
 

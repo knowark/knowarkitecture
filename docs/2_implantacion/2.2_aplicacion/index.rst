@@ -13,49 +13,59 @@ construido.
 
 Por lo anterior, sólo con mirar la capa de aplicación debe ser posible
 reconocer la utilidad del sistema y el tipo de *negocio* modelado por él. Así,
-la capa de aplicación nos dice por ejemplo, si el programa en cuestión atiende
-la industria hospitalaria y de la salud, o si es un software académico para
-universidades o si en cambio se trata de un sistema comercial de ventas en
-línea. La capa de aplicación debe *gritar* el propósito del sistema, haciendo
+la capa de aplicación nos dice, por ejemplo, si el programa en cuestión atiende
+la industria hospitalaria y de la salud, o si representa un software académico
+para universidades o si en cambio modela un sistema comercial de ventas en
+línea. La capa de aplicación debe **gritar** el propósito del sistema, haciendo
 evidente para qué ha sido construido.
 
 En *KnowArkitecture* la capa de aplicación se divide a sí misma en múltiples
 componentes, por lo que una mirada de alto nivel a su estructura de carpetas
 sería:
 
-.. code:: bash
 
-    project/
-        <project|src>/
-            application/
-                coordinators/
-                informers/
-                models/
-                repositories/
-                services/
-            ...
-        tests/
-            application/
-                coordinators/
-                informers/
-                models/
-                repositories/
-                services/
-            ...
-        ...
+.. tree -L 4 --charset ascci --dirsfirst
+
+.. sourcecode::
+
+    |-- productark
+    |   |-- productark
+    |   |   |-- application
+    |   |   |   |-- domain
+    |   |   |   |-- informers
+    |   |   |   |-- managers
+    |   |   |   `-- __init__.py
+    |   |   |-- ...
+    |   `-- tests
+    |       |-- application
+    |       |   |-- domain
+    |       |   |-- informers
+    |       |   |-- managers
+    |       |   `-- __init__.py
+    |       |-- ...
+
 
 .. toctree::
 
-   2.2.1_coordinators/index
+   2.2.1_domain/index
    2.2.2_informers/index
-   2.2.3_models/index
-   2.2.4_repositories/index
-   2.2.5_services/index
-   2.2.6_utilities/index
+   2.2.3_managers/index
 
 
-La siguiente gráfica ilustra las dependencias entre los módulos que pertenecen
-a la capa de aplicación:
+Las siguientes gráficas ilustra las dependencias entre los módulos que
+pertenecen a la capa de aplicación:
+
+.. graphviz::
+
+    digraph G {
+        rankdir = LR
+        Domain [shape=box, color=red]
+        Informers [shape=box, color=blue]
+        Managers [shape=box, color=green]
+
+        Informers -> {Domain}
+        Managers -> {Domain}
+    }
 
 .. graphviz::
 

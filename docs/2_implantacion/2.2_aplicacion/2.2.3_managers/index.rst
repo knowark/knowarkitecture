@@ -1,15 +1,15 @@
-Coordinators
-------------
+Managers
+--------
 
-Son clases que se encargan de gestionar toda la lógica de negocio, es aquí donde 
-se implementan las acciones principales que determinan el comportamiento
+Son clases que se encargan de gestionar toda la lógica de negocio, es aquí
+donde se implementan las acciones principales que determinan el comportamiento
 de la aplicación. Si la aplicación tiene como finalidad hacer inventarios y
-necesite actualizar algún producto, la acción no se ejecutará directamente sobre
-el **modelo**, para ello primero tendrá que acceder primero al **coordinator**
-encargado de hacer esta tarea de actualizar el producto.
+necesite actualizar algún producto, la acción no se ejecutará directamente
+sobre el **modelo**, para ello primero tendrá que acceder primero al
+**coordinator** encargado de hacer esta tarea de actualizar el producto.
 
-La capa de infraestructura sólo podrá acceder a la capa de aplicación por medio 
-de los **coordinators** e **Informers**.
+La capa de infraestructura sólo podrá acceder a la capa de aplicación por
+medio de los **Managers** e **Informers**.
 
 **Código Ejemplo**
 

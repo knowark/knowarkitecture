@@ -1,11 +1,12 @@
 Models
-------
+^^^^^^
 
-Los desarrollos basados en la arquitectura **KnowArkitecture** acceden y administran
-sus datos a través de objetos a los que hacemos referencia como modelos.
+Los desarrollos basados en la arquitectura **KnowArkitecture** acceden y
+administran sus datos a través de objetos a los que hacemos referencia
+como modelos.
 
-Los modelos son la estructura de datos que representan entidades y objetos de valor
-para el programa, los cuales son registrados con sus respectivos Id's.
+Los modelos son la estructura de datos que representan entidades y objetos
+de valor para el programa, los cuales son registrados con sus respectivos Id's.
 
 **Definición de modelo**
 
