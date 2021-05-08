@@ -1,5 +1,0 @@
-#Protect Directory
-AuthName "Dialog prompt"
-AuthType Basic
-AuthUserFile /home/knowarkitecture/.htpasswd
-Require valid-user
