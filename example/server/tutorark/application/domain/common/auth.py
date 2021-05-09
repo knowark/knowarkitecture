@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 from contextvars import ContextVar
-from ..errors import AuthenticationError
+from .errors import AuthenticationError
 
 
 class User:
