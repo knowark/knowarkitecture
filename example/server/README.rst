@@ -17,4 +17,4 @@ Install in it the project requirements:
 
 Run the development server:
 
-    make dev
+    make serve
