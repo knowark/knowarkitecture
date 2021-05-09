@@ -143,4 +143,6 @@ cython_debug/
 # estimark
 *estimark*
 *_estimark/*
-\n# commit message\n.gitmessage
+
+# commit message
+.gitmessage
