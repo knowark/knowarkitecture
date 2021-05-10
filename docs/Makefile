@@ -22,5 +22,5 @@ autobuild:
 	sphinx-autobuild . _build/html
 
 deploy:
-	sshpass -e rsync -av --delete ./build/html/ \
+	sshpass -e rsync -av --delete ./_build/html/ \
 	${RSYNC_USER}@${RSYNC_HOST}:${RSYNC_DIR}
