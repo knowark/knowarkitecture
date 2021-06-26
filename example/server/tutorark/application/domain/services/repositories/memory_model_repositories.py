@@ -1,5 +1,5 @@
 from modelark import Repository, MemoryRepository
-from ..models import (
+from ...models import (
     Course, Enrolment, Lesson, Student, Teacher)
 
 

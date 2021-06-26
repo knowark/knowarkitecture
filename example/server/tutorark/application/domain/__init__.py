@@ -1,3 +1,3 @@
 from .common import *
 from .models import *
-from .repositories import *
+from .services.repositories import *
