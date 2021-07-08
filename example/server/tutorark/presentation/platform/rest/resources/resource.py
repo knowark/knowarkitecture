@@ -30,12 +30,12 @@ class Resource:
         result = await self.search_handler(
             dict(model=self.model, domain=domain,
                  limit=limit, offset=offset))
-        return web.json_response(result)
+        return web.json_response(normalize(result))
 
     async def patch(self, request: web.Request) -> web.Response:
         records = loads(await request.text())
-        result = await self.add_handler(records)
-        return web.json_response(result, status=200)
+        result = await self.add_handler(normalize(records, 'snake'))
+        return web.json_response(normalize(result), status=200)
 
     async def delete(self, request: web.Request) -> web.Response:
         ids = await get_request_ids(request)
