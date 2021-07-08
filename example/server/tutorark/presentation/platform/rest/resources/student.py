@@ -1,6 +1,5 @@
 from functools import partial
 from injectark import Injectark
-from ..helpers import StudentSchema
 from .resource import Resource
 
 
@@ -10,7 +9,6 @@ class StudentResource(Resource):
         manager = injector['StudentManager']
 
         super().__init__(
-            StudentSchema,
             informer.count,
             informer.search,
             manager.collect_students,

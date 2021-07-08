@@ -59,34 +59,11 @@ async def test_teacher_manager_create_teacher(
         'email':'jdoe@example.com',
     }]
 
-    await teacher_manager._create_teachers(teacher_data)
+    await teacher_manager.collect_teachers(dict(data=teacher_data))
 
     teachers = getattr(
         teacher_manager.teacher_repository, 'data')['default']
     assert len(teachers) == 1
-
-
-async def test_teacher_manager_delete_teacher(
-        teacher_manager: TeacherManager) -> None:
-    teacher_id = 'S003'
-    teacher_records: RecordList = [{
-        'id': teacher_id,
-        'name': 'John Doe',
-        'identification': '123456789',
-        'email':'jdoe@example.com',
-    }]
-
-    await teacher_manager._create_teachers(teacher_records)
-
-    teachers_data = getattr(
-        teacher_manager.teacher_repository, 'data')
-
-    assert len(teachers_data['default']) == 1
-
-    await teacher_manager._delete_teachers([teacher_id])
-
-    assert len(teachers_data['default']) == 0
-
 
 async def test_teacher_manager_eliminate_teacher(
         teacher_manager: TeacherManager) -> None:
@@ -98,14 +75,14 @@ async def test_teacher_manager_eliminate_teacher(
         'email':'jdoe@example.com',
     }]
 
-    await teacher_manager._create_teachers(teacher_records)
+    await teacher_manager.collect_teachers(dict(data=teacher_records))
 
     teachers_data = getattr(
         teacher_manager.teacher_repository, 'data')
 
     assert len(teachers_data['default']) == 1
 
-    await teacher_manager.eliminate_teachers(dict(records=[teacher_id]))
+    await teacher_manager.eliminate_teachers(dict(data=[teacher_id]))
 
     assert len(teachers_data['default']) == 0
 
@@ -119,7 +96,7 @@ async def test_teacher_manager_collect_existing_teachers(
         'identification': '85642',
         'email':'adoe@example.com',
     }]
-    await teacher_manager.collect_teachers(dict(records=teacher_records))
+    await teacher_manager.collect_teachers(dict(data=teacher_records))
 
     teachers_data = getattr(
         teacher_manager.teacher_repository, 'data')
@@ -133,7 +110,7 @@ async def test_teacher_manager_collect_existing_teachers(
         'email':'adoe@example.com',
     }]
 
-    await teacher_manager.collect_teachers(dict(records=updated_teachers_data))
+    await teacher_manager.collect_teachers(dict(data=updated_teachers_data))
 
     assert teachers_data['default'][teacher_id].name == (
         'Maria Doe')

@@ -60,9 +60,9 @@ def student_repository(
         parser, tenant_provider, auth_provider)
     student_repository.load({
         'default': {
-            '1': Student(**{'id': 'S001', 'name': "John Doe", 
+            '1': Student(**{'id': 'S001', 'name': "John Doe",
             'identification':"123456789",'email':"jdoe@example.com"}),
-            '2': Student(**{'id': 'S002', 'name': "Daniel Perez", 
+            '2': Student(**{'id': 'S002', 'name': "Daniel Perez",
             'identification':"987654321",'email':"dperez@example.com"}),
         }
     })

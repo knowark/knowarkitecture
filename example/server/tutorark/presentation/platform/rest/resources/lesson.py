@@ -1,6 +1,5 @@
 from functools import partial
 from injectark import Injectark
-from ..helpers import LessonSchema
 from .resource import Resource
 
 
@@ -10,7 +9,6 @@ class LessonResource(Resource):
         manager = injector['LessonManager']
 
         super().__init__(
-            LessonSchema,
             informer.count,
             informer.search,
             manager.collect_lessons,

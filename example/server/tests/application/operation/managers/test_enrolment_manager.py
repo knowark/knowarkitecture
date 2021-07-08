@@ -58,33 +58,11 @@ async def test_enrolment_manager_create_enrolment(
         'student_id': 'S001',
     }]
 
-    await enrolment_manager._create_enrolments(enrolment_data)
+    await enrolment_manager.collect_enrolments(dict(data=enrolment_data))
 
     enrolments = getattr(
         enrolment_manager.enrolment_repository, 'data')['default']
     assert len(enrolments) == 1
-
-
-async def test_enrolment_manager_delete_enrolment(
-        enrolment_manager: EnrolmentManager) -> None:
-    enrolment_id = 'E003'
-    enrolment_records: RecordList = [{
-        'id': enrolment_id,
-        'course_id': 'C001',
-        'student_id': 'S001',
-    }]
-
-    await enrolment_manager._create_enrolments(enrolment_records)
-
-    enrolments_data = getattr(
-        enrolment_manager.enrolment_repository, 'data')
-
-    assert len(enrolments_data['default']) == 1
-
-    await enrolment_manager._delete_enrolments([enrolment_id])
-
-    assert len(enrolments_data['default']) == 0
-
 
 async def test_enrolment_manager_eliminate_enrolment(
         enrolment_manager: EnrolmentManager) -> None:
@@ -95,14 +73,14 @@ async def test_enrolment_manager_eliminate_enrolment(
         'student_id': 'S001',
     }]
 
-    await enrolment_manager._create_enrolments(enrolment_records)
+    await enrolment_manager.collect_enrolments(dict(data=enrolment_records))
 
     enrolments_data = getattr(
         enrolment_manager.enrolment_repository, 'data')
 
     assert len(enrolments_data['default']) == 1
 
-    await enrolment_manager.eliminate_enrolments(dict(records=[enrolment_id]))
+    await enrolment_manager.eliminate_enrolments(dict(data=[enrolment_id]))
 
     assert len(enrolments_data['default']) == 0
 
@@ -115,7 +93,7 @@ async def test_enrolment_manager_collect_existing_enrolments(
         'course_id': 'C001',
         'student_id': 'S001',
     }]
-    await enrolment_manager.collect_enrolments(dict(records=enrolment_records))
+    await enrolment_manager.collect_enrolments(dict(data=enrolment_records))
 
     enrolments_data = getattr(
         enrolment_manager.enrolment_repository, 'data')
@@ -128,7 +106,7 @@ async def test_enrolment_manager_collect_existing_enrolments(
         'student_id': 'S002',
     }]
 
-    await enrolment_manager.collect_enrolments(dict(records=updated_enrolments_data))
+    await enrolment_manager.collect_enrolments(dict(data=updated_enrolments_data))
 
     assert enrolments_data['default'][enrolment_id].course_id == (
         'C001')

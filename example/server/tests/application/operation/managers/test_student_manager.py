@@ -59,34 +59,11 @@ async def test_student_manager_create_student(
         'email':'jdoe@example.com',
     }]
 
-    await student_manager._create_students(student_data)
+    await student_manager.collect_students(dict(data=student_data))
 
     students = getattr(
         student_manager.student_repository, 'data')['default']
     assert len(students) == 1
-
-
-async def test_student_manager_delete_student(
-        student_manager: StudentManager) -> None:
-    student_id = 'S003'
-    student_records: RecordList = [{
-        'id': student_id,
-        'name': 'John Doe',
-        'identification': '123456789',
-        'email':'jdoe@example.com',
-    }]
-
-    await student_manager._create_students(student_records)
-
-    students_data = getattr(
-        student_manager.student_repository, 'data')
-
-    assert len(students_data['default']) == 1
-
-    await student_manager._delete_students([student_id])
-
-    assert len(students_data['default']) == 0
-
 
 async def test_student_manager_eliminate_student(
         student_manager: StudentManager) -> None:
@@ -98,14 +75,14 @@ async def test_student_manager_eliminate_student(
         'email':'jdoe@example.com',
     }]
 
-    await student_manager._create_students(student_records)
+    await student_manager.collect_students(dict(data=student_records))
 
     students_data = getattr(
         student_manager.student_repository, 'data')
 
     assert len(students_data['default']) == 1
 
-    await student_manager.eliminate_students(dict(records=[student_id]))
+    await student_manager.eliminate_students(dict(data=[student_id]))
 
     assert len(students_data['default']) == 0
 
@@ -119,7 +96,7 @@ async def test_student_manager_collect_existing_students(
         'identification': '85642',
         'email':'adoe@example.com',
     }]
-    await student_manager.collect_students(dict(records=student_records))
+    await student_manager.collect_students(dict(data=student_records))
 
     students_data = getattr(
         student_manager.student_repository, 'data')
@@ -133,7 +110,7 @@ async def test_student_manager_collect_existing_students(
         'email':'adoe@example.com',
     }]
 
-    await student_manager.collect_students(dict(records=updated_students_data))
+    await student_manager.collect_students(dict(data=updated_students_data))
 
     assert students_data['default'][student_id].name == (
         'Maria Doe')

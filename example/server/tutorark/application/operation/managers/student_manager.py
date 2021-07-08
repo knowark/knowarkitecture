@@ -1,3 +1,4 @@
+from uuid import uuid4
 from tutorark.application.domain.models.student import Student
 from typing import List
 from ...domain.services.repositories import StudentRepository
@@ -10,25 +11,31 @@ class StudentManager:
         self.student_repository = student_repository
 
     async def collect_students(self, entry: dict) -> dict:
-        students_ids = [
-            items['id'] for items in
-            entry.get('records') ]
-        await self._delete_students(students_ids)
-        result =  await self._create_students(entry.get('records'))
+        records = entry['data']
+        student_ids = [
+            student.setdefault('id', uuid4()) for student in records]
+
+        existing_students = {item.id: vars(item) for item in
+                              await self.student_repository.search(
+                                   [('id','in', student_ids)])}
+
+        updated_records = []
+        for record in records:
+            existing = existing_students.get(record['id'], {})
+            existing.update(record)
+            updated_records.append(existing)
+
+        result = [vars(student) for student in
+                  await self.student_repository.add([
+                      Student(**updated_record)
+                        for updated_record in updated_records])]
+
+        return {'data':result}
+
+    async def eliminate_students(self, entry: dict) -> dict:
+        records = entry['data']
+        existing_students = await self.student_repository.search(
+            [('id', 'in', records)])
+
+        result = await self.student_repository.remove(existing_students)
         return {'data': result}
-
-    async def eliminate_students(self, entry: dict) -> bool:
-        return await self._delete_students(entry.get('records'))
-
-
-    async def _create_students(self, students_records: RecordList) -> RecordList:
-        students = await self.student_repository.add([
-            Student(**students_record)
-            for students_record in students_records])
-        return [vars(items) for items in students]
-
-
-    async def _delete_students(self, students_ids: List[str]) -> bool:
-        students = await self.student_repository.search(
-            [('id', 'in', students_ids)])
-        return await self.student_repository.remove(students)

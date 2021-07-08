@@ -1,3 +1,4 @@
+import json
 import aiohttp_jinja2
 from typing import Any
 from pathlib import Path
@@ -6,10 +7,8 @@ from aiohttp import web, ClientSession
 from injectark import Injectark
 from ....integration.core import Config
 from .middleware import middlewares
-from .doc import create_spec
-from .resources import (RootResource, CourseResource, EnrolmentResource, 
+from .resources import (RootResource, CourseResource, EnrolmentResource,
                         LessonResource, StudentResource, TeacherResource)
-
 
 class RestApplication(web.Application):
     def __init__(self, config: Config, injector: Injectark) -> None:
@@ -51,7 +50,8 @@ class RestApplication(web.Application):
 
     def _create_api(self) -> None:
         # Restful API
-        spec = create_spec()
+        spec = json.loads(
+            (Path(__file__).parent / 'openapi.json').read_text())
 
         # Resources
         self._bind('/', RootResource(spec))

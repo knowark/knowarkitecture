@@ -1,8 +1,7 @@
-from json import JSONDecodeError, loads
-from typing import Tuple, List
-from json import loads
+from typing import Tuple, List, Dict, Any
 from aiohttp import web
 from .format import parse_domain
+from json import JSONDecodeError, loads
 
 
 async def get_request_filter(request: web.Request) -> Tuple:
@@ -21,7 +20,7 @@ async def get_request_filter(request: web.Request) -> Tuple:
     return domain, query.get('limit', limit), query.get('offset', offset)
 
 
-async def get_request_ids(request: web.Request) -> List[str]:
+async def get_request_ids(request: web.Request) -> dict:
     ids = []
     uri_id = request.match_info.get('id')
     if uri_id:
@@ -29,6 +28,7 @@ async def get_request_ids(request: web.Request) -> List[str]:
 
     body = await request.text()
     if body:
-        ids.extend(loads(await request.text()))
+        records = loads(await request.text())
+        ids.extend(records['data'])
 
-    return ids
+    return dict(data=ids)

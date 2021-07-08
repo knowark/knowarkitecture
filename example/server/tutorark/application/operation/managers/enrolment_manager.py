@@ -1,3 +1,4 @@
+from uuid import uuid4
 from tutorark.application.domain.models.enrolment import Enrolment
 from typing import List
 from ...domain.services.repositories import EnrolmentRepository
@@ -10,25 +11,31 @@ class EnrolmentManager:
         self.enrolment_repository = enrolment_repository
 
     async def collect_enrolments(self, entry: dict) -> dict:
-        enrolments_ids = [
-            items['id'] for items in
-            entry.get('records') ]
-        await self._delete_enrolments(enrolments_ids)
-        result =  await self._create_enrolments(entry.get('records'))
+        records = entry['data']
+        enrolment_ids = [
+            enrolment.setdefault('id', uuid4()) for enrolment in records]
+
+        existing_enrolments = {item.id: vars(item) for item in
+                              await self.enrolment_repository.search(
+                                   [('id','in', enrolment_ids)])}
+
+        updated_records = []
+        for record in records:
+            existing = existing_enrolments.get(record['id'], {})
+            existing.update(record)
+            updated_records.append(existing)
+
+        result = [vars(enrolment) for enrolment in
+                  await self.enrolment_repository.add([
+                      Enrolment(**updated_record)
+                        for updated_record in updated_records])]
+
+        return {'data':result}
+
+    async def eliminate_enrolments(self, entry: dict) -> dict:
+        records = entry['data']
+        existing_enrolments = await self.enrolment_repository.search(
+            [('id', 'in', records)])
+
+        result = await self.enrolment_repository.remove(existing_enrolments)
         return {'data': result}
-
-    async def eliminate_enrolments(self, entry: dict) -> bool:
-        return await self._delete_enrolments(entry.get('records'))
-
-
-    async def _create_enrolments(self, enrolments_records: RecordList) -> RecordList:
-        enrolments = await self.enrolment_repository.add([
-            Enrolment(**enrolments_record)
-            for enrolments_record in enrolments_records])
-        return [vars(items) for items in enrolments]
-
-
-    async def _delete_enrolments(self, enrolments_ids: List[str]) -> bool:
-        enrolments = await self.enrolment_repository.search(
-            [('id', 'in', enrolments_ids)])
-        return await self.enrolment_repository.remove(enrolments)

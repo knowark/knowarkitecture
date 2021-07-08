@@ -58,33 +58,11 @@ async def test_course_manager_create_course(
         'description': 'The study of Greek and Roman philosophers',
     }]
 
-    await course_manager._create_courses(course_data)
+    await course_manager.collect_courses(dict(data=course_data))
 
     courses = getattr(
         course_manager.course_repository, 'data')['default']
     assert len(courses) == 1
-
-
-async def test_course_manager_delete_course(
-        course_manager: CourseManager) -> None:
-    course_id = '003'
-    course_records: RecordList = [{
-        'id': course_id,
-        'name': 'Developer',
-        'description': 'Lorem Ipsum is simply dummy text of the printing',
-    }]
-
-    await course_manager._create_courses(course_records)
-
-    courses_data = getattr(
-        course_manager.course_repository, 'data')
-
-    assert len(courses_data['default']) == 1
-
-    await course_manager._delete_courses([course_id])
-
-    assert len(courses_data['default']) == 0
-
 
 async def test_course_manager_eliminate_course(
         course_manager: CourseManager) -> None:
@@ -95,14 +73,14 @@ async def test_course_manager_eliminate_course(
         'description': 'Lorem Ipsum is simply dummy text of the printing',
     }]
 
-    await course_manager._create_courses(course_records)
+    await course_manager.collect_courses(dict(data=course_records))
 
     courses_data = getattr(
         course_manager.course_repository, 'data')
 
     assert len(courses_data['default']) == 1
 
-    await course_manager.eliminate_courses(dict(records=[course_id]))
+    await course_manager.eliminate_courses(dict(data=[course_id]))
 
     assert len(courses_data['default']) == 0
 
@@ -115,7 +93,7 @@ async def test_course_manager_collect_existing_courses(
         'name': 'Developer',
         'description': 'Lorem Ipsum is simply dummy text of the printing',
     }]
-    await course_manager.collect_courses(dict(records=course_records))
+    await course_manager.collect_courses(dict(data=course_records))
 
     courses_data = getattr(
         course_manager.course_repository, 'data')
@@ -128,7 +106,7 @@ async def test_course_manager_collect_existing_courses(
         'description': 'Lorem Ipsum is simply dummy text of the printing',
     }]
 
-    await course_manager.collect_courses(dict(records=updated_courses_data))
+    await course_manager.collect_courses(dict(data=updated_courses_data))
 
     assert courses_data['default'][course_id].name == (
         'Data Bases')

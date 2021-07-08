@@ -1,3 +1,4 @@
+from uuid import uuid4
 from tutorark.application.domain.models.course import Course
 from typing import List
 from ...domain.services.repositories import CourseRepository
@@ -10,26 +11,31 @@ class CourseManager:
         self.course_repository = course_repository
 
     async def collect_courses(self, entry: dict) -> dict:
-        courses_ids = [
-            items['id'] for items in
-            entry.get('records') ]
-        await self._delete_courses(courses_ids)
-        result =  await self._create_courses(entry.get('records'))
+        records = entry['data']
+        course_ids = [
+            course.setdefault('id', uuid4()) for course in records]
+
+        existing_courses = {item.id: vars(item) for item in
+                              await self.course_repository.search(
+                                   [('id','in', course_ids)])}
+
+        updated_records = []
+        for record in records:
+            existing = existing_courses.get(record['id'], {})
+            existing.update(record)
+            updated_records.append(existing)
+
+        result = [vars(course) for course in
+                  await self.course_repository.add([
+                      Course(**updated_record)
+                        for updated_record in updated_records])]
+
+        return {'data':result}
+
+    async def eliminate_courses(self, entry: dict) -> dict:
+        records = entry['data']
+        existing_courses = await self.course_repository.search(
+            [('id', 'in', records)])
+
+        result = await self.course_repository.remove(existing_courses)
         return {'data': result}
-
-    async def eliminate_courses(self, entry: dict) -> bool:
-        return await self._delete_courses(entry.get('records'))
-
-
-    async def _create_courses(self, courses_records: RecordList) -> RecordList:
-        courses = await self.course_repository.add([
-            Course(**courses_record)
-            for courses_record in courses_records])
-        return [vars(items) for items in courses]
-
-
-    async def _delete_courses(self, courses_ids: List[str]) -> bool:
-        courses = await self.course_repository.search(
-            [('id', 'in', courses_ids)])
-        return await self.course_repository.remove(courses)
-

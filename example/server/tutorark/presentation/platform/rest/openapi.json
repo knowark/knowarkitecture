@@ -1,0 +1,350 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Tutorark",
+    "version": "1.0.0",
+    "description": "Tutorark Server",
+    "license": {
+      "name": "GNU GPLv3",
+      "url": ""
+    },
+    "contact": {
+      "name": "Knowark",
+      "url": "https://www.knowark.com",
+      "email": "it@knowark.com"
+    }
+  },
+
+  "paths": {
+
+    "/courses": {
+      "get": {
+        "description": "Show all Courses metadata records",
+        "tags": ["Courses"],
+        "responses": {
+          "200": {
+            "description": "Courses metadata records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Course"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Insert or update new course record",
+        "tags": ["Courses"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful PATCH response"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete course record",
+        "tags": ["Courses"],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+      }
+    },
+
+   "/enrolments": {
+      "get": {
+        "description": "Show all enrolments metadata records",
+        "tags": ["Enrolments"],
+        "responses": {
+          "200": {
+            "description": "Enrolments metadata records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Enrolment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Insert or update new Enrolment record",
+        "tags": ["Enrolments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Enrolment"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful PATCH response"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete Enrolment record",
+        "tags": ["Enrolments"],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+      }
+ },
+
+    "/lessons": {
+      "get": {
+        "description": "Show all Lessons metadata records",
+        "tags": ["Lessons"],
+        "responses": {
+          "200": {
+            "description": "Lessons metadata records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Lesson"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Insert or update new lesson record",
+        "tags": ["Lessons"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful PATCH response"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete lesson record",
+        "tags": ["Lessons"],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+      }
+    },
+
+    "/students": {
+      "get": {
+        "description": "Show all Students metadata records",
+        "tags": ["Students"],
+        "responses": {
+          "200": {
+            "description": "Students metadata records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Student"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Insert or update new Student record",
+        "tags": ["Students"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Student"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful PATCH response"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete student record",
+        "tags": ["Students"],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+      }
+    },
+
+    "/teachers": {
+      "get": {
+        "description": "Show all Teacher metadata records",
+        "tags": ["Teachers"],
+        "responses": {
+          "200": {
+            "description": "Teachers metadata records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Teacher"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Insert or update new Teacher record",
+        "tags": ["Teachers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Teacher"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful PATCH response"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete teacher record",
+        "tags": ["Teachers"],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+     }
+ }
+},
+
+  "components": {
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+
+    "Enrolment": {
+        "type": "object",
+        "properties": {
+          "course_id": {
+            "type": "string"
+          },
+          "student_id": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Lesson": {
+        "type": "object",
+        "properties": {
+          "course_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Student": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Teacher": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

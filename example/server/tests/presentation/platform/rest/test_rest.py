@@ -64,8 +64,8 @@ async def test_courses_get(app, headers) -> None:
 
     data_dict = loads(content)
 
-    assert len(data_dict) == 2
-    assert data_dict[0]['id'] == '1'
+    assert len(data_dict['data']) == 2
+    assert data_dict['data'][0]['id'] == '1'
 
 
 async def test_courses_get_route_filter(app, headers) -> None:
@@ -74,17 +74,17 @@ async def test_courses_get_route_filter(app, headers) -> None:
         headers=headers)
     content = await response.text()
     data_dict = loads(content)
-    assert len(data_dict) == 2
+    assert len(data_dict['data']) == 2
 
 
-async def test_courses_put(app, headers) -> None:
-    courses_data = dumps([{
+async def test_courses_path(app, headers) -> None:
+    courses_data = dumps(dict(data=[{
         'id': 'C001',
         'name': 'Developer',
         'description': 'Lorem Ipsum is simply dummy text of the printing',
-    }])
+    }]))
 
-    response = await app.put('/courses',
+    response = await app.patch('/courses',
                              data=courses_data, headers=headers)
     content = await response.text()
     assert response.status == 200
@@ -98,11 +98,11 @@ async def test_courses_delete(app, headers) -> None:
     response = await app.get('/courses', headers=headers)
     data_dict = loads(await response.text())
 
-    assert len(data_dict) == 2
+    assert len(data_dict['data']) == 2
 
 
 async def test_courses_delete_body(app, headers) -> None:
-    ids = dumps(["2"])
+    ids = dumps(dict(data=["2"]))
     response = await app.delete(
         '/courses', data=ids, headers=headers)
     content = await response.text()
@@ -111,7 +111,7 @@ async def test_courses_delete_body(app, headers) -> None:
     response = await app.get('/courses', headers=headers)
     data_dict = loads(await response.text())
 
-    assert  len(data_dict)  == 1
+    assert  len(data_dict['data'])  == 1
 
 
 # Enrolments
@@ -138,27 +138,27 @@ async def test_enrolments_get(app, headers) -> None:
 
     data_dict = loads(content)
 
-    assert len(data_dict) == 2
-    assert data_dict[0]['id'] == '1'
+    assert len(data_dict['data']) == 2
+    assert data_dict['data'][0]['id'] == '1'
 
 
 async def test_enrolments_get_route_filter(app, headers) -> None:
     response = await app.get(
-        '/enrolments?filter=[["courseId", "=", "C001"]]',
+        '/enrolments?filter=[["course_id", "=", "C001"]]',
         headers=headers)
     content = await response.text()
     data_dict = loads(content)
-    assert len(data_dict) == 0
+    assert len(data_dict['data']) == 0
 
 
-async def test_enrolments_put(app, headers) -> None:
-    enrolments_data = dumps([{
+async def test_enrolments_patch(app, headers) -> None:
+    enrolments_data = dumps(dict(data=[{
         "id": "1",
         "courseId": "C001",
         "studentId": "S001",
-    }])
+    }]))
 
-    response = await app.put('/enrolments',
+    response = await app.patch('/enrolments',
                              data=enrolments_data, headers=headers)
     content = await response.text()
     assert response.status == 200
@@ -172,11 +172,11 @@ async def test_enrolments_delete(app, headers) -> None:
     response = await app.get('/enrolments', headers=headers)
     data_dict = loads(await response.text())
 
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
 async def test_enrolments_delete_body(app, headers) -> None:
-    ids = dumps(["2"])
+    ids = dumps(dict(data=["2"]))
     response = await app.delete(
         '/enrolments', data=ids, headers=headers)
     content = await response.text()
@@ -185,7 +185,7 @@ async def test_enrolments_delete_body(app, headers) -> None:
     response = await app.get('/enrolments', headers=headers)
     data_dict = loads(await response.text())
 
-    assert  len(data_dict)  == 1
+    assert  len(data_dict['data'])  == 1
 
 
 
@@ -216,8 +216,8 @@ async def test_lessons_get(app, headers) -> None:
 
     data_dict = loads(content)
 
-    assert len(data_dict) == 2
-    assert data_dict[0]['id'] == '1'
+    assert len(data_dict['data']) == 2
+    assert data_dict['data'][0]['id'] == '1'
 
 
 async def test_lessons_get_route_filter(app, headers) -> None:
@@ -226,17 +226,17 @@ async def test_lessons_get_route_filter(app, headers) -> None:
         headers=headers)
     content = await response.text()
     data_dict = loads(content)
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
-async def test_lessons_put(app, headers) -> None:
-    lessons_data = dumps([{
+async def test_lessons_patch(app, headers) -> None:
+    lessons_data = dumps(dict(data=[{
         "id": "1",
         "courseId": "1",
         "name": "Understanding Pitagoras",
-    }])
+    }]))
 
-    response = await app.put('/lessons',
+    response = await app.patch('/lessons',
                              data=lessons_data, headers=headers)
     content = await response.text()
     assert response.status == 200
@@ -250,11 +250,11 @@ async def test_lessons_delete(app, headers) -> None:
     response = await app.get('/lessons', headers=headers)
     data_dict = loads(await response.text())
 
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
 async def test_lessons_delete_body(app, headers) -> None:
-    ids = dumps(["2"])
+    ids = dumps(dict(data=["2"]))
     response = await app.delete(
         '/lessons', data=ids, headers=headers)
     content = await response.text()
@@ -263,7 +263,7 @@ async def test_lessons_delete_body(app, headers) -> None:
     response = await app.get('/lessons', headers=headers)
     data_dict = loads(await response.text())
 
-    assert  len(data_dict)  == 1
+    assert  len(data_dict['data'])  == 1
 
 # Student
 
@@ -290,8 +290,8 @@ async def test_students_get(app, headers) -> None:
 
     data_dict = loads(content)
 
-    assert len(data_dict) == 2
-    assert data_dict[0]['id'] == '1'
+    assert len(data_dict['data']) == 2
+    assert data_dict['data'][0]['id'] == '1'
 
 
 async def test_students_get_route_filter(app, headers) -> None:
@@ -300,18 +300,18 @@ async def test_students_get_route_filter(app, headers) -> None:
         headers=headers)
     content = await response.text()
     data_dict = loads(content)
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
-async def test_students_put(app, headers) -> None:
-    students_data = dumps([{
+async def test_students_patch(app, headers) -> None:
+    students_data = dumps(dict(data=[{
         "id": "1",
         "name": "Jose Martinez",
         "identification": "123456789",
         "email":"jose@example.com",
-    }])
+    }]))
 
-    response = await app.put('/students',
+    response = await app.patch('/students',
                              data=students_data, headers=headers)
     content = await response.text()
     assert response.status == 200
@@ -325,11 +325,11 @@ async def test_students_delete(app, headers) -> None:
     response = await app.get('/students', headers=headers)
     data_dict = loads(await response.text())
 
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
 async def test_students_delete_body(app, headers) -> None:
-    ids = dumps(["2"])
+    ids = dumps(dict(data=["2"]))
     response = await app.delete(
         '/students', data=ids, headers=headers)
     content = await response.text()
@@ -338,7 +338,7 @@ async def test_students_delete_body(app, headers) -> None:
     response = await app.get('/students', headers=headers)
     data_dict = loads(await response.text())
 
-    assert  len(data_dict)  == 1
+    assert  len(data_dict['data'])  == 1
 
 # Teacher
 
@@ -365,8 +365,8 @@ async def test_teachers_get(app, headers) -> None:
 
     data_dict = loads(content)
 
-    assert len(data_dict) == 2
-    assert data_dict[0]['id'] == '1'
+    assert len(data_dict['data']) == 2
+    assert data_dict['data'][0]['id'] == '1'
 
 
 async def test_teachers_get_route_filter(app, headers) -> None:
@@ -375,18 +375,18 @@ async def test_teachers_get_route_filter(app, headers) -> None:
         headers=headers)
     content = await response.text()
     data_dict = loads(content)
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
-async def test_teachers_put(app, headers) -> None:
-    teachers_data = dumps([{
+async def test_teachers_patch(app, headers) -> None:
+    teachers_data = dumps(dict(data=[{
         "id": "1",
         "name": "Duban Feliz",
         "identification": "5469871",
         "email":"duban@example.com",
-    }])
+    }]))
 
-    response = await app.put('/teachers',
+    response = await app.patch('/teachers',
                              data=teachers_data, headers=headers)
     content = await response.text()
     assert response.status == 200
@@ -400,11 +400,11 @@ async def test_teachers_delete(app, headers) -> None:
     response = await app.get('/teachers', headers=headers)
     data_dict = loads(await response.text())
 
-    assert len(data_dict) == 1
+    assert len(data_dict['data']) == 1
 
 
 async def test_teachers_delete_body(app, headers) -> None:
-    ids = dumps(["2"])
+    ids = dumps(dict(data=["2"]))
     response = await app.delete(
         '/teachers', data=ids, headers=headers)
     content = await response.text()
@@ -413,4 +413,4 @@ async def test_teachers_delete_body(app, headers) -> None:
     response = await app.get('/teachers', headers=headers)
     data_dict = loads(await response.text())
 
-    assert  len(data_dict)  == 1
+    assert  len(data_dict['data'])  == 1

@@ -1,6 +1,5 @@
 from functools import partial
 from injectark import Injectark
-from ..helpers import EnrolmentSchema
 from .resource import Resource
 
 
@@ -10,7 +9,6 @@ class EnrolmentResource(Resource):
         manager = injector['EnrolmentManager']
 
         super().__init__(
-            EnrolmentSchema,
             informer.count,
             informer.search,
             manager.collect_enrolments,

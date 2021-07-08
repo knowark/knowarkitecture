@@ -58,33 +58,11 @@ async def test_lesson_manager_create_lesson(
         'name': 'Understanding Socrates',
     }]
 
-    await lesson_manager._create_lessons(lesson_data)
+    await lesson_manager.collect_lessons(dict(data=lesson_data))
 
     lessons = getattr(
         lesson_manager.lesson_repository, 'data')['default']
     assert len(lessons) == 1
-
-
-async def test_lesson_manager_delete_lesson(
-        lesson_manager: LessonManager) -> None:
-    lesson_id = 'L003'
-    lesson_records: RecordList = [{
-        'id': lesson_id,
-        'course_id': 'C003',
-        'name': 'Understanding Platon',
-    }]
-
-    await lesson_manager._create_lessons(lesson_records)
-
-    lessons_data = getattr(
-        lesson_manager.lesson_repository, 'data')
-
-    assert len(lessons_data['default']) == 1
-
-    await lesson_manager._delete_lessons([lesson_id])
-
-    assert len(lessons_data['default']) == 0
-
 
 async def test_lesson_manager_eliminate_lesson(
         lesson_manager: LessonManager) -> None:
@@ -95,14 +73,14 @@ async def test_lesson_manager_eliminate_lesson(
         'name': 'Understanding Platon',
     }]
 
-    await lesson_manager._create_lessons(lesson_records)
+    await lesson_manager.collect_lessons(dict(data=lesson_records))
 
     lessons_data = getattr(
         lesson_manager.lesson_repository, 'data')
 
     assert len(lessons_data['default']) == 1
 
-    await lesson_manager.eliminate_lessons(dict(records=[lesson_id]))
+    await lesson_manager.eliminate_lessons(dict(data=[lesson_id]))
 
     assert len(lessons_data['default']) == 0
 
@@ -115,7 +93,7 @@ async def test_lesson_manager_collect_existing_lessons(
         'course_id': 'C004',
         'name': 'Understanding Aristoteles',
     }]
-    await lesson_manager.collect_lessons(dict(records=lesson_records))
+    await lesson_manager.collect_lessons(dict(data=lesson_records))
 
     lessons_data = getattr(
         lesson_manager.lesson_repository, 'data')
@@ -128,7 +106,7 @@ async def test_lesson_manager_collect_existing_lessons(
         'name': 'Understanding Pitagoras',
     }]
 
-    await lesson_manager.collect_lessons(dict(records=updated_lessons_data))
+    await lesson_manager.collect_lessons(dict(data=updated_lessons_data))
 
     assert lessons_data['default'][lesson_id].name == (
         'Understanding Pitagoras')
