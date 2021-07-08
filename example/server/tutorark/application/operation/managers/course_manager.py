@@ -1,5 +1,5 @@
 from tutorark.application.domain.models.course import Course
-from typing import List, Dict
+from typing import List
 from ...domain.services.repositories import CourseRepository
 from ...domain.common import RecordList
 
@@ -9,7 +9,7 @@ class CourseManager:
                  ) -> None:
         self.course_repository = course_repository
 
-    async def collect_courses(self, entry: Dict) -> Dict:
+    async def collect_courses(self, entry: dict) -> dict:
         courses_ids = [
             items['id'] for items in
             entry.get('records') ]
@@ -17,7 +17,7 @@ class CourseManager:
         result =  await self._create_courses(entry.get('records'))
         return {'data': result}
 
-    async def eliminate_courses(self, entry: Dict) -> bool:
+    async def eliminate_courses(self, entry: dict) -> bool:
         return await self._delete_courses(entry.get('records'))
 
 

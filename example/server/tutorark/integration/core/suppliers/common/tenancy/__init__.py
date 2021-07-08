@@ -1,2 +1,0 @@
-from .tenant_supplier import TenantSupplier
-from .memory_tenant_supplier import MemoryTenantSupplier

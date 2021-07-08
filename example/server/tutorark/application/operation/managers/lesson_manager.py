@@ -1,5 +1,5 @@
 from tutorark.application.domain.models.lesson import Lesson
-from typing import List, Dict
+from typing import List
 from ...domain.services.repositories import LessonRepository
 from ...domain.common import RecordList
 
@@ -9,7 +9,7 @@ class LessonManager:
                  ) -> None:
         self.lesson_repository = lesson_repository
 
-    async def collect_lessons(self, entry: Dict) -> Dict:
+    async def collect_lessons(self, entry: dict) -> dict:
         lessons_ids = [
             items['id'] for items in
             entry.get('records') ]
@@ -17,7 +17,7 @@ class LessonManager:
         result =  await self._create_lessons(entry.get('records'))
         return {'data': result}
 
-    async def eliminate_lessons(self, entry: Dict) -> bool:
+    async def eliminate_lessons(self, entry: dict) -> bool:
         return await self._delete_lessons(entry.get('records'))
 
 

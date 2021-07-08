@@ -1,4 +1,4 @@
-from tutorark.integration.core.suppliers import (
+from tutorark.application.general.suppliers import (
     MigrationSupplier, MemoryMigrationSupplier)
 
 
@@ -10,4 +10,6 @@ def test_migration_supplier_methods() -> None:
 def test_memory_migration_supplier_migrate() -> None:
     migration_supplier = MemoryMigrationSupplier()
 
-    assert migration_supplier.migrate() is None
+    migration_supplier.migrate()
+
+    assert migration_supplier._migrated

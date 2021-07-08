@@ -10,4 +10,4 @@ class MigrationSupplier(ABC):
 
 class MemoryMigrationSupplier(MigrationSupplier):
     def migrate(self, tenant: str = '', version: str = '') -> None:
-        pass
+        self._migrated = True

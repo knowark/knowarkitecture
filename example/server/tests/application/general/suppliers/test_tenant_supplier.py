@@ -1,4 +1,5 @@
-from tutorark.integration.core import TenantSupplier, MemoryTenantSupplier
+from tutorark.application.general.suppliers import (
+    TenantSupplier, MemoryTenantSupplier)
 
 
 def test_tenant_supplier_methods() -> None:
@@ -22,3 +23,4 @@ def test_memory_tenant_supplier_ensure_tenant() -> None:
     })
 
     assert tenant_supplier.get_tenant('001')['name'] == 'Knowark'
+

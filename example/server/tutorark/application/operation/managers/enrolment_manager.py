@@ -1,5 +1,5 @@
 from tutorark.application.domain.models.enrolment import Enrolment
-from typing import List, Dict
+from typing import List
 from ...domain.services.repositories import EnrolmentRepository
 from ...domain.common import RecordList
 
@@ -9,7 +9,7 @@ class EnrolmentManager:
                  ) -> None:
         self.enrolment_repository = enrolment_repository
 
-    async def collect_enrolments(self, entry: Dict) -> Dict:
+    async def collect_enrolments(self, entry: dict) -> dict:
         enrolments_ids = [
             items['id'] for items in
             entry.get('records') ]
@@ -17,7 +17,7 @@ class EnrolmentManager:
         result =  await self._create_enrolments(entry.get('records'))
         return {'data': result}
 
-    async def eliminate_enrolments(self, entry: Dict) -> bool:
+    async def eliminate_enrolments(self, entry: dict) -> bool:
         return await self._delete_enrolments(entry.get('records'))
 
 

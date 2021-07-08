@@ -1,5 +1,5 @@
 from tutorark.application.domain.models.teacher import Teacher
-from typing import List, Dict
+from typing import List
 from ...domain.services.repositories import TeacherRepository
 from ...domain.common import RecordList
 
@@ -9,7 +9,7 @@ class TeacherManager:
                  ) -> None:
         self.teacher_repository = teacher_repository
 
-    async def collect_teachers(self, entry: Dict) -> Dict:
+    async def collect_teachers(self, entry: dict) -> dict:
         teachers_ids = [
             items['id'] for items in
             entry.get('records') ]
@@ -17,7 +17,7 @@ class TeacherManager:
         result =  await self._create_teachers(entry.get('records'))
         return {'data': result}
 
-    async def eliminate_teachers(self, entry: Dict) -> bool:
+    async def eliminate_teachers(self, entry: dict) -> bool:
         return await self._delete_teachers(entry.get('records'))
 
 

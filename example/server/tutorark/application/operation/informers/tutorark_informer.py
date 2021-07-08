@@ -1,18 +1,17 @@
-from typing import Dict
 from abc import ABC, abstractmethod
 from ...domain.services.repositories import (
-    CourseRepository, EnrolmentRepository, LessonRepository, 
+    CourseRepository, EnrolmentRepository, LessonRepository,
     StudentRepository, TeacherRepository)
 from ...domain.common import RecordList, QueryDomain
 
 
 class TutorarkInformer(ABC):
     @abstractmethod
-    async def search(self,entry: Dict) -> Dict:
+    async def search(self,entry: dict) -> dict:
         """Returns a list of <<model>> dictionaries matching the domain"""
 
     @abstractmethod
-    async def count(self, entry: Dict) -> Dict:
+    async def count(self, entry: dict) -> dict:
         """Returns a the <<model>> records count"""
 
 
@@ -31,14 +30,14 @@ class StandardTutorarkInformer(TutorarkInformer):
         self.student_repository = student_repository
         self.teacher_repository = teacher_repository
 
-    async def search(self,entry: Dict) -> Dict:
+    async def search(self,entry: dict) -> dict:
         model = entry.pop('model')
         repository = getattr(self, f'{model}_repository')
         result = await repository.search(**entry)
         return {'data': [vars(item) for item in result]}
 
 
-    async def count(self, entry: Dict) -> Dict:
+    async def count(self, entry: dict) -> dict:
         model = entry['model']
         repository = getattr(self, f'{model}_repository')
         result = await repository.count(entry['domain'])

@@ -7,7 +7,9 @@ from ...application.domain.models import (
 from ...application.domain.services.repositories import (
     MemoryCourseRepository, MemoryEnrolmentRepository,
     MemoryLessonRepository, MemoryStudentRepository, MemoryTeacherRepository)
-from ..core import Config, MemoryTenantSupplier
+from ...application.general.suppliers import (
+    TenantSupplier, MemoryTenantSupplier)
+from ..core import Config
 from .base_factory import BaseFactory
 
 

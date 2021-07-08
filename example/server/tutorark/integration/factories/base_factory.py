@@ -5,23 +5,31 @@ from ...application.domain.services.repositories import (
     LessonRepository, MemoryLessonRepository,
     StudentRepository, MemoryStudentRepository,
     TeacherRepository, MemoryTeacherRepository)
+from ...application.general.connector import (
+    Connector, MemoryConnector, Transactor, MemoryTransactor)
 from ...application.domain.common import (
     QueryParser, TenantProvider, StandardTenantProvider,
-    AuthProvider, StandardAuthProvider,
-    TransactionManager, MemoryTransactionManager)
+    AuthProvider, StandardAuthProvider)
+from ...application.general.suppliers import (
+    TenantSupplier, MemoryTenantSupplier,
+    MigrationSupplier, MemoryMigrationSupplier)
 from ...application.operation.managers import (
     CourseManager, EnrolmentManager, LessonManager,
     StudentManager, TeacherManager,
     SessionManager)
 from ...application.operation.informers import (
     StandardTutorarkInformer)
-from ..core import (
-    Config, MemoryTenantSupplier, MemoryMigrationSupplier)
+from ..core import Config
 
 
 class BaseFactory(Factory):
     def __init__(self, config: Config) -> None:
         self.config = config
+        self.public = [
+            'TutorarkInformer', 'CourseManager', 'EnrolmentManager',
+            'LessonManager', 'StudentManager', 'TeacherManager',
+            'SessionManager'
+        ]
 
     # Query parser
 
@@ -44,6 +52,13 @@ class BaseFactory(Factory):
 
     def migration_supplier(self) -> MemoryMigrationSupplier:
         return MemoryMigrationSupplier()
+
+    # General
+    def connector(self) -> Connector:
+        return MemoryConnector()
+
+    def transactor(self) -> Transactor:
+        return MemoryTransactor()
 
     # Repositories
 
@@ -95,9 +110,9 @@ class BaseFactory(Factory):
             lesson_repository: LessonRepository,
             student_repository: StudentRepository,
             teacher_repository: TeacherRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> StandardTutorarkInformer:
-        return transaction_manager(StandardTutorarkInformer)(
+        return transactor(StandardTutorarkInformer)(
             course_repository, enrolment_repository,
             lesson_repository, student_repository, teacher_repository)
 
@@ -106,47 +121,43 @@ class BaseFactory(Factory):
 
     def course_manager(
             self, course_repository: CourseRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> CourseManager:
-        return transaction_manager(CourseManager)(
+        return transactor(CourseManager)(
             course_repository)
 
     def enrolment_manager(
             self, enrolment_repository: EnrolmentRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> EnrolmentManager:
-        return transaction_manager(EnrolmentManager)(
+        return transactor(EnrolmentManager)(
             enrolment_repository)
 
     def lesson_manager(
             self, lesson_repository: LessonRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> LessonManager:
-        return transaction_manager(LessonManager)(
+        return transactor(LessonManager)(
             lesson_repository)
 
     def student_manager(
             self, student_repository: StudentRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> StudentManager:
-        return transaction_manager(StudentManager)(
+        return transactor(StudentManager)(
             student_repository)
 
     def teacher_manager(
             self, teacher_repository: TeacherRepository,
-            transaction_manager: TransactionManager
+            transactor: Transactor,
     ) -> TeacherManager:
-        return transaction_manager(TeacherManager)(
+        return transactor(TeacherManager)(
             teacher_repository)
-
 
     def session_manager(
             self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider,
-            transaction_manager: TransactionManager
+            tenant_supplier: TenantSupplier
     ) -> SessionManager:
-        return transaction_manager(SessionManager)(
-            tenant_provider, auth_provider)
-
-    def transaction_manager(self) -> MemoryTransactionManager:
-        return MemoryTransactionManager()
+        return SessionManager(
+            tenant_provider, auth_provider, tenant_supplier)

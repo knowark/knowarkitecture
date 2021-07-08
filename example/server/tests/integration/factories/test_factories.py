@@ -11,6 +11,9 @@ test_tuples = [
         #providers
         ('AuthProvider', 'StandardAuthProvider'),
         ('TenantProvider', 'StandardTenantProvider'),
+        #general
+        ('Connector', 'MemoryConnector'),
+        ('Transactor', 'MemoryTransactor'),
         #suppliers
         ('TenantSupplier', 'MemoryTenantSupplier'),
         ('MigrationSupplier', 'MemoryMigrationSupplier'),
@@ -28,8 +31,7 @@ test_tuples = [
         ('EnrolmentManager', 'EnrolmentManager'),
         ('StudentManager', 'StudentManager'),
         ('TeacherManager', 'TeacherManager'),
-        ('SessionManager', 'SessionManager'),
-        ('TransactionManager', 'MemoryTransactionManager'),
+        ('SessionManager', 'SessionManager')
     ]),
     ('CheckFactory', [
         #providers
