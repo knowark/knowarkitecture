@@ -6,8 +6,9 @@ PART ?= patch
 
 coverage:
 	export COVERAGE_FILE=$(COVFILE); pytest --cov-branch \
-	--cov=$(PROJECT) $(TESTS) --cov-report term-missing -x -s \
-	-vv -o cache_dir=/tmp/$(PROJECT)/cache
+	--cov=$(PROJECT) tests/ --cov-report term-missing -x -s -vv \
+	-W ignore::DeprecationWarning -o cache_dir=/tmp/tutorark/cache
+
 
 coverage-application:
 	export COVERAGE_FILE=$(COVFILE); \
