@@ -1,7 +1,7 @@
 Principios
 ==========
 
-Los principios que rigen a *Knowarkitecture* son principalmente aquellos
+Los principios que rigen a *KnowArkitecture* son principalmente aquellos
 expuestos en la arquitectura limpia (*Clean Architecture*) definida por
 *Robert Martin* en:
 
