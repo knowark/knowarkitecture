@@ -1,5 +1,5 @@
-Infraestructura
-===============
+Presentación
+============
 
 .. toctree::
    :maxdepth: 1
@@ -8,4 +8,3 @@ Infraestructura
    2.3.2_core/index
    2.3.3_data/index
    2.3.4_web/index
-  

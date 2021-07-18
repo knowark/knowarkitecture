@@ -13,12 +13,3 @@ Arquitectura de Software de KnowArk.
 
    1_fundamentos/index
    2_implantacion/index
-
-
-..
-    Indices and tables
-    ==================
-
-    * :ref:`genindex`
-    * :ref:`modindex`
-    * :ref:`search`
