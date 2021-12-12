@@ -348,7 +348,7 @@
         "summary": "Delete lessons",
         "description": "Delete lesson record",
         "tags": [
-          "Tesson"
+          "Lesson"
         ],
         "responses": {
           "200": {
@@ -579,31 +579,6 @@
         "responses": {
           "200": {
             "description": "Successful DELETE response"
-          }
-        }
-      }
-    }
-  },
-  "x-webhooks": {
-    "WebsiteCompiled": {
-      "patch": {
-        "operationId": "websiteCompiledId",
-        "summary": "Website Compiled",
-        "tags": [
-          "Events"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WebsiteCompiledMessage"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return 200 on succesful receipt"
           }
         }
       }
