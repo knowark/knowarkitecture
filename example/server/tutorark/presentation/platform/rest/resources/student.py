@@ -5,7 +5,7 @@ from .resource import Resource
 
 class StudentResource(Resource):
     def __init__(self, injector: Injectark) -> None:
-        informer = injector['TutorarkInformer']
+        informer = injector['StandardInformer']
         manager = injector['StudentManager']
 
         super().__init__(

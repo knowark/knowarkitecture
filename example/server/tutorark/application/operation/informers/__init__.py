@@ -1,2 +1,1 @@
-from .tutorark_informer import (
-    TutorarkInformer, StandardTutorarkInformer)
+from .standard_informer import StandardInformer
