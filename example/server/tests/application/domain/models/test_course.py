@@ -1,5 +1,5 @@
 from pytest import fixture
-from tutorark.application.domain import Course
+from tutorark.application.domain.models import Course
 
 @fixture
 def course() -> Course:

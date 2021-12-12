@@ -1,5 +1,5 @@
 from pytest import fixture
-from tutorark.application.domain import Teacher
+from tutorark.application.domain.models import Teacher
 
 @fixture
 def teacher() -> Teacher:

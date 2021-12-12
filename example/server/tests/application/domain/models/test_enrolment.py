@@ -1,7 +1,5 @@
-from tutorark.application.domain import Enrolment
-
 from pytest import fixture
-from tutorark.application.domain import Enrolment
+from tutorark.application.domain.models import Enrolment
 
 @fixture
 def enrolment() -> Enrolment:
