@@ -5,9 +5,12 @@ import sys
 import asyncio
 import uvloop
 from injectark import Injectark
-from .integration.core import config
+from .integration.core import config, sanitize
 from .integration.factories import factory_builder
 from .presentation.system import Shell
+
+
+config = sanitize(config)
 
 
 async def main(args=None):  # pragma: no cover

@@ -39,7 +39,7 @@ async def test_shell_serve(shell, monkeypatch):
     custom_port = None
 
     class MockRestApplication:
-        def __init__(self, config, injector):
+        def __init__(self, injector):
             pass
 
         @staticmethod
@@ -57,7 +57,6 @@ async def test_shell_serve(shell, monkeypatch):
 
     assert called and called
     assert custom_port == 9201
-
 
 async def test_shell_provision(shell):
     options = {

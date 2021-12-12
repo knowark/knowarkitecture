@@ -24,14 +24,10 @@ test_tuples = [
         ('StudentRepository', 'MemoryStudentRepository'),
         ('TeacherRepository', 'MemoryTeacherRepository'),
         #informers
-        ('TutorarkInformer', 'StandardTutorarkInformer'),
+        ('StandardInformer', 'StandardInformer'),
         #managers
-        ('CourseManager', 'CourseManager'),
-        ('LessonManager', 'LessonManager'),
-        ('EnrolmentManager', 'EnrolmentManager'),
-        ('StudentManager', 'StudentManager'),
-        ('TeacherManager', 'TeacherManager'),
-        ('SessionManager', 'SessionManager')
+        ('SessionManager', 'SessionManager'),
+        ('StandardManager', 'StandardManager'),
     ]),
     ('CheckFactory', [
         #providers
@@ -47,20 +43,6 @@ test_tuples = [
         ('TeacherRepository', 'MemoryTeacherRepository'),
     ]),
     ('SqlFactory', [
-        #sql parser
-      #  ('SqlParser', 'SqlParser'),
-        #suppliers
-      #  ('TenantSupplier', 'SchemaTenantSupplier'),
-      #  ('MigrationSupplier', 'SchemaMigrationSupplier'),
-        #managers
-      #  ('ConnectionManager', 'DefaultConnectionManager'),
-      #  ('TransactionManager', 'SqlTransactionManager'),
-        #repositories
-      #  ('CourseRepository', 'SqlCourseRepository'),
-      #  ('EnrolmentRepository', 'SqlEnrolmentRepository'),
-      #  ('LessonRepository', 'SqlLessonRepository'),
-      #  ('StudentRepository', 'SqlStudentRepository'),
-      #  ('TeacherRepository', 'SqlTeacherRepository'),
     ]),
 ]
 

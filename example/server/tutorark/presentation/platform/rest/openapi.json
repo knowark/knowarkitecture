@@ -2,7 +2,10 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Tutorark",
-    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://avatars.githubusercontent.com/u/44503575"
+    },
+    "version": "latest",
     "description": "Tutorark Server",
     "license": {
       "name": "GNU GPLv3",
@@ -14,23 +17,50 @@
       "email": "it@knowark.com"
     }
   },
-
   "paths": {
-
     "/courses": {
-      "get": {
-        "description": "Show all Courses metadata records",
-        "tags": ["Courses"],
+      "head": {
+        "operationId": "coursesHeadId",
+        "summary": "Inspect courses",
+        "description": "Return courses headers",
+        "tags": [
+          "Course"
+        ],
         "responses": {
           "200": {
-            "description": "Courses metadata records",
+            "description": "Course metadata records"
+          }
+        }
+      },
+      "get": {
+        "operationId": "coursesGetId",
+        "summary": "Get courses",
+        "description": "Show all courses metadata records",
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get course records",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Course"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Course"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -38,29 +68,62 @@
         }
       },
       "patch": {
-        "description": "Insert or update new course record",
-        "tags": ["Courses"],
+        "operationId": "coursesPatchId",
+        "summary": "Set courses",
+        "description": "Create or update course records",
+        "tags": [
+          "Course"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Course"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Course"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful PATCH response"
+            "description": "Successful PUT response"
           }
         }
       },
       "delete": {
+        "operationId": "coursesDeleteId",
+        "summary": "Delete courses",
         "description": "Delete course record",
-        "tags": ["Courses"],
+        "tags": [
+          "Course"
+        ],
         "responses": {
           "200": {
             "description": "Successful DELETE response"
@@ -68,21 +131,49 @@
         }
       }
     },
-
-   "/enrolments": {
+    "/enrolments": {
+      "head": {
+        "operationId": "enrolmentsHeadId",
+        "summary": "Inspect enrolments",
+        "description": "Return enrolments headers",
+        "tags": [
+          "Enrolment"
+        ],
+        "responses": {
+          "200": {
+            "description": "Enrolment metadata records"
+          }
+        }
+      },
       "get": {
+        "operationId": "enrolmentsGetId",
+        "summary": "Get enrolments",
         "description": "Show all enrolments metadata records",
-        "tags": ["Enrolments"],
+        "tags": [
+          "Enrolment"
+        ],
         "responses": {
           "200": {
-            "description": "Enrolments metadata records",
+            "description": "Get enrolment records",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Enrolment"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Enrolment"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -90,51 +181,112 @@
         }
       },
       "patch": {
-        "description": "Insert or update new Enrolment record",
-        "tags": ["Enrolments"],
+        "operationId": "enrolmentsPatchId",
+        "summary": "Set enrolments",
+        "description": "Create or update enrolment records",
+        "tags": [
+          "Enrolment"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Enrolment"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Enrolment"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful PATCH response"
+            "description": "Successful PUT response"
           }
         }
       },
       "delete": {
-        "description": "Delete Enrolment record",
-        "tags": ["Enrolments"],
+        "operationId": "enrolmentsDeleteId",
+        "summary": "Delete enrolments",
+        "description": "Delete enrolment record",
+        "tags": [
+          "Enrolment"
+        ],
         "responses": {
           "200": {
             "description": "Successful DELETE response"
           }
         }
       }
- },
-
+    },
     "/lessons": {
-      "get": {
-        "description": "Show all Lessons metadata records",
-        "tags": ["Lessons"],
+      "head": {
+        "operationId": "lessonsHeadId",
+        "summary": "Inspect lessons",
+        "description": "Return lessons headers",
+        "tags": [
+          "Lesson"
+        ],
         "responses": {
           "200": {
-            "description": "Lessons metadata records",
+            "description": "Lesson metadata records"
+          }
+        }
+      },
+      "get": {
+        "operationId": "lessonsGetId",
+        "summary": "Get lessons",
+        "description": "Show all lessons metadata records",
+        "tags": [
+          "Lesson"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get lesson records",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Lesson"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Lesson"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -142,29 +294,62 @@
         }
       },
       "patch": {
-        "description": "Insert or update new lesson record",
-        "tags": ["Lessons"],
+        "operationId": "lessonsPatchId",
+        "summary": "Set lessons",
+        "description": "Create or update lesson records",
+        "tags": [
+          "Lesson"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Lesson"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Lesson"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful PATCH response"
+            "description": "Successful PUT response"
           }
         }
       },
       "delete": {
+        "operationId": "lessonsDeleteId",
+        "summary": "Delete lessons",
         "description": "Delete lesson record",
-        "tags": ["Lessons"],
+        "tags": [
+          "Lesson"
+        ],
         "responses": {
           "200": {
             "description": "Successful DELETE response"
@@ -172,21 +357,49 @@
         }
       }
     },
-
     "/students": {
-      "get": {
-        "description": "Show all Students metadata records",
-        "tags": ["Students"],
+      "head": {
+        "operationId": "studentsHeadId",
+        "summary": "Inspect students",
+        "description": "Return students headers",
+        "tags": [
+          "Student"
+        ],
         "responses": {
           "200": {
-            "description": "Students metadata records",
+            "description": "Student metadata records"
+          }
+        }
+      },
+      "get": {
+        "operationId": "studentsGetId",
+        "summary": "Get students",
+        "description": "Show all students metadata records",
+        "tags": [
+          "Student"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get student records",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Student"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Student"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -194,29 +407,62 @@
         }
       },
       "patch": {
-        "description": "Insert or update new Student record",
-        "tags": ["Students"],
+        "operationId": "studentsPatchId",
+        "summary": "Set students",
+        "description": "Create or update student records",
+        "tags": [
+          "Student"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Student"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Student"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful PATCH response"
+            "description": "Successful PUT response"
           }
         }
       },
       "delete": {
+        "operationId": "studentsDeleteId",
+        "summary": "Delete students",
         "description": "Delete student record",
-        "tags": ["Students"],
+        "tags": [
+          "Student"
+        ],
         "responses": {
           "200": {
             "description": "Successful DELETE response"
@@ -224,21 +470,49 @@
         }
       }
     },
-
     "/teachers": {
-      "get": {
-        "description": "Show all Teacher metadata records",
-        "tags": ["Teachers"],
+      "head": {
+        "operationId": "teachersHeadId",
+        "summary": "Inspect teachers",
+        "description": "Return teacher headers",
+        "tags": [
+          "Teacher"
+        ],
         "responses": {
           "200": {
-            "description": "Teachers metadata records",
+            "description": "Teacher metadata records"
+          }
+        }
+      },
+      "get": {
+        "operationId": "teachersGetId",
+        "summary": "Get teachers",
+        "description": "Show all teachers metadata records",
+        "tags": [
+          "Teacher"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get teacher records",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Teacher"
-                  }
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Teacher"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -246,40 +520,84 @@
         }
       },
       "patch": {
-        "description": "Insert or update new Teacher record",
-        "tags": ["Teachers"],
+        "operationId": "teachersPatchId",
+        "summary": "Set teachers",
+        "description": "Create or update teacher records",
+        "tags": [
+          "Teacher"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Teacher"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Teacher"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful PATCH response"
+            "description": "Successful PUT response"
           }
         }
       },
       "delete": {
+        "operationId": "teachersDeleteId",
+        "summary": "Delete teachers",
         "description": "Delete teacher record",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teacher"
+        ],
         "responses": {
           "200": {
             "description": "Successful DELETE response"
           }
         }
-     }
- }
-},
-
+      }
+    }
+  },
   "components": {
     "schemas": {
+      "Message": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "description": "Message metadata"
+          },
+          "data": {
+            "description": "Message main data"
+          }
+        }
+      },
       "Course": {
         "type": "object",
         "properties": {
@@ -288,11 +606,17 @@
           },
           "description": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "initiated",
+              "finalized"
+            ]
           }
         }
       },
-
-    "Enrolment": {
+      "Enrolment": {
         "type": "object",
         "properties": {
           "course_id": {
@@ -300,10 +624,18 @@
           },
           "student_id": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pre_registered",
+              "registered",
+              "selected",
+              "rejected"
+            ]
           }
         }
       },
-
       "Lesson": {
         "type": "object",
         "properties": {
@@ -312,10 +644,16 @@
           },
           "name": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "initiated",
+              "finalized"
+            ]
           }
         }
       },
-
       "Student": {
         "type": "object",
         "properties": {
@@ -327,10 +665,16 @@
           },
           "email": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "activated",
+              "disabled"
+            ]
           }
         }
       },
-
       "Teacher": {
         "type": "object",
         "properties": {
@@ -342,6 +686,13 @@
           },
           "email": {
             "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "activated",
+              "disabled"
+            ]
           }
         }
       }

@@ -1,6 +1,6 @@
 from injectark import Factory
 from ...application.domain.services.repositories import (
-    CourseRepository, MemoryCourseRepository,
+    RepositoryService, CourseRepository, MemoryCourseRepository,
     EnrolmentRepository, MemoryEnrolmentRepository,
     LessonRepository, MemoryLessonRepository,
     StudentRepository, MemoryStudentRepository,
@@ -14,11 +14,8 @@ from ...application.general.suppliers import (
     TenantSupplier, MemoryTenantSupplier,
     MigrationSupplier, MemoryMigrationSupplier)
 from ...application.operation.managers import (
-    CourseManager, EnrolmentManager, LessonManager,
-    StudentManager, TeacherManager,
-    SessionManager)
-from ...application.operation.informers import (
-    StandardTutorarkInformer)
+    SessionManager, StandardManager)
+from ...application.operation.informers import StandardInformer
 from ..core import Config
 
 
@@ -26,9 +23,7 @@ class BaseFactory(Factory):
     def __init__(self, config: Config) -> None:
         self.config = config
         self.public = [
-            'TutorarkInformer', 'CourseManager', 'EnrolmentManager',
-            'LessonManager', 'StudentManager', 'TeacherManager',
-            'SessionManager'
+            'StandardInformer', 'SessionManager', 'StandardManager'
         ]
 
     # Query parser
@@ -63,96 +58,49 @@ class BaseFactory(Factory):
     # Repositories
 
     def course_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
-    ) -> MemoryCourseRepository:
+    ) -> CourseRepository:
         return MemoryCourseRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
 
     def enrolment_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
-    ) -> MemoryEnrolmentRepository:
+    ) -> EnrolmentRepository:
         return MemoryEnrolmentRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
 
     def lesson_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
-    ) -> MemoryLessonRepository:
+    ) -> LessonRepository:
         return MemoryLessonRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
 
     def student_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
-    ) -> MemoryStudentRepository:
+    ) -> StudentRepository:
         return MemoryStudentRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
 
     def teacher_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
-    ) -> MemoryTeacherRepository:
+    ) -> TeacherRepository:
         return MemoryTeacherRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
 
     # Informers
-
-    def tutorark_informer(
-            self, course_repository: CourseRepository,
-            enrolment_repository: EnrolmentRepository,
-            lesson_repository: LessonRepository,
-            student_repository: StudentRepository,
-            teacher_repository: TeacherRepository,
-            transactor: Transactor,
-    ) -> StandardTutorarkInformer:
-        return transactor(StandardTutorarkInformer)(
-            course_repository, enrolment_repository,
-            lesson_repository, student_repository, teacher_repository)
+    def standard_informer(
+        self, transactor: Transactor, repository_service: RepositoryService
+    ) -> StandardInformer:
+        return transactor(StandardInformer)(repository_service)
 
 
     # Managers
 
-    def course_manager(
-            self, course_repository: CourseRepository,
-            transactor: Transactor,
-    ) -> CourseManager:
-        return transactor(CourseManager)(
-            course_repository)
-
-    def enrolment_manager(
-            self, enrolment_repository: EnrolmentRepository,
-            transactor: Transactor,
-    ) -> EnrolmentManager:
-        return transactor(EnrolmentManager)(
-            enrolment_repository)
-
-    def lesson_manager(
-            self, lesson_repository: LessonRepository,
-            transactor: Transactor,
-    ) -> LessonManager:
-        return transactor(LessonManager)(
-            lesson_repository)
-
-    def student_manager(
-            self, student_repository: StudentRepository,
-            transactor: Transactor,
-    ) -> StudentManager:
-        return transactor(StudentManager)(
-            student_repository)
-
-    def teacher_manager(
-            self, teacher_repository: TeacherRepository,
-            transactor: Transactor,
-    ) -> TeacherManager:
-        return transactor(TeacherManager)(
-            teacher_repository)
 
     def session_manager(
             self, tenant_provider: TenantProvider,
@@ -161,3 +109,20 @@ class BaseFactory(Factory):
     ) -> SessionManager:
         return SessionManager(
             tenant_provider, auth_provider, tenant_supplier)
+
+    def standard_manager(
+        self, transactor: Transactor, 
+        repository_service: RepositoryService
+    ) -> StandardManager:
+        return transactor(StandardManager)(repository_service)
+
+    def repository_service(
+        self, course_repository: CourseRepository,
+        enrolment_repository: EnrolmentRepository,
+        lesson_repository: LessonRepository,
+        student_repository: StudentRepository,
+        teacher_repository: TeacherRepository,) -> RepositoryService:
+
+        repositories = locals()
+        repositories.pop('self')
+        return RepositoryService(repositories.values())

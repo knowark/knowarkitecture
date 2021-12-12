@@ -43,12 +43,11 @@ class CheckFactory(BaseFactory):
     # Repositories
 
     def course_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
     ) -> MemoryCourseRepository:
         course_repository = MemoryCourseRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
         course_repository.load({
             "default": {
                 '1': Course(
@@ -68,12 +67,11 @@ class CheckFactory(BaseFactory):
         return course_repository
 
     def enrolment_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
     ) -> MemoryEnrolmentRepository:
         enrolment_repository = MemoryEnrolmentRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
         enrolment_repository.load({
             "default": {
                 '1': Enrolment(
@@ -93,12 +91,11 @@ class CheckFactory(BaseFactory):
         return enrolment_repository
 
     def lesson_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
     ) -> MemoryLessonRepository:
         lesson_repository = MemoryLessonRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
         lesson_repository.load({
             "default": {
                 '1': Lesson(
@@ -118,12 +115,11 @@ class CheckFactory(BaseFactory):
         return lesson_repository
 
     def student_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
     ) -> MemoryStudentRepository:
         student_repository = MemoryStudentRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
         student_repository.load({
             "default": {
                 '1': Student(
@@ -145,12 +141,11 @@ class CheckFactory(BaseFactory):
         return student_repository
 
     def teacher_repository(
-            self, query_parser: QueryParser,
-            tenant_provider: TenantProvider,
+            self, tenant_provider: TenantProvider,
             auth_provider: AuthProvider
     ) -> MemoryTeacherRepository:
         teacher_repository = MemoryTeacherRepository(
-            query_parser, tenant_provider, auth_provider)
+            locator=tenant_provider, editor=auth_provider)
         teacher_repository.load({
             "default": {
                 '1': Teacher(

@@ -1,18 +1,23 @@
-from modelark import Repository, MemoryRepository
+from modelark import (
+    Repository, RepositoryResolver, MemoryRepository)
 from ...models import (
     Course, Enrolment, Lesson, Student, Teacher)
 
 
-class CourseRepository(Repository[Course]):
+class RepositoryService(RepositoryResolver):
+    """Repository Resolver Service"""
+
+
+class CourseRepository(Repository):
     model = Course
 
 
 class MemoryCourseRepository(
-        MemoryRepository, Course):
+        MemoryRepository, CourseRepository):
     """Memory Course Repository"""
 
 
-class EnrolmentRepository(Repository[Enrolment]):
+class EnrolmentRepository(Repository):
     model = Enrolment
 
 
@@ -21,7 +26,7 @@ class MemoryEnrolmentRepository(
     """Memory Enrolment Repository"""
 
 
-class LessonRepository(Repository[Lesson]):
+class LessonRepository(Repository):
     model = Lesson
 
 
@@ -30,7 +35,7 @@ class MemoryLessonRepository(
     """Memory Lesson Repository"""
 
 
-class StudentRepository(Repository[Student]):
+class StudentRepository(Repository):
     model = Student
 
 
@@ -39,7 +44,7 @@ class MemoryStudentRepository(
     """Memory Student Repository"""
 
 
-class TeacherRepository(Repository[Teacher]):
+class TeacherRepository(Repository):
     model = Teacher
 
 

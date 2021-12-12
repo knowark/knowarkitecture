@@ -45,7 +45,7 @@ class Shell:
     async def serve(self, options: Dict[str, str]) -> None:
         logger.info('SERVE')
         port = int(options.get('port') or self.config['port'])
-        app = RestApplication(self.config, self.injector)
+        app = RestApplication(self.injector)
         await RestApplication.run(app, port)
         logger.info('END SERVE')
 
