@@ -20,7 +20,7 @@ async def get_request_filter(request: web.Request) -> Tuple:
     return domain, query.get('limit', limit), query.get('offset', offset)
 
 
-async def get_request_ids(request: web.Request) -> dict:
+async def get_request_ids(request: web.Request) -> List[str]:
     ids = []
     uri_id = request.match_info.get('id')
     if uri_id:
@@ -28,7 +28,6 @@ async def get_request_ids(request: web.Request) -> dict:
 
     body = await request.text()
     if body:
-        records = loads(await request.text())
-        ids.extend(records['data'])
+       ids.extend(loads(await request.text())['data'])
 
-    return dict(data=ids)
+    return ids

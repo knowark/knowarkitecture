@@ -23,6 +23,7 @@ async def test_rest_application_run(monkeypatch):
 
 
 async def test_root(app) -> None:
+    response = await app.get('/favicon')
     response = await app.get('/')
 
     content = await response.text()
@@ -44,7 +45,7 @@ async def test_root_api(app) -> None:
 
 async def test_courses_head(app, headers) -> None:
     response = await app.head('/courses', headers=headers)
-    count = response.headers.get('Total-Count')
+    count = response.headers.get('Count')
     assert int(count) == 2
 
 
@@ -54,7 +55,7 @@ async def test_courses_get_unauthorized(app) -> None:
 
     assert response.status == 401
     data_dict = loads(content)
-    assert 'error' in data_dict
+    assert 'errors' in data_dict
 
 
 async def test_courses_get(app, headers) -> None:
@@ -93,7 +94,7 @@ async def test_courses_path(app, headers) -> None:
 async def test_courses_delete(app, headers) -> None:
     response = await app.delete('/courses/C001', headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/courses', headers=headers)
     data_dict = loads(await response.text())
@@ -106,7 +107,7 @@ async def test_courses_delete_body(app, headers) -> None:
     response = await app.delete(
         '/courses', data=ids, headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/courses', headers=headers)
     data_dict = loads(await response.text())
@@ -118,7 +119,7 @@ async def test_courses_delete_body(app, headers) -> None:
 
 async def test_enrolmentss_head(app, headers) -> None:
     response = await app.head('/enrolments', headers=headers)
-    count = response.headers.get('Total-Count')
+    count = response.headers.get('Count')
     assert int(count) == 2
 
 
@@ -128,7 +129,7 @@ async def test_enrolmentss_get_unauthorized(app) -> None:
 
     assert response.status == 401
     data_dict = loads(content)
-    assert 'error' in data_dict
+    assert 'errors' in data_dict
 
 
 async def test_enrolments_get(app, headers) -> None:
@@ -167,7 +168,7 @@ async def test_enrolments_patch(app, headers) -> None:
 async def test_enrolments_delete(app, headers) -> None:
     response = await app.delete('/enrolments/1', headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/enrolments', headers=headers)
     data_dict = loads(await response.text())
@@ -180,7 +181,7 @@ async def test_enrolments_delete_body(app, headers) -> None:
     response = await app.delete(
         '/enrolments', data=ids, headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/enrolments', headers=headers)
     data_dict = loads(await response.text())
@@ -196,7 +197,7 @@ async def test_enrolments_delete_body(app, headers) -> None:
 
 async def test_lessons_head(app, headers) -> None:
     response = await app.head('/lessons', headers=headers)
-    count = response.headers.get('Total-Count')
+    count = response.headers.get('Count')
     assert int(count) == 2
 
 
@@ -206,7 +207,7 @@ async def test_lessons_get_unauthorized(app) -> None:
 
     assert response.status == 401
     data_dict = loads(content)
-    assert 'error' in data_dict
+    assert 'errors' in data_dict
 
 
 async def test_lessons_get(app, headers) -> None:
@@ -245,7 +246,7 @@ async def test_lessons_patch(app, headers) -> None:
 async def test_lessons_delete(app, headers) -> None:
     response = await app.delete('/lessons/1', headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/lessons', headers=headers)
     data_dict = loads(await response.text())
@@ -258,7 +259,7 @@ async def test_lessons_delete_body(app, headers) -> None:
     response = await app.delete(
         '/lessons', data=ids, headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/lessons', headers=headers)
     data_dict = loads(await response.text())
@@ -270,7 +271,7 @@ async def test_lessons_delete_body(app, headers) -> None:
 
 async def test_students_head(app, headers) -> None:
     response = await app.head('/students', headers=headers)
-    count = response.headers.get('Total-Count')
+    count = response.headers.get('Count')
     assert int(count) == 2
 
 
@@ -280,7 +281,7 @@ async def test_students_get_unauthorized(app) -> None:
 
     assert response.status == 401
     data_dict = loads(content)
-    assert 'error' in data_dict
+    assert 'errors' in data_dict
 
 
 async def test_students_get(app, headers) -> None:
@@ -320,7 +321,7 @@ async def test_students_patch(app, headers) -> None:
 async def test_students_delete(app, headers) -> None:
     response = await app.delete('/students/1', headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/students', headers=headers)
     data_dict = loads(await response.text())
@@ -333,7 +334,7 @@ async def test_students_delete_body(app, headers) -> None:
     response = await app.delete(
         '/students', data=ids, headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/students', headers=headers)
     data_dict = loads(await response.text())
@@ -345,7 +346,7 @@ async def test_students_delete_body(app, headers) -> None:
 
 async def test_teachers_head(app, headers) -> None:
     response = await app.head('/teachers', headers=headers)
-    count = response.headers.get('Total-Count')
+    count = response.headers.get('Count')
     assert int(count) == 2
 
 
@@ -355,7 +356,7 @@ async def test_teachers_get_unauthorized(app) -> None:
 
     assert response.status == 401
     data_dict = loads(content)
-    assert 'error' in data_dict
+    assert 'errors' in data_dict
 
 
 async def test_teachers_get(app, headers) -> None:
@@ -395,7 +396,7 @@ async def test_teachers_patch(app, headers) -> None:
 async def test_teachers_delete(app, headers) -> None:
     response = await app.delete('/teachers/1', headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/teachers', headers=headers)
     data_dict = loads(await response.text())
@@ -408,7 +409,7 @@ async def test_teachers_delete_body(app, headers) -> None:
     response = await app.delete(
         '/teachers', data=ids, headers=headers)
     content = await response.text()
-    assert response.status == 204
+    assert response.status == 200
 
     response = await app.get('/teachers', headers=headers)
     data_dict = loads(await response.text())
