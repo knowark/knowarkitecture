@@ -45,11 +45,11 @@ def course_repository(
         parser, tenant_provider, auth_provider)
     course_repository.load({
         'default': {
-            '1': Course(**{
+            'C001': Course(**{
                 'id': 'C001', 
                 'name': "Developer"
                 }),
-            '2': Course(**{
+            'C002': Course(**{
                 'id': 'C002', 
                 'name': 'Data Base'
                 }),
@@ -65,13 +65,13 @@ def student_repository(
         parser, tenant_provider, auth_provider)
     student_repository.load({
         'default': {
-            '1': Student(**{
+            'S001': Student(**{
                 'id': 'S001', 
                 'name': "John Doe",
                 'identification':"123456789",
                 'email':"jdoe@example.com"
                 }),
-            '2': Student(**{
+            'S002': Student(**{
                 'id': 'S002', 
                 'name': "Daniel Perez",
                 'identification':"987654321",
@@ -89,13 +89,13 @@ def enrolment_repository(
         parser, tenant_provider, auth_provider)
     enrolment_repository.load({
         'default': {
-            '1': Enrolment(**{
-                'id': '1', 
+            'E001': Enrolment(**{
+                'id': 'E001', 
                 'course_id': "C001",
                 "student_id":"S001"
                 }),
-            '2': Enrolment(**{
-                'id': '2', 
+            'E002': Enrolment(**{
+                'id': 'E002', 
                 'course_id': 'C002',
                 "student_id":"S002"
                 }),
@@ -110,11 +110,11 @@ def lesson_repository(
         parser, tenant_provider, auth_provider)
     lesson_repository.load({
         'default': {
-            '1': Lesson(**{
+            'L001': Lesson(**{
                 'id': 'L001', 
                 'course_id': "C001",
                 "name":"Introduction"}),
-            '2': Lesson(**{
+            'L002': Lesson(**{
                 'id': 'L002', 
                 'course_id': 'C002',
                 "name":"Topics"
@@ -130,13 +130,13 @@ def teacher_repository(
         parser, tenant_provider, auth_provider)
     teacher_repository.load({
         'default': {
-            '1': Teacher(**{
+            'T001': Teacher(**{
                 'id': 'T001', 
                 'name': "Richard Roe",
                 "identification":"67890",
                 "email":"rroe@example.com"
                 }),
-            '2': Teacher(**{
+            'T002': Teacher(**{
                 'id': 'T002', 
                 'name': "Alex Joe",
                 "identification":"54685",
@@ -161,8 +161,8 @@ def repository_service(course_repository, student_repository,
 def standard_informer(repository_service)-> StandardInformer:
     return StandardInformer(repository_service)
 
-# course
 
+# course
 
 async def test_standard_informer_search_courses_all(
         standard_informer: StandardInformer) -> None:
@@ -186,107 +186,3 @@ async def test_standard_informer_courses_count(
     courses_count = await standard_informer.count(
         {'meta': dict(model='Course', domain=[])})
     assert courses_count['data'] == 2
-
-# student
-
-
-async def test_standard_informer_search_students_all(
-        standard_informer: StandardInformer) -> None:
-    domain: QueryDomain = []
-    students = await standard_informer.search(
-        {'meta': dict(model='Student', domain=domain)})
-    assert len(students['data']) == 2
-
-
-async def test_standard_informer_search_students_security(
-        standard_informer: StandardInformer) -> None:
-
-    domain: QueryDomain = [('name', '=', 'John Doe')]
-    students = await standard_informer.search(
-        {'meta': dict(model='Student', domain=domain)})
-    assert len(students['data']) == 1
-
-
-async def test_standard_informer_students_count(
-        standard_informer: StandardInformer)->None:
-    students_count = await standard_informer.count(
-        {'meta': dict(model='Student', domain=[])})
-    assert students_count['data'] == 2
-
-# enrolment
-
-
-async def test_standard_informer_search_enrolments_all(
-        standard_informer: StandardInformer) -> None:
-    domain: QueryDomain = []
-    enrolments = await standard_informer.search(
-        {'meta': dict(model='Enrolment', domain=domain)})
-    assert len(enrolments['data']) == 2
-
-
-async def test_standard_informer_search_enrolments_security(
-        standard_informer: StandardInformer) -> None:
-
-    domain: QueryDomain = [('course_id', '=', 'C001')]
-    enrolments = await standard_informer.search(
-        {'meta': dict(model='Enrolment', domain=domain)})
-    assert len(enrolments['data']) == 1
-
-
-async def test_standard_informer_count_enrolments(
-        standard_informer: StandardInformer):
-    enrolments_count = await standard_informer.count(
-        {'meta': dict(model='Enrolment', domain=[])})
-    assert enrolments_count['data'] == 2
-
-# lesson
-
-
-async def test_standard_informer_search_lessons_all(
-        standard_informer: StandardInformer) -> None:
-    domain: QueryDomain = []
-    lessons = await standard_informer.search(
-        {'meta': dict(model='Lesson', domain=domain)})
-    assert len(lessons['data']) == 2
-
-
-async def test_standard_informer_search_lessons_security(
-        standard_informer: StandardInformer) -> None:
-
-    domain: QueryDomain = [('name', '=', 'Introduction')]
-    lessons = await standard_informer.search(
-        {'meta': dict(model='Lesson', domain=domain)})
-    assert len(lessons['data']) == 1
-
-
-async def test_standard_informer_lessons_count(
-        standard_informer: StandardInformer)->None:
-    lessons_count = await standard_informer.count(
-        {'meta': dict(model='Lesson', domain=[])})
-    assert lessons_count['data'] == 2
-
-# teacher
-
-
-async def test_standard_informer_search_teachers_all(
-        standard_informer: StandardInformer) -> None:
-    domain: QueryDomain = []
-    teachers = await standard_informer.search(
-        {'meta': dict(model='Teacher', domain=domain)})
-    assert len(teachers['data']) == 2
-
-
-async def test_standard_informer_search_teachers_security(
-        standard_informer: StandardInformer) -> None:
-
-    domain: QueryDomain = [('name', '=', 'Richard Roe')]
-    teachers = await standard_informer.search(
-        {'meta': dict(model='Teacher', domain=domain)})
-    assert len(teachers['data']) == 1
-
-
-async def test_standard_informer_teachers_count(
-        standard_informer: StandardInformer)->None:
-    teachers_count = await standard_informer.count(
-        {'meta': dict(model='Teacher', domain=[])})
-    assert teachers_count['data'] == 2

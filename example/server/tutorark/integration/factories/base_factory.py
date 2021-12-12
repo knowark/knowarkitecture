@@ -14,9 +14,7 @@ from ...application.general.suppliers import (
     TenantSupplier, MemoryTenantSupplier,
     MigrationSupplier, MemoryMigrationSupplier)
 from ...application.operation.managers import (
-    CourseManager, EnrolmentManager, LessonManager,
-    StudentManager, TeacherManager,
-    SessionManager)
+    SessionManager, StandardManager)
 from ...application.operation.informers import StandardInformer
 from ..core import Config
 
@@ -25,9 +23,7 @@ class BaseFactory(Factory):
     def __init__(self, config: Config) -> None:
         self.config = config
         self.public = [
-            'StandardInformer', 'CourseManager', 'EnrolmentManager',
-            'LessonManager', 'StudentManager', 'TeacherManager',
-            'SessionManager'
+            'StandardInformer', 'SessionManager', 'StandardManager'
         ]
 
     # Query parser
@@ -105,40 +101,6 @@ class BaseFactory(Factory):
 
     # Managers
 
-    def course_manager(
-            self, course_repository: CourseRepository,
-            transactor: Transactor,
-    ) -> CourseManager:
-        return transactor(CourseManager)(
-            course_repository)
-
-    def enrolment_manager(
-            self, enrolment_repository: EnrolmentRepository,
-            transactor: Transactor,
-    ) -> EnrolmentManager:
-        return transactor(EnrolmentManager)(
-            enrolment_repository)
-
-    def lesson_manager(
-            self, lesson_repository: LessonRepository,
-            transactor: Transactor,
-    ) -> LessonManager:
-        return transactor(LessonManager)(
-            lesson_repository)
-
-    def student_manager(
-            self, student_repository: StudentRepository,
-            transactor: Transactor,
-    ) -> StudentManager:
-        return transactor(StudentManager)(
-            student_repository)
-
-    def teacher_manager(
-            self, teacher_repository: TeacherRepository,
-            transactor: Transactor,
-    ) -> TeacherManager:
-        return transactor(TeacherManager)(
-            teacher_repository)
 
     def session_manager(
             self, tenant_provider: TenantProvider,
@@ -147,6 +109,12 @@ class BaseFactory(Factory):
     ) -> SessionManager:
         return SessionManager(
             tenant_provider, auth_provider, tenant_supplier)
+
+    def standard_manager(
+        self, transactor: Transactor, 
+        repository_service: RepositoryService
+    ) -> StandardManager:
+        return transactor(StandardManager)(repository_service)
 
     def repository_service(
         self, course_repository: CourseRepository,

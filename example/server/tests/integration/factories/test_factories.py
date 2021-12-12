@@ -26,12 +26,8 @@ test_tuples = [
         #informers
         ('StandardInformer', 'StandardInformer'),
         #managers
-        ('CourseManager', 'CourseManager'),
-        ('LessonManager', 'LessonManager'),
-        ('EnrolmentManager', 'EnrolmentManager'),
-        ('StudentManager', 'StudentManager'),
-        ('TeacherManager', 'TeacherManager'),
-        ('SessionManager', 'SessionManager')
+        ('SessionManager', 'SessionManager'),
+        ('StandardManager', 'StandardManager'),
     ]),
     ('CheckFactory', [
         #providers
