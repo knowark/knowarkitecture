@@ -1,0 +1,33 @@
+{
+  "name": "tutorark",
+  "version": "1.0.0",
+  "description": "Knowarkitecture Tutorial Application",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|svg|png)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css|less|sass|scss)$": "<rootDir>/tests/__mocks__/styleMock.js",
+      "^base(.*)$": "<rootDir>/node_modules/componark/src/base$1",
+      "^components(.*)$": "<rootDir>/node_modules/componark/src/components$1",
+      "^application(.*)$": "<rootDir>/src/application$1",
+      "^core(.*)$": "<rootDir>/src/integration/core$1",
+      "^factories(.*)$": "<rootDir>/src/integration/factories$1",
+      "^integration(.*)$": "<rootDir>/src/integration$1",
+      "^presentation(.*)$": "<rootDir>/src/presentation$1",
+      "^screens(.*)$": "<rootDir>/src/presentation/platform/web/screens$1",
+      "^theme(.*)$": "<rootDir>/src/presentation/platform/web/theme$1"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <title>Tutorark v{{version}}</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Tutorark v{{version}}">
+  <meta name="author" content="Knowark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <redoc spec-url='/?api' json-sample-expand-level="all" expand-responses="all"></redoc>
+  <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+  <script>
+    const expandInterval = setInterval(() => document
+      .querySelectorAll('tr:not(.expanded) > td > button[aria-label*=expand]')
+      .forEach((btn) => btn.click()), 100)
+    setTimeout(() => clearInterval(expandInterval), 1000)
+  </script>
+</body>
+
+</html>

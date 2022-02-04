@@ -16,7 +16,7 @@ principalmente alrededor de 3 divisiones fundamentales:
 
 Los componentes de **aplicación** son los que encierran la esencia de nuestro
 programa y determinan *qué* es lo que puede hacer. Por su parte, las secciones
-de **integración** y **presentación** pertenece a lo que podríamos llamar los
+de **integración** y **presentación** pertenecen a lo que podríamos llamar los
 componentes de **infraestructura** del sistema, que encierran todos esos
 detalles técnicos que son indispensables para desplegar en producción nuestra
 aplicación (e.g. bases de datos, frameworks, interfaces gráficas,
@@ -53,7 +53,7 @@ A nivel de estructura de carpetas, los primeros niveles de cualquier sistema
         |-- Makefile
         |-- README.rst
         `-- requirements.txt
-        
+
 ```
 
 Es precisamente esta estructura la que iremos analizando a lo largo y ancho
