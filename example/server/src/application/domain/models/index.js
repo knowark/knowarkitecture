@@ -1,1 +1,5 @@
 export { Course } from './course.js'
+export { Enrolment } from './enrolment.js'
+export { Lesson } from './lesson.js'
+export { Student } from './student.js'
+export { Teacher } from './teacher.js'

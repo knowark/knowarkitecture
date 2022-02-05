@@ -1,9 +1,10 @@
 import { Entity } from 'modelark/lib/common/entity.js'
 
-export class Course extends Entity {
+export class Teacher extends Entity {
     constructor(attributes = {}) {
         super(attributes)
         this.name = attributes.name || ''
-        this.description = attributes.description || ''
+        this.identification = attributes.identification || ''
+        this.email = attributes.email || ''
     }
 }

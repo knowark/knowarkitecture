@@ -23,10 +23,10 @@ describe('Course', () => {
             'The study of Greek and Roman philosophers')
     })
 
-    it('can define its attributes', () => {
-        expect(course.id).toEqual('C001')
-        expect(course.name).toEqual('Ancient Philosophy')
-        expect(course.description).toEqual(
-            'The study of Greek and Roman philosophers')
+    it('defines default attributes', () => {
+        course = new Course()
+        expect(course.id.length > 0).toBeTruthy()
+        expect(course.name).toEqual('')
+        expect(course.description).toEqual('')
     })
 })
