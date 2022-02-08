@@ -1,4 +1,4 @@
-import { Entity } from 'modelark/lib/common/entity.js'
+import { Entity } from '@knowark/modelark/lib/common/entity.js'
 
 export class Lesson extends Entity {
     constructor(attributes = {}) {

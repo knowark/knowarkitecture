@@ -1,5 +1,3 @@
-.PHONY: all tests coverage
-
 PROJECT = tutorark
 COVFILE ?= .coverage
 TESTS ?= tests/
@@ -12,7 +10,7 @@ clean:
 serve:
 	python -m $(PROJECT) serve
 
-coverage:
+test:
 	npm run test
 
 push:

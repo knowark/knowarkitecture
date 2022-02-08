@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "modelark": "github:knowark/modelarkjs#main"
+    "@knowark/modelark": "github:knowark/modelarkjs#main"
   },
   "devDependencies": {
     "jest": "^27.4.7"
