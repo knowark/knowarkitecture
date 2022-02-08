@@ -7,8 +7,11 @@
             - [2.1.1.1 Common](2_implantacion/2.1/2.1.1/2.1.1.1_common.md)
             - [2.1.1.2 Models](2_implantacion/2.1/2.1.1/2.1.1.2_models.md)
             - [2.1.1.3 Services](2_implantacion/2.1/2.1.1/2.1.1.3_services.md)
-        - [2.1.2 General](2_implantacion/2.1/2.1.2_general.md)
-        - [2.1.3 Operation](2_implantacion/2.1/2.1.3_operation.md)
+        - [2.1.2 General](2_implantacion/2.1/2.1.2/README.md)
+        - [2.1.3 Operation](2_implantacion/2.1/2.1.3/README.md)
+            - [2.1.3.1 Common](2_implantacion/2.1/2.1.3/2.1.3.1_common.md)
+            - [2.1.3.2 Informers](2_implantacion/2.1/2.1.3/2.1.3.2_informers.md)
+            - [2.1.3.3 Managers](2_implantacion/2.1/2.1.3/2.1.3.3_managers.md)
 
     - [2.2 Integración](2_implantacion/2.2/2.2_integration.md)
 
