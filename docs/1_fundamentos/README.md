@@ -1,6 +1,5 @@
 # Fundamentos
 
-
 Los productos de software de *Knowark* siguen una arquitectura común,
 compartiendo múltiples patrones de diseño y manteniendo una estructura
 similar sin importar los detalles técnicos sobre los que están construidos,

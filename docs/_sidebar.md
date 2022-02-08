@@ -1,9 +1,12 @@
 <!-- docs/_sidebar.md -->
 
-- [1. Fundamentos](1_fundamentos/fundamentos.md)
-- [2. Implantación](2_implantacion/2_implantacion)
-    - [2.1 Aplicación](2_implantacion/2.1/2.1_aplicacion.md)
-        - [2.1.1 Domain](2_implantacion/2.1/2.1.1_domain.md)
+- [1. Fundamentos](1_fundamentos/README.md)
+- [2. Implantación](2_implantacion/README.md)
+    - [2.1 Aplicación](2_implantacion/2.1/README.md)
+        - [2.1.1 Domain](2_implantacion/2.1/2.1.1/README.md)
+            - [2.1.1.1 Common](2_implantacion/2.1/2.1.1/2.1.1.1_common.md)
+            - [2.1.1.2 Models](2_implantacion/2.1/2.1.1/2.1.1.2_models.md)
+            - [2.1.1.3 Services](2_implantacion/2.1/2.1.1/2.1.1.3_services.md)
         - [2.1.2 General](2_implantacion/2.1/2.1.2_general.md)
         - [2.1.3 Operation](2_implantacion/2.1/2.1.3_operation.md)
 

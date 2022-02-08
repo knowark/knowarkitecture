@@ -1,4 +1,4 @@
-# **Aplicación**
+## Aplicación
 
 La capa de aplicación encierra la **lógica de negocio** de cada sistema.
 Es en esta área del código dónde se representan los elementos del

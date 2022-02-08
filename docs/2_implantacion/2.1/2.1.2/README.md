@@ -1,5 +1,4 @@
-# **General**
-
+### General
 
 La capa **general** encierra aquellos componentes del sistema que proveen una
 función de apoyo para que la aplicación pueda ser desplegada y mantenida en
@@ -15,4 +14,3 @@ acciones necesarias para agendar un trabajo de segundo plano. Las clases aquí
 definidas se comportan de una manera muy similar a los *servicios* de la capa
 de dominio, pero las denominamos como *suppliers* para denotar que su función
 es una de soporte, y no una esencial desde la óptica del negocio modelado.
-

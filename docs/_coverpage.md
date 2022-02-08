@@ -1,12 +1,10 @@
 
-# [**Knowarkitecture**](inicio.md)
+# [Knowarkitecture](README.md)
 
 
-* [**Fundamentos**](1_fundamentos/fundamentos.md)
-* [**Implantacion**](2_implantacion/2_implantacion.md)
+* [Fundamentos](1_fundamentos/README.md)
+* [Implantacion](2_implantacion/README.md)
 
 <!-- background color -->
 
 ![color](#81BEF7)
-
-

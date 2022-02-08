@@ -1,14 +1,14 @@
-# **Implantación**
+# Implantación
 
-Estructura y patrones de diseño para la implantación de **KnowArkitecture**.
+<!--Estructura y patrones de diseño para la implantación de **KnowArkitecture**.-->
 
-- [**Aplicación**](2_implantacion/2.1/2.1_aplicacion.md)
-- [**Integración**](2_implantacion/2.2/2.2_integration.md)
-- [**Presentación**](2_implantacion/2.3/2.3_presentation.md)
-- [**Test**](2_implantacion/2.4/2.4_test.md)
+<!--- [**Aplicación**](2_implantacion/2.1/2.1_aplicacion.md)-->
+<!--- [**Integración**](2_implantacion/2.2/2.2_integration.md)-->
+<!--- [**Presentación**](2_implantacion/2.3/2.3_presentation.md)-->
+<!--- [**Test**](2_implantacion/2.4/2.4_test.md)-->
 
 Los productos creados siguiendo **KnowArkitecture** se estructuran
-principalmente alrededor de 3 divisiones fundamentales:
+principalmente alrededor de **3 divisiones** fundamentales:
 
 - **Aplicación**
 - **Integración**
