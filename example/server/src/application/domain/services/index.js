@@ -1,1 +1,1 @@
-export { Portal } from './portal.js'
+export { Portal, MemoryPortal } from './portal.js'
