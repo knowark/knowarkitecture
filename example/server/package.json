@@ -12,8 +12,12 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "tutorark": "./setup/bin/index.js"
+  },
   "dependencies": {
-    "@knowark/modelark": "github:knowark/modelarkjs#main"
+    "@knowark/modelark": "github:knowark/modelarkjs#main",
+    "yargs": "^17.3.1"
   },
   "devDependencies": {
     "jest": "^27.4.7"

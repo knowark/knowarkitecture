@@ -21,3 +21,9 @@ version:
 
 install:
 	npm install
+
+link:
+	npm link
+
+unlink:
+	npm unlink tutorark
