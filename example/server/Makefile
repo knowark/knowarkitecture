@@ -8,7 +8,7 @@ clean:
 	rm -rf ./.cache .mypy_cache ./schema/.mypy_cache .coverage
 
 serve:
-	python -m $(PROJECT) serve
+	tutorark serve
 
 test:
 	npm run test
