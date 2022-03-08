@@ -27,3 +27,9 @@ link:
 
 unlink:
 	npm unlink tutorark
+
+container:
+	setup/deploy/container.sh
+
+deploy:
+	setup/deploy/deploy.js
