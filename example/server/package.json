@@ -8,7 +8,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest --coverage"
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest --coverage",
+    "serve": "src/main.js",
+    "dev": "node -r dotenv/config src/main.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,9 +25,11 @@
     "yargs": "^17.3.1"
   },
   "devDependencies": {
+    "dotenv": "^16.0.0",
     "jest": "^27.4.7"
   },
   "jest": {
+    "coverageDirectory": "/tmp/tutorark/coverage",
     "moduleNameMapper": {
       "\\.(jpg|jpeg|svg|png)$": "<rootDir>/tests/__mocks__/fileMock.js",
       "\\.(css|less|sass|scss)$": "<rootDir>/tests/__mocks__/styleMock.js",

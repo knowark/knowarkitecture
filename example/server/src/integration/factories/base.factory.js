@@ -1,14 +1,17 @@
 import { Factory } from '@knowark/injectarkjs'                                                 
+import { MemoryPortal } from 'application/domain/services'
+import { StandardManager, SessionManager } from 'application/operation/managers'
 
 export class BaseFactory extends Factory {                                                     
-  constructor (config) {                                                                       
-    super()                                                                                    
-    this.config = config                                                                       
-    //this.sessionManager.dependencies = ['AuthService', 'IdentitySupplier']                     
-    //this.uploadManager.dependencies = ['MediaService', 'IdentifierService']                    
-    //this.contactManager.dependencies = ['QueryService', 'IdentifierService']                   
-    //this.productManager.dependencies = ['QueryService', 'IdentifierService']                   
-    //this.orderManager.dependencies = ['QueryService', 'IdentifierService']                     
-    //this.websiteManager.dependencies = ['QueryService', 'IdentifierService']      
+  portal () {
+    return new MemoryPortal()
+  }
+
+  sessionManager () {
+    return new SessionManager()
+  }
+
+  standardManager (portal) {
+    return new StandardManager({ portal })
   }
 }

@@ -31,7 +31,7 @@ export class Resource {
     const handler = this.operation.actions[action].handler
     const fixedMeta = this.operation.actions[action].meta
     const [operator, method] = handler.split('.')
-    const handler = null
+    //const handler = null
     return [handler, fixedMeta]
   }
 }
