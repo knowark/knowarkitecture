@@ -10,6 +10,7 @@ config:
       - postgresql
       - postgresql-contrib
       - python3-psycopg2
+      - redis-server
     runcmd:
       - "sed -i 's/#listen_addresses/listen_addresses/' /etc/postgresql/12/main/postgresql.conf"
       - "sed -i 's/localhost/*/' /etc/postgresql/12/main/postgresql.conf"
