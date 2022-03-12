@@ -1,0 +1,34 @@
+config:
+  user.user-data: |
+    #cloud-config
+    package_update: true
+    package_upgrade: true
+    packages:
+      - build-essential
+      - ansible
+      - nginx
+      - postgresql
+      - postgresql-contrib
+      - python3-psycopg2
+    runcmd:
+      - "sed -i 's/#listen_addresses/listen_addresses/' /etc/postgresql/12/main/postgresql.conf"
+      - "sed -i 's/localhost/*/' /etc/postgresql/12/main/postgresql.conf"
+      - "sed -i 's/127.0.0.1\\/32/   0.0.0.0\\/0/' /etc/postgresql/12/main/pg_hba.conf"
+      - "sudo -u postgres -- psql -c \"ALTER USER postgres PASSWORD 'postgres'\""
+      - "service postgresql restart"
+description: Base Knowark Profile
+devices:
+  eth0:
+    name: eth0
+    network: lxdbr0
+    type: nic
+  home:
+    path: /mnt/home
+    source: /home
+    type: disk
+  root:
+    path: /
+    pool: default
+    type: disk
+name: base
+used_by: []
