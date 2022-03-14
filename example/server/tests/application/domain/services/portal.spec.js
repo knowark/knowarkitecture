@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Portal, MemoryPortal } from 'application/domain/services/portal.js'
-import * as models from 'application/domain/models'
+import { Portal, MemoryPortal } from '#application/domain/services/portal.js'
+import * as models from '#application/domain/models'
 
 describe('Portal', () => {
     let portal = null

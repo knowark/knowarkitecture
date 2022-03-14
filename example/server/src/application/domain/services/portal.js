@@ -1,5 +1,9 @@
-import { Portal, MemoryRepository } from '@knowark/modelark/lib/repository'
-import { Course, Enrolment, Lesson, Student, Teacher } from '../models'
+import { 
+  Portal, MemoryRepository
+} from '@knowark/modelark/lib/repository/index.js'
+import {
+  Course, Enrolment, Lesson, Student, Teacher 
+} from '../models/index.js'
 
 class MemoryPortal extends Portal {
   constructor() {

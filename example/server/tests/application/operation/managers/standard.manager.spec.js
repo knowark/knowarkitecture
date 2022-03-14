@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { MemoryPortal } from 'application/domain/services'
+import { MemoryPortal } from '#application/domain/services'
 import { 
     StandardManager 
-} from 'application/operation/managers/standard.manager.js'
+} from '#application/operation/managers/standard.manager.js'
 
 describe('StandardManager', () => {
     let manager = null

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { Injectark } from '@knowark/injectarkjs'
-import { FACTORIES } from 'integration/factories'
+import { FACTORIES } from '#integration/factories/index.js'
 
 const FACTORY_TESTS = {
   base: [

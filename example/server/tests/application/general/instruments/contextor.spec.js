@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Contextor } from 'application/general/instruments/contextor.js'
+import { Contextor } from '#application/general/instruments/contextor.js'
 
 describe('Contextor', () => {
     let contextor = null

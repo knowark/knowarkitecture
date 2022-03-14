@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Teacher } from 'application/domain/models/teacher.js'
+import { Teacher } from '#application/domain/models/teacher.js'
 
 describe('Teacher', () => {
     let teacher = null

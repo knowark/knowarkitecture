@@ -2,14 +2,14 @@ export const operations = {
     // Course
     'coursesHeadId': {
         'actions':{
-            'default':{
+            'default': {
                 'handler': 'StandardInformer.count',
                 'meta': {'model': 'Course'}
             }
         }
     },
     "coursesGetId": {
-        'actions':{
+        'actions': {
             'default':{
                 'handler': 'StandardInformer.search',
                 'meta': {'model': 'Course'}
@@ -17,7 +17,7 @@ export const operations = {
         }
     },
     'coursesPatchId': {
-        'actions':{
+        'actions': {
             'default':{
                 'handler': 'StandardManager.set',
                 'meta': {'model': 'Course'}
@@ -25,7 +25,7 @@ export const operations = {
         }
     },
     'coursesDeleteId': {
-        'actions':{
+        'actions': {
             'default':{
                 'handler': 'StandardManager.remove',
                 'meta': {'model': 'Course'}
@@ -35,8 +35,8 @@ export const operations = {
 
     // Enrolment
     'enrolmentsHeadId': {
-        'actions':{
-            'default':{
+        'actions': {
+            'default': {
                 'handler': 'StandardInformer.count',
                 'meta': {'model': 'Enrolment'}
             }
@@ -145,24 +145,24 @@ export const operations = {
         }
     },
     "teachersGetId": {
-        'actions':{
-            'default':{
+        'actions': {
+            'default': {
                 'handler': 'StandardInformer.search',
                 'meta': {'model': 'Teacher'}
             }
         }
     },
     'teachersPatchId': {
-        'actions':{
-            'default':{
+        'actions': {
+            'default': {
                 'handler': 'StandardManager.set',
                 'meta': {'model': 'Teacher'}
             }
         }
     },
     'teachersDeleteId': {
-        'actions':{
-            'default':{
+        'actions': {
+            'default': {
                 'handler': 'StandardManager.remove',
                 'meta': {'model': 'Teacher'}
             }

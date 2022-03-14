@@ -1,7 +1,7 @@
 export const config = {
     port: Number(process.env.TUTORARK_PORT || 6291),
     //auto: bool(os.environ.get('TUTORARK_AUTO') or True),
-    //factory: os.environ.get('TUTORARK_FACTORY') or 'CheckFactory',
+    factory: process.env.TUTORARK_FACTORY || 'base',
     //tenancy: {
         //"dsn": os.environ.get('TUTORARK_TENANCY_DSN') or ('')
     //},

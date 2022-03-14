@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { 
     SessionManager 
-} from 'application/operation/managers/session.manager.js'
+} from '#application/operation/managers/session.manager.js'
 
 describe('SessionManager', () => {
     let manager = null

@@ -1,6 +1,8 @@
-import { Factory } from '@knowark/injectarkjs'                                                 
-import { MemoryPortal } from 'application/domain/services'
-import { StandardManager, SessionManager } from 'application/operation/managers'
+import { Factory } from '@knowark/injectarkjs'
+import { MemoryPortal } from '#application/domain/services/index.js'
+import {
+  StandardManager, SessionManager 
+} from '#application/operation/managers/index.js'
 
 export class BaseFactory extends Factory {                                                     
   portal () {
