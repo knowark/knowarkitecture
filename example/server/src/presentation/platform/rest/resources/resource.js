@@ -13,7 +13,6 @@ export class Resource {
   }
 
   async get (request, response, next) {
-    console.log('Injector>>>', this.injector)
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
