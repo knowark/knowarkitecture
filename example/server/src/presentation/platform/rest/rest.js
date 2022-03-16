@@ -34,6 +34,7 @@ export class RestApplication {
     }
   }
 
+  /* istanbul ignore next */
   async run (options) {
     this.app.listen(options.port, () => {
        console.info(`Tutorark listening on port ${options.port}...`)

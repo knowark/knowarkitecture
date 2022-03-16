@@ -26,7 +26,10 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
-    "jest": "^27.4.7"
+    "jest": "^27.5.1",
+    "jsdom": "^19.0.0",
+    "superagent": "^7.1.1",
+    "supertest": "^6.2.2"
   },
   "jest": {
     "coverageDirectory": "/tmp/tutorark/coverage",
@@ -35,7 +38,7 @@
       "^core(.*)$": "<rootDir>/src/integration/core$1",
       "^factories(.*)$": "<rootDir>/src/integration/factories$1",
       "^#integration(.*)$": "<rootDir>/src/integration$1",
-      "^presentation(.*)$": "<rootDir>/src/presentation$1",
+      "^#presentation(.*)$": "<rootDir>/src/presentation$1",
       "^screens(.*)$": "<rootDir>/src/presentation/platform/web/screens$1",
       "^theme(.*)$": "<rootDir>/src/presentation/platform/web/theme$1"
     }
