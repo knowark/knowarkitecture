@@ -35,19 +35,13 @@
     "coverageDirectory": "/tmp/tutorark/coverage",
     "moduleNameMapper": {
       "^#application(.*)$": "<rootDir>/src/application$1",
-      "^core(.*)$": "<rootDir>/src/integration/core$1",
-      "^factories(.*)$": "<rootDir>/src/integration/factories$1",
       "^#integration(.*)$": "<rootDir>/src/integration$1",
-      "^#presentation(.*)$": "<rootDir>/src/presentation$1",
-      "^screens(.*)$": "<rootDir>/src/presentation/platform/web/screens$1",
-      "^theme(.*)$": "<rootDir>/src/presentation/platform/web/theme$1"
+      "^#presentation(.*)$": "<rootDir>/src/presentation$1"
     }
   },
   "imports": {
     "#application/*": "./src/application/*",
-    "^core(.*)$": "<rootDir>/src/integration/core$1",
-    "^factories(.*)$": "<rootDir>/src/integration/factories$1",
-    "#integration(.*)$": "<rootDir>/src/integration$1",
-    "^presentation(.*)$": "<rootDir>/src/presentation$1"
+    "#integration/*": "./src/integration/*",
+    "#presentation/*": "./src/presentation/*"
   }
 }

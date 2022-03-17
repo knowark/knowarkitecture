@@ -5,11 +5,13 @@ import { FACTORIES } from '#integration/factories/index.js'
 const FACTORY_TESTS = {
   base: [
     ['Portal', 'MemoryPortal'],
+    ['StandardInformer', 'StandardInformer'],
     ['StandardManager', 'StandardManager'],
     ['SessionManager', 'SessionManager'],
   ],
-  //check: [
-  //],
+  check: [
+    ['Portal', 'MemoryPortal'],
+  ],
   //json: [
   //],
   //sql: [

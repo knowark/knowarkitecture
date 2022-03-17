@@ -1,13 +1,17 @@
 import { JSDOM } from 'jsdom'
 import supertest from "supertest"
 import { describe, it, expect, beforeEach } from '@jest/globals'
+import { Injectark } from '@knowark/injectarkjs'
 import { RestApplication } from "#presentation/platform/rest/index.js" 
+import { FACTORIES } from "#integration/factories/index.js" 
 
 describe('RestApplication', () => {
   let application = null
 
   beforeEach(() => {
-    const injector = {}
+    const factory = FACTORIES['check']({})
+    const injector = new Injectark({ factory })
+
     application = new RestApplication({ injector })
     expect(application).toBeTruthy()
   })

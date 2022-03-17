@@ -16,6 +16,11 @@ export class Resource {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
+
+    Object.assign(entry.meta, fixedMeta)
+
+    const result = await handler(entry)
+
     response.json({ id: request.params.id })
   }
 
@@ -28,10 +33,12 @@ export class Resource {
   }
 
   #resolveHandler(action) {
-    const handler = this.operation.actions[action].handler
+    const handlerName = this.operation.actions[action].handler
     const fixedMeta = this.operation.actions[action].meta
-    const [operator, method] = handler.split('.')
-    //const handler = null
+    const [operatorName, method] = handlerName.split('.')
+    const operator = this.injector.resolve(operatorName)
+    const handler = operator[method].bind(operator)
+
     return [handler, fixedMeta]
   }
 }

@@ -7,6 +7,6 @@ export async function main (context) {
   const config = context.config
   const factory = FACTORIES[config.factory](config)
   const injector = new Injectark({ factory })
- 
+
   await (new Shell({ injector })).run(context)
 }
