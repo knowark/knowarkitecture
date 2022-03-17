@@ -34,4 +34,13 @@ describe('RestApplication', () => {
     const api = JSON.parse(result.text)
     expect(api.info.title).toEqual('Tutorark')
   })
+
+  it('gets a model given the url', async () => {
+    const server = supertest.agent(application.app)
+
+    const result = await server.get('/settings')
+
+    const response = JSON.parse(result.text)
+    expect(Object(response) === response).toBeTruthy()
+  })
 })

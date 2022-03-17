@@ -2,7 +2,7 @@ import {
   Portal, MemoryRepository
 } from '@knowark/modelark/lib/repository/index.js'
 import {
-  Course, Enrolment, Lesson, Student, Teacher 
+  Course, Enrolment, Lesson, Student, Teacher, Setting
 } from '../models/index.js'
 
 class MemoryPortal extends Portal {
@@ -13,6 +13,7 @@ class MemoryPortal extends Portal {
       new MemoryRepository({ model: Lesson }),
       new MemoryRepository({ model: Student }),
       new MemoryRepository({ model: Teacher }),
+      new MemoryRepository({ model: Setting }),
     ]
     super({ repositories })
   }

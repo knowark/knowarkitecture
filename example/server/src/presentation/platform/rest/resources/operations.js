@@ -167,5 +167,39 @@ export const operations = {
                 'meta': {'model': 'Teacher'}
             }
         }
+    },
+
+    // Setting
+    'settingsHeadId': {
+        'actions':{
+            'default':{
+                'handler': 'StandardInformer.count',
+                'meta': {'model': 'Setting'}
+            }
+        }
+    },
+    "settingsGetId": {
+        'actions': {
+            'default': {
+                'handler': 'StandardInformer.search',
+                'meta': {'model': 'Setting'}
+            }
+        }
+    },
+    'settingsPatchId': {
+        'actions': {
+            'default': {
+                'handler': 'StandardManager.set',
+                'meta': {'model': 'Setting'}
+            }
+        }
+    },
+    'settingsDeleteId': {
+        'actions': {
+            'default': {
+                'handler': 'StandardManager.remove',
+                'meta': {'model': 'Setting'}
+            }
+        }
     }
 }

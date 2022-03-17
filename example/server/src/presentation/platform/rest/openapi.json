@@ -244,6 +244,119 @@
         }
       }
     },
+    "/settings": {
+      "head": {
+        "operationId": "settingsHeadId",
+        "summary": "Inspect settings",
+        "description": "Return settings headers",
+        "tags": [
+          "Setting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Setting metadata records"
+          }
+        }
+      },
+      "get": {
+        "operationId": "settingsGetId",
+        "summary": "Get settings",
+        "description": "Show all settings metadata records",
+        "tags": [
+          "Setting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Get setting records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Message"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Lesson"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "settingsPatchId",
+        "summary": "Set settings",
+        "description": "Create or update setting records",
+        "tags": [
+          "Setting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Message"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Setting"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Action",
+            "description": "Specialized application actions",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "default"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful PUT response"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "settingsDeleteId",
+        "summary": "Delete settings",
+        "description": "Delete setting record",
+        "tags": [
+          "Setting"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful DELETE response"
+          }
+        }
+      }
+    },
     "/lessons": {
       "head": {
         "operationId": "lessonsHeadId",
@@ -619,16 +732,15 @@
       "Enrolment": {
         "type": "object",
         "properties": {
-          "course_id": {
+          "courseId": {
             "type": "string"
           },
-          "student_id": {
+          "studentId": {
             "type": "string"
           },
           "status": {
             "type": "string",
             "enum": [
-              "pre_registered",
               "registered",
               "selected",
               "rejected"
@@ -639,7 +751,7 @@
       "Lesson": {
         "type": "object",
         "properties": {
-          "course_id": {
+          "courseId": {
             "type": "string"
           },
           "name": {
@@ -685,6 +797,30 @@
             "type": "string"
           },
           "email": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "activated",
+              "disabled"
+            ]
+          }
+        }
+      },
+      "Setting": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           },
           "status": {
