@@ -30,7 +30,7 @@ describe('StandardManager', () => {
 
         const data = manager.portal.get('Course').storer.data
 
-        await manager.add(entry)
+        await manager.set(entry)
 
         expect(data['default']['C001'].name).toEqual('Entrepreneurship')
     })
@@ -45,7 +45,7 @@ describe('StandardManager', () => {
             ]
         }
         const data = manager.portal.get('Lesson').storer.data
-        await manager.add(entry)
+        await manager.set(entry)
         expect(data['default']['L001'].name).toEqual('Journey Design')
 
         entry = {

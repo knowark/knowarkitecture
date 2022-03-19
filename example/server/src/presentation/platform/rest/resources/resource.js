@@ -16,7 +16,6 @@ export class Resource {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
-
     Object.assign(entry.meta, fixedMeta)
 
     const result = await handler(entry)
@@ -25,7 +24,14 @@ export class Resource {
   }
 
   async patch (request, response, next) {
-    console.info('PATCH', request)
+    const entry = request.body || { meta: {}, data: [] }
+    const action = entry.meta.action || 'default'
+    const [handler, fixedMeta] = this.#resolveHandler(action)
+    Object.assign(entry.meta, fixedMeta)
+
+    const result = await handler(entry)
+
+    response.json(result)
   }
 
   async delete (request, response, next) {

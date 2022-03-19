@@ -47,4 +47,22 @@ describe('RestApplication', () => {
     const response = JSON.parse(result.text)
     expect(Object(response) === response).toBeTruthy()
   })
+
+  it('sets a model patching its url', async () => {
+    const server = supertest.agent(application.app)
+    const data = {
+      meta: {},
+      data: [
+        { userId: 'U001', name: 'color', value: '#00ffff' }
+      ]
+    }
+
+    const result = await server.patch('/settings').send(data)
+
+    const response = result.body
+    expect(Object(response) === response).toBeTruthy()
+    expect(response.data[0].id.length > 0).toBeTruthy()
+    expect(response.data[0].name).toEqual('color')
+    expect(response.data[0].value).toEqual('#00ffff')
+  })
 })
