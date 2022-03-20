@@ -3,7 +3,7 @@ export class StandardManager {
     this.portal = portal
   }
 
-  async set(entry) {
+  async set (entry) {
     const { meta, data } = entry
     const repository = this.portal.get(meta.model)
 
@@ -13,9 +13,13 @@ export class StandardManager {
     return { data: items }
   }
 
-  async delete(entry) {
+  async remove (entry) {
     const { meta, data } = entry
     const repository = this.portal.get(meta.model)
-    await repository.remove(data)
+
+    let items = await repository.find(data, { init: true }) 
+    items = await repository.remove(items)
+
+    return { data: items }
   }
 }

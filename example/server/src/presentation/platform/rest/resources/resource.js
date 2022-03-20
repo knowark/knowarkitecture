@@ -17,22 +17,26 @@ export class Resource {
     const result = await handler(entry)
 
     response.set({ count: result.data.count })
-    response.send()
+    response.end()
   }
 
   async get (request, response, next) {
-    const entry = request.body || { meta: {}, data: [] }
+    const entry = { meta: {}, data: [] }
+    Object.assign(entry, request.body)
+
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
     Object.assign(entry.meta, fixedMeta)
 
     const result = await handler(entry)
 
-    response.json({ id: request.params.id })
+    response.json(result)
   }
 
   async patch (request, response, next) {
-    const entry = request.body || { meta: {}, data: [] }
+    const entry = { meta: {}, data: [] }
+    Object.assign(entry, request.body)
+
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
     Object.assign(entry.meta, fixedMeta)
@@ -43,7 +47,15 @@ export class Resource {
   }
 
   async delete (request, response, next) {
-    console.info('DELETE', request)
+    const entry = request.body || { meta: {}, data: [] }
+    const action = entry.meta.action || 'default'
+    const [handler, fixedMeta] = this.#resolveHandler(action)
+    Object.assign(entry.meta, fixedMeta)
+    entry.data.push({ id: request.params.id })
+
+    const result = await handler(entry)
+
+    response.end()
   }
 
   #resolveHandler(action) {

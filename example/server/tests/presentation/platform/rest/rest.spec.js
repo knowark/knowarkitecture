@@ -44,8 +44,8 @@ describe('RestApplication', () => {
 
     const result = await server.get('/settings')
 
-    const response = JSON.parse(result.text)
-    expect(Object(response) === response).toBeTruthy()
+    expect(Object(result.body) === result.body).toBeTruthy()
+    expect(result.body).toEqual({ data: [] })
   })
 
   it('sets a model patching its url', async () => {
@@ -78,4 +78,24 @@ describe('RestApplication', () => {
     expect(result.headers.count).toEqual('0')
   })
 
+  it('deletes a model item through the delete method', async () => {
+    const server = supertest.agent(application.app)
+    const data = {
+      meta: {},
+      data: [
+        { id: 'S001', userId: 'U001', name: 'color', value: '#00ffff' }
+      ]
+    }
+    let result = await server.patch('/settings').send(data)
+    const response = result.body
+    expect(response.data[0].id).toEqual('S001')
+    expect(response.data[0].name).toEqual('color')
+    expect(response.data[0].value).toEqual('#00ffff')
+    expect(response.data.length).toEqual(1)
+
+    result = await server.delete('/settings/S001')
+
+    result = await server.get('/settings')
+    expect(result.body).toEqual({ data: [] })
+  })
 })

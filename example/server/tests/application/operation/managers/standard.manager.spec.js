@@ -57,7 +57,7 @@ describe('StandardManager', () => {
             ]
         }
 
-        await manager.delete(entry)
+        await manager.remove(entry)
         expect(data['default']['C001']).toBeUndefined()
     })
 })
