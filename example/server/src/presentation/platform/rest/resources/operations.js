@@ -172,7 +172,7 @@ export const operations = {
     // Setting
     'settingsHeadId': {
         'actions':{
-            'default':{
+            'default': {
                 'handler': 'StandardInformer.count',
                 'meta': {'model': 'Setting'}
             }

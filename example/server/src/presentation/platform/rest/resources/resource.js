@@ -9,7 +9,15 @@ export class Resource {
   }
 
   async head (request, response, next) {
-    console.info('HEAD', request)
+    const entry = request.body || { meta: {}, data: [] }
+    const action = entry.meta.action || 'default'
+    const [handler, fixedMeta] = this.#resolveHandler(action)
+    Object.assign(entry.meta, fixedMeta)
+
+    const result = await handler(entry)
+
+    response.set({ count: result.data.count })
+    response.send()
   }
 
   async get (request, response, next) {

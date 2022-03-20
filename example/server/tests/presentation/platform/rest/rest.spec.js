@@ -69,4 +69,13 @@ describe('RestApplication', () => {
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')
   })
+
+  it('gets a model total count of elements in a head request', async () => {
+    const server = supertest.agent(application.app)
+
+    const result = await server.head('/settings')
+
+    expect(result.headers.count).toEqual('0')
+  })
+
 })

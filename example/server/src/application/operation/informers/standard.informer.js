@@ -9,4 +9,12 @@ export class StandardInformer {
     const result = await repository.search(meta.domain || [])
     return { data: result } 
   }
+
+  async count(entry) {
+    const { meta } = entry
+    const repository = this.portal.get(meta.model)
+    const result = await repository.search(meta.domain || [])
+    const count = result.length
+    return { data: { count } }
+  }
 }
