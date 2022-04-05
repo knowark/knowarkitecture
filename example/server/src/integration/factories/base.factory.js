@@ -4,6 +4,9 @@ import {
   StandardInformer
 } from '#application/operation/informers/index.js'
 import {
+  SessionProxy, Wrapper
+} from '#application/operation/common/proxies/index.js'
+import {
   StandardManager, SessionManager 
 } from '#application/operation/managers/index.js'
 
@@ -12,15 +15,23 @@ export class BaseFactory extends Factory {
     return new MemoryPortal()
   }
 
-  standardInformer (portal) {
-    return new StandardInformer({ portal })
+  sessionProxy () {
+    return new SessionProxy()
+  }
+
+  wrapper (sessionProxy) {
+    return new Wrapper([sessionProxy])  
+  }
+
+  standardInformer (portal, wrapper) {
+    return wrapper.wrap(new StandardInformer({ portal }))
+  }
+
+  standardManager (portal, wrapper) {
+    return wrapper.wrap(new StandardManager({ portal }))
   }
 
   sessionManager () {
     return new SessionManager()
-  }
-
-  standardManager (portal) {
-    return new StandardManager({ portal })
   }
 }
