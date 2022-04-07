@@ -1,2 +1,2 @@
-export { ContextSupplier } from './context.supplier.js'
+export { LocationSupplier } from './location.supplier.js'
 

@@ -6,14 +6,14 @@ import {
 } from '../models/index.js'
 
 class MemoryPortal extends Portal {
-  constructor() {
+  constructor({ locator } = {}) {
     const repositories = [
-      new MemoryRepository({ model: Course }),
-      new MemoryRepository({ model: Enrolment }),
-      new MemoryRepository({ model: Lesson }),
-      new MemoryRepository({ model: Student }),
-      new MemoryRepository({ model: Teacher }),
-      new MemoryRepository({ model: Setting }),
+      new MemoryRepository({ model: Course, locator }),
+      new MemoryRepository({ model: Enrolment, locator }),
+      new MemoryRepository({ model: Lesson, locator }),
+      new MemoryRepository({ model: Student, locator }),
+      new MemoryRepository({ model: Teacher, locator }),
+      new MemoryRepository({ model: Setting, locator }),
     ]
     super({ repositories })
   }
