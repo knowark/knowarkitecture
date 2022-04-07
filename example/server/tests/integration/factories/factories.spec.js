@@ -4,6 +4,8 @@ import { FACTORIES } from '#integration/factories/index.js'
 
 const FACTORY_TESTS = {
   base: [
+    ['Contextor', 'Contextor'],
+    ['Locator', 'Locator'],
     ['Portal', 'MemoryPortal'],
     ['StandardInformer', 'StandardInformer'],
     ['StandardManager', 'StandardManager'],

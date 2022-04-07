@@ -1,11 +1,27 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { SessionProxy } from '#application/operation/common/proxies/index.js'
 
-describe('Wrapper', () => {
+class MockContextor {
+  context() {
+    return {
+      tid: 'T001',
+      uid: 'U001'
+    }
+  }
+
+  run(context, method) {
+    this._context = context
+    this._method = method
+    return method()
+  }
+}
+
+describe('SessionProxy', () => {
   let proxy = null
 
   beforeEach(() => {
-    proxy = new SessionProxy()
+    const contextor = new MockContextor() 
+    proxy = new SessionProxy({ contextor })
   })
 
   it('can be instantiated', () => {
@@ -24,6 +40,10 @@ describe('Wrapper', () => {
     expect(response).toEqual({
       meta: { proxy: true },
       data: []
+    })
+    expect(proxy.contextor._context).toEqual({
+      tid: 'default',
+      uid: 'default'
     })
   })
 })
