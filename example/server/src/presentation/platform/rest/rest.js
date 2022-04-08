@@ -4,6 +4,7 @@ import path from 'path';
 import express from 'express'
 import nunjucks from 'nunjucks'
 import { Resource } from './resources/resource.js'
+import * as middleware from './middleware/index.js'
 
 export class RestApplication {
   constructor ({ injector }) {
@@ -14,6 +15,7 @@ export class RestApplication {
 
     this.app = express()
     this.app.use(express.json())
+    this.app.use(middleware.accessMiddleware)
     nunjucks.configure(dirname + '/views', {
       autoescape: true,
       express: this.app

@@ -8,7 +8,7 @@ export class Resource {
       this.definition.operationId]
   }
 
-  async head (request, response, next) {
+  async head (request, response) {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
@@ -20,7 +20,19 @@ export class Resource {
     response.end()
   }
 
-  async get (request, response, next) {
+  async get (request, response) {
+    const entry = { meta: {}, data: [] }
+    Object.assign(entry, request.body)
+
+    const action = entry.meta.action || 'default'
+    const [handler, fixedMeta] = this.#resolveHandler(action)
+    Object.assign(entry.meta, request.meta, fixedMeta)
+    const result = await handler(entry)
+
+    response.json(result)
+  }
+
+  async patch (request, response) {
     const entry = { meta: {}, data: [] }
     Object.assign(entry, request.body)
 
@@ -33,20 +45,7 @@ export class Resource {
     response.json(result)
   }
 
-  async patch (request, response, next) {
-    const entry = { meta: {}, data: [] }
-    Object.assign(entry, request.body)
-
-    const action = entry.meta.action || 'default'
-    const [handler, fixedMeta] = this.#resolveHandler(action)
-    Object.assign(entry.meta, fixedMeta)
-
-    const result = await handler(entry)
-
-    response.json(result)
-  }
-
-  async delete (request, response, next) {
+  async delete (request, response) {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
