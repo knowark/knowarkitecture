@@ -1,15 +1,22 @@
 import jwt from 'jsonwebtoken'
 
 export function accessMiddleware({ config }) {
-  return (request, _response, next) => {
+  return (request, response, next) => {
     const authorization = request.get('Authorization')
     if (!authorization) return next()
 
-    const payload = jwt.decode(authorization)
+    const token = authorization.replace('Bearer', '').trim()
 
-    request.meta = {
-      authorization: payload 
+    const secret = config.secret?.token
+
+    let payload = null
+    if (secret) {
+      payload = jwt.verify(token, secret)
+    } else {
+      payload = jwt.decode(token)
     }
+
+    request.meta = { authorization: payload  }
 
     return next()
   }

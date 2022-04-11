@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom'
 import supertest from "supertest"
-import { describe, it, expect, beforeEach } from '@jest/globals'
+import { jest, describe, it, expect, beforeEach } from '@jest/globals'
 import { Injectark } from '@knowark/injectarkjs'
 import { RestApplication } from "#presentation/platform/rest/index.js" 
 import { FACTORIES } from "#integration/factories/index.js" 
@@ -27,9 +27,10 @@ const accessToken = () => {
 describe('RestApplication', () => {
   let application = null
   let injector = null
+  let factory = null 
 
   beforeEach(() => {
-    const factory = FACTORIES['check']({})
+    factory = FACTORIES['check']({})
     injector = new Injectark({ factory })
     application = new RestApplication({ injector })
   })
@@ -117,7 +118,7 @@ describe('RestApplication', () => {
     expect(result.body).toEqual({ data: [] })
   })
 
-  it('parses Authorization header if provided', async () => {
+  it('decodes Authorization header if provided', async () => {
     let meta = null
     const interceptors = [(request, response, next) => {
       next()
@@ -141,5 +142,26 @@ describe('RestApplication', () => {
         email: "john@doe.com"
       }
     })
+  })
+
+  it('verifies Authorization header if a secret is provided', async () => {
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+    factory.config.secret = {
+      token: 'OTHER_SECRET'
+    }
+    const interceptors = [(request, response, next) => {
+      next()
+      meta = request.meta
+    }]
+    application = new RestApplication({ injector, interceptors })
+    const server = supertest.agent(application.app)
+    const token = accessToken()
+
+    const result = await server.get('/settings').set(
+      'Authorization', token)
+
+    expect(result.status).toEqual(500)
+    expect(result.body.errors[0].name).toEqual('JsonWebTokenError')
+    console.error.mockRestore()
   })
 })

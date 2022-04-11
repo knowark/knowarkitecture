@@ -6,7 +6,7 @@ export const config = {
         //"dsn": os.environ.get('TUTORARK_TENANCY_DSN') or ('')
     //},
     secret: {
-        'token': process.env.TUTORARK_TOKEN_SECRET || ''
+        token: process.env.TUTORARK_TOKEN_SECRET || ''
     },
     //zones: {
         //"default": {

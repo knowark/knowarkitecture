@@ -23,6 +23,7 @@ export class RestApplication {
       autoescape: true,
       express: this.app
     })
+    this.app.use(middleware.errorMiddleware({ config }))
 
     this.app.get('/', (request, response) => {
       if ('api' in request.query) return response.json(this.spec)
