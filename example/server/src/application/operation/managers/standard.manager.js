@@ -7,10 +7,12 @@ export class StandardManager {
     const { meta, data } = entry
     const repository = this.portal.get(meta.model)
 
-    let items = await repository.find(data, { init: true }) 
-    items = await repository.add(items)
+    let entities = await repository.find(data, { init: true }) 
+    entities.forEach((entity, index) => entity.transition(data[index]))
 
-    return { data: items }
+    entities = await repository.add(entities)
+
+    return { data: entities }
   }
 
   async remove (entry) {

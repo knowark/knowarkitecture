@@ -12,7 +12,7 @@ export class Resource {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
-    Object.assign(entry.meta, fixedMeta)
+    Object.assign(entry.meta, request.meta, fixedMeta)
 
     const result = await handler(entry)
 
@@ -38,7 +38,7 @@ export class Resource {
 
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
-    Object.assign(entry.meta, fixedMeta)
+    Object.assign(entry.meta, request.meta, fixedMeta)
 
     const result = await handler(entry)
 
@@ -49,7 +49,7 @@ export class Resource {
     const entry = request.body || { meta: {}, data: [] }
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
-    Object.assign(entry.meta, fixedMeta)
+    Object.assign(entry.meta, request.meta, fixedMeta)
     entry.data.push({ id: request.params.id })
 
     const result = await handler(entry)
