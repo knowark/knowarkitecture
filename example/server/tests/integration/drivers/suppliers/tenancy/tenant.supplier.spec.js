@@ -27,4 +27,17 @@ describe('TenantSupplier', () => {
     expect(entity.slug).toEqual('svg')
     expect(entity.name).toEqual('Grupo SVG')
   })
+
+  it('retrieves a tenant if it already exists', async () => {
+    const tid = 'T007'
+    const tenant = 'svg'
+    const organization = 'Grupo SVG'
+
+    let entity = await tenantSupplier.ensure({ tid, tenant, organization })
+    entity = await tenantSupplier.ensure({ tid, tenant, organization })
+
+    expect(entity.id).toEqual('T007')
+    expect(entity.slug).toEqual('svg')
+    expect(entity.name).toEqual('Grupo SVG')
+  })
 })

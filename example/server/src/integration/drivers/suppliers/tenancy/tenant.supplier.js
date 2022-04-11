@@ -15,8 +15,11 @@ export class TenantSupplier {
       name: organization,
       slug: tenant
     }]
-    const entities = await this.repository.find(data, { init: true })
-    const [entity] = await this.repository.add(entities)
+    let [entity] = await this.repository.find(data)
+    if (!entity) {
+      [entity] = await this.repository.add(data)
+    }
+
     return entity
   }
 }
