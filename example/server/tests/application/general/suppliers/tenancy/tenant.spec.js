@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Tenant } from '#integration/drivers/suppliers/tenancy/index.js'
+import { Tenant } from '#application/general/suppliers/tenancy/index.js'
 
 describe('Tenant', () => {
   let tenant = null
