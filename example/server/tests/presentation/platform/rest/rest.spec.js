@@ -5,15 +5,33 @@ import { Injectark } from '@knowark/injectarkjs'
 import { RestApplication } from "#presentation/platform/rest/index.js" 
 import { FACTORIES } from "#integration/factories/index.js" 
 
+const accessToken = () => {
+  return (
+    // secret: dev
+    // Payload:
+    // {
+    //     "tid": "001",
+    //     "uid": "001",
+    //     "tenant": "Default",
+    //     "name": "johndoe",
+    //     "email": "john@doe.com"
+    // }
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
+    "eyJ0aWQiOiIwMDEiLCJ1aWQiOiIwMDEiLCJ0ZW" +
+    "5hbnQiOiJEZWZhdWx0IiwibmFtZSI6ImpvaG5kb" +
+    "2UiLCJlbWFpbCI6ImpvaG5AZG9lLmNvbSJ9.ytpW" +
+    "Kst-PB6ebHVAVrqp6-gO4AE3HKppv2tOzsNMtng"
+  )
+}
+
 describe('RestApplication', () => {
   let application = null
+  let injector = null
 
   beforeEach(() => {
     const factory = FACTORIES['check']({})
-    const injector = new Injectark({ factory })
-
+    injector = new Injectark({ factory })
     application = new RestApplication({ injector })
-    expect(application).toBeTruthy()
   })
 
   it('can be instantiated', () => {
@@ -97,5 +115,31 @@ describe('RestApplication', () => {
 
     result = await server.get('/settings')
     expect(result.body).toEqual({ data: [] })
+  })
+
+  it('parses Authorization header if provided', async () => {
+    let meta = null
+    const interceptors = [(request, response, next) => {
+      next()
+      meta = request.meta
+    }]
+    application = new RestApplication({ injector, interceptors })
+    const server = supertest.agent(application.app)
+    const token = accessToken()
+
+    const result = await server.get('/settings').set(
+      'Authorization', token)
+
+    expect(Object(result.body) === result.body).toBeTruthy()
+    expect(result.body).toEqual({ data: [] })
+    expect(meta).toEqual({
+      authorization: {
+        tid: "001",
+        uid: "001",
+        tenant: "Default",
+        name: "johndoe",
+        email: "john@doe.com"
+      }
+    })
   })
 })

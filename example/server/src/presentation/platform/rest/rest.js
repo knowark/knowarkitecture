@@ -7,15 +7,18 @@ import { Resource } from './resources/resource.js'
 import * as middleware from './middleware/index.js'
 
 export class RestApplication {
-  constructor ({ injector }) {
+  constructor ({ injector, interceptors = [] }) {
+    const config = injector.config
     const dirname = path.dirname(
       url.fileURLToPath(import.meta.url))
     this.spec = JSON.parse(fs.readFileSync(
       dirname + '/openapi.json'))
 
     this.app = express()
+    interceptors.forEach(
+      interceptor => this.app.use(interceptor))
     this.app.use(express.json())
-    this.app.use(middleware.accessMiddleware)
+    this.app.use(middleware.accessMiddleware({ config }))
     nunjucks.configure(dirname + '/views', {
       autoescape: true,
       express: this.app
