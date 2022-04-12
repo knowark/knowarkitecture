@@ -3,7 +3,12 @@ export class SessionProxy {
     this.contextor = contextor
   }
 
-  proxy(method) {
+  proxy(
+    //target, 
+    method) {
+
+    //target  
+    
     return async (entry) => {
       const context = {
         tid: entry.meta?.authorization?.tid || 'default',
