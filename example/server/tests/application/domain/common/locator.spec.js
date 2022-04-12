@@ -1,16 +1,12 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Locator } from '#application/domain/common/index.js'
+import { Locator, User } from '#application/domain/common/index.js'
 
-class MockContextor {
-  constructor(contextor) {
-    this.contextor = contextor
-  }
-
-  context() {
-    return {
-      tid: 'T001',
-      uid: 'U001'
-    }
+class MockAuthorizer {
+  get user () {
+    return new User({
+      id: 'U001',
+      tenantId: 'T001'
+    })
   }
 }
 
@@ -18,8 +14,8 @@ describe('Locator', () => {
   let locator = null
 
   beforeEach(() => {
-    const contextor = new MockContextor()
-    locator = new Locator({ contextor })
+    const authorizer = new MockAuthorizer()
+    locator = new Locator({ authorizer })
   })
 
   it('can be instantiated', () => {

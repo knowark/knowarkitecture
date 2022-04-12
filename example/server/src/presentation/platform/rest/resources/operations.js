@@ -1,13 +1,5 @@
 export const operations = {
     // Course
-    'coursesHeadId': {
-        'actions':{
-            'default': {
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Course'}
-            }
-        }
-    },
     "coursesGetId": {
         'actions': {
             'default':{
@@ -34,14 +26,6 @@ export const operations = {
     },
 
     // Enrolment
-    'enrolmentsHeadId': {
-        'actions': {
-            'default': {
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Enrolment'}
-            }
-        }
-    },
     "enrolmentsGetId": {
         'actions':{
             'default':{
@@ -68,14 +52,6 @@ export const operations = {
     },
 
     // Lesson
-    'lessonsHeadId': {
-        'actions':{
-            'default':{
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Lesson'}
-            }
-        }
-    },
     "lessonsGetId": {
         'actions':{
             'default':{
@@ -102,14 +78,6 @@ export const operations = {
     },
 
     // Student
-    'studentsHeadId': {
-        'actions':{
-            'default':{
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Student'}
-            }
-        }
-    },
     "studentsGetId": {
         'actions':{
             'default':{
@@ -136,14 +104,6 @@ export const operations = {
     },
 
     // Teacher
-    'teachersHeadId': {
-        'actions':{
-            'default':{
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Teacher'}
-            }
-        }
-    },
     "teachersGetId": {
         'actions': {
             'default': {
@@ -170,14 +130,6 @@ export const operations = {
     },
 
     // Setting
-    'settingsHeadId': {
-        'actions':{
-            'default': {
-                'handler': 'StandardInformer.count',
-                'meta': {'model': 'Setting'}
-            }
-        }
-    },
     "settingsGetId": {
         'actions': {
             'default': {

@@ -60,8 +60,10 @@ describe('RestApplication', () => {
 
   it('gets a model given the url', async () => {
     const server = supertest.agent(application.app)
+    const token = accessToken()
 
-    const result = await server.get('/settings')
+    const result = await server.get('/settings').set(
+      'Authorization', token)
 
     expect(Object(result.body) === result.body).toBeTruthy()
     expect(result.body).toEqual({ data: [] })
@@ -75,26 +77,20 @@ describe('RestApplication', () => {
         { userId: 'U001', name: 'color', value: '#00ffff' }
       ]
     }
+    const token = accessToken()
 
-    const result = await server.patch('/settings').send(data)
+    const result = await server.patch('/settings').send(data).set(
+      'Authorization', token)
 
     const response = result.body
     expect(Object(response) === response).toBeTruthy()
     expect(response.data[0].id.length > 0).toBeTruthy()
     expect(response.data[0].createdAt > 0).toBeTruthy()
-    expect(response.data[0].createdBy).toEqual('default')
+    expect(response.data[0].createdBy).toEqual('001')
     expect(response.data[0].updatedAt > 0).toBeTruthy()
-    expect(response.data[0].updatedBy).toEqual('default')
+    expect(response.data[0].updatedBy).toEqual('001')
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')
-  })
-
-  it('gets a model total count of elements in a head request', async () => {
-    const server = supertest.agent(application.app)
-
-    const result = await server.head('/settings')
-
-    expect(result.headers.count).toEqual('0')
   })
 
   it('deletes a model item through the delete method', async () => {
@@ -105,16 +101,20 @@ describe('RestApplication', () => {
         { id: 'S001', userId: 'U001', name: 'color', value: '#00ffff' }
       ]
     }
-    let result = await server.patch('/settings').send(data)
+    const token = accessToken()
+    let result = await server.patch('/settings').send(data).set(
+      'Authorization', token)
     const response = result.body
     expect(response.data[0].id).toEqual('S001')
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')
     expect(response.data.length).toEqual(1)
 
-    result = await server.delete('/settings/S001')
+    result = await server.delete('/settings/S001').set(
+      'Authorization', token)
 
-    result = await server.get('/settings')
+    result = await server.get('/settings').set(
+      'Authorization', token)
     expect(result.body).toEqual({ data: [] })
   })
 
@@ -133,15 +133,10 @@ describe('RestApplication', () => {
 
     expect(Object(result.body) === result.body).toBeTruthy()
     expect(result.body).toEqual({ data: [] })
-    expect(meta).toEqual({
-      authorization: {
-        tid: "001",
-        uid: "001",
-        tenant: "Default",
-        name: "johndoe",
-        email: "john@doe.com"
-      }
-    })
+    expect(meta.authorization.id).toEqual('001')
+    expect(meta.authorization.tenantId).toEqual('001')
+    expect(meta.authorization.name).toEqual('johndoe')
+    expect(meta.authorization.email).toEqual('john@doe.com')
   })
 
   it('verifies Authorization header if a secret is provided', async () => {

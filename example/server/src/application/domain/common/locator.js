@@ -1,18 +1,18 @@
 import { Locator as Locator_ } from '@knowark/modelark/lib/common/index.js'
 
 export class Locator extends Locator_ {
-  constructor({ contextor }) {
+  constructor({ authorizer }) {
     super()
-    this.contextor = contextor
+    this.authorizer = authorizer
   }
 
-  location() {
-    const location = this.contextor.context().tid
+  location () {
+    const location = this.authorizer.user.tenantId
     return location
   }
 
-  reference() {
-    const reference = this.contextor.context().uid
+  reference () {
+    const reference = this.authorizer.user.id
     return reference
   }
 }

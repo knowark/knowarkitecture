@@ -16,7 +16,18 @@ export function accessMiddleware({ config }) {
       payload = jwt.decode(token)
     }
 
-    request.meta = { authorization: payload  }
+    request.meta = {
+      authorization: {
+        id: payload.uid,
+        name: payload.name,
+        email: payload.email,
+        tenant: payload.tenant,
+        tenantId: payload.tid,
+        organization: payload.organization,
+        zone: payload.zone,
+        active: payload.active,
+      }
+    }
 
     return next()
   }

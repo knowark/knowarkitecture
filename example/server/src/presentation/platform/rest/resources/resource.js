@@ -8,18 +8,6 @@ export class Resource {
       this.definition.operationId]
   }
 
-  async head (request, response) {
-    const entry = request.body || { meta: {}, data: [] }
-    const action = entry.meta.action || 'default'
-    const [handler, fixedMeta] = this.#resolveHandler(action)
-    Object.assign(entry.meta, request.meta, fixedMeta)
-
-    const result = await handler(entry)
-
-    response.set({ count: result.data.count })
-    response.end()
-  }
-
   async get (request, response) {
     const entry = { meta: {}, data: [] }
     Object.assign(entry, request.body)
@@ -35,7 +23,6 @@ export class Resource {
   async patch (request, response) {
     const entry = { meta: {}, data: [] }
     Object.assign(entry, request.body)
-
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
     Object.assign(entry.meta, request.meta, fixedMeta)
@@ -46,7 +33,8 @@ export class Resource {
   }
 
   async delete (request, response) {
-    const entry = request.body || { meta: {}, data: [] }
+    const entry = { meta: {}, data: [] }
+    Object.assign(entry, request.body)
     const action = entry.meta.action || 'default'
     const [handler, fixedMeta] = this.#resolveHandler(action)
     Object.assign(entry.meta, request.meta, fixedMeta)
@@ -54,7 +42,7 @@ export class Resource {
 
     const result = await handler(entry)
 
-    response.end()
+    response.json(result)
   }
 
   #resolveHandler(action) {

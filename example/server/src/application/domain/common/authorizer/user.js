@@ -1,4 +1,3 @@
-
 export class User {
     constructor(attributes = {}) {
         this.id = attributes.id || ''

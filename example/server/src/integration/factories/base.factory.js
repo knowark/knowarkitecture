@@ -1,5 +1,7 @@
 import { Factory } from '@knowark/injectarkjs'
-import { Contextor, Locator } from '#application/domain/common/index.js'
+import {
+  Authorizer, Locator
+} from '#application/domain/common/index.js'
 import { MemoryPortal } from '#application/domain/services/index.js'
 import {
   StandardInformer
@@ -12,20 +14,20 @@ import {
 } from '#application/operation/managers/index.js'
 
 export class BaseFactory extends Factory {
-  contextor () {
-    return new Contextor()
+  authorizer () {
+    return new Authorizer()
   }
 
-  locator (contextor) {
-    return new Locator({ contextor })
+  locator (authorizer) {
+    return new Locator({ authorizer })
   }
 
   portal(locator) {
     return new MemoryPortal({ locator })
   }
 
-  sessionProxy (contextor) {
-    return new SessionProxy({ contextor })
+  sessionProxy (authorizer) {
+    return new SessionProxy({ authorizer })
   }
 
   wrapper (sessionProxy) {

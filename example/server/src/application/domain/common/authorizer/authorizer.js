@@ -2,8 +2,8 @@ import { AsyncLocalStorage } from 'async_hooks'
 import { User } from './user.js'
 
 export class Authorizer {
-  constructor () {
-    this.storage = new AsyncLocalStorage()
+  constructor ({ storage = new AsyncLocalStorage() } = {}) {
+    this.storage = storage
   }
 
   get user () {

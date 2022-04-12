@@ -1,23 +1,30 @@
+import { validate } from '@knowark/validarkjs/lib/index.js'
+import { User } from '#application/domain/common/index.js'
+
 export class SessionProxy {
-  constructor({ contextor }) {
-    this.contextor = contextor
+  constructor({ authorizer }) {
+    this.authorizer = authorizer
   }
 
-  proxy(
-    //target, 
-    method) {
-
-    //target  
-    
+  proxy(method) {
     return async (entry) => {
-      const context = {
-        tid: entry.meta?.authorization?.tid || 'default',
-        uid: entry.meta?.authorization?.uid || 'default',
-      }
+      const [authorization] = validate(
+        authorizationSchema, [entry.meta?.authorization])
 
-      entry.meta.proxy = true
-      return this.contextor.run(
-        context, async () =>  method(entry))
+      const user = new User(authorization)
+
+      return this.authorizer.enter(user, async () =>  method(entry))
     }
   }
+}
+
+const authorizationSchema = {
+  "*id": String,
+  "*name": String,
+  "*tenant": String,
+  "*tenantId": String,
+  "email": String,
+  "organization": String,
+  "zone": String,
+  "active": Boolean,
 }

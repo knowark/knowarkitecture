@@ -19,19 +19,6 @@
   },
   "paths": {
     "/courses": {
-      "head": {
-        "operationId": "coursesHeadId",
-        "summary": "Inspect courses",
-        "description": "Return courses headers",
-        "tags": [
-          "Course"
-        ],
-        "responses": {
-          "200": {
-            "description": "Course metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "coursesGetId",
         "summary": "Get courses",
@@ -132,19 +119,6 @@
       }
     },
     "/enrolments": {
-      "head": {
-        "operationId": "enrolmentsHeadId",
-        "summary": "Inspect enrolments",
-        "description": "Return enrolments headers",
-        "tags": [
-          "Enrolment"
-        ],
-        "responses": {
-          "200": {
-            "description": "Enrolment metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "enrolmentsGetId",
         "summary": "Get enrolments",
@@ -245,19 +219,6 @@
       }
     },
     "/settings": {
-      "head": {
-        "operationId": "settingsHeadId",
-        "summary": "Inspect settings",
-        "description": "Return settings headers",
-        "tags": [
-          "Setting"
-        ],
-        "responses": {
-          "200": {
-            "description": "Setting metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "settingsGetId",
         "summary": "Get settings",
@@ -358,19 +319,6 @@
       }
     },
     "/lessons": {
-      "head": {
-        "operationId": "lessonsHeadId",
-        "summary": "Inspect lessons",
-        "description": "Return lessons headers",
-        "tags": [
-          "Lesson"
-        ],
-        "responses": {
-          "200": {
-            "description": "Lesson metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "lessonsGetId",
         "summary": "Get lessons",
@@ -471,19 +419,6 @@
       }
     },
     "/students": {
-      "head": {
-        "operationId": "studentsHeadId",
-        "summary": "Inspect students",
-        "description": "Return students headers",
-        "tags": [
-          "Student"
-        ],
-        "responses": {
-          "200": {
-            "description": "Student metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "studentsGetId",
         "summary": "Get students",
@@ -584,19 +519,6 @@
       }
     },
     "/teachers": {
-      "head": {
-        "operationId": "teachersHeadId",
-        "summary": "Inspect teachers",
-        "description": "Return teacher headers",
-        "tags": [
-          "Teacher"
-        ],
-        "responses": {
-          "200": {
-            "description": "Teacher metadata records"
-          }
-        }
-      },
       "get": {
         "operationId": "teachersGetId",
         "summary": "Get teachers",
