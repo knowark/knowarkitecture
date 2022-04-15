@@ -1,11 +1,9 @@
-TutorArk
-########
+# TutorArk
 
 Knowarkitecture Sample Server Application
 
 
-Get Started
-===========
+## Get Started
 
 Create a new **Python Virtual Environment** with:
 
