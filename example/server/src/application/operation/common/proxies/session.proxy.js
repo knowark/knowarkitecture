@@ -11,6 +11,7 @@ export class SessionProxy {
 
   proxy(method) {
     return async (entry) => {
+
       const [authorization] = validate(
         authorizationSchema, [entry.meta?.authorization])
 

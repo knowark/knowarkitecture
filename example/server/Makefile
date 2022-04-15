@@ -10,6 +10,9 @@ clean:
 serve:
 	tutorark serve
 
+check:
+	npm run check
+
 test:
 	npm run test
 

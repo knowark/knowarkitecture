@@ -8,6 +8,7 @@
     "test": "tests"
   },
   "scripts": {
+    "check": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest tests/application --collectCoverageFrom=**/application/** --coverage",
     "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' npx jest --coverage",
     "serve": "src/main.js",
     "dev": "node -r dotenv/config src/main.js"
