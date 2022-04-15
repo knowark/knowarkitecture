@@ -1,9 +1,3 @@
-import { BaseFactory } from './base.factory.js'
-import { CheckFactory } from './check.factory.js'
-//import { HttpFactory } from './http.factory.js'
+import { selector } from './selector.js'
 
-export const FACTORIES = {
-  base: (config) => new BaseFactory(config),
-  check: (config) => new CheckFactory(config),
-  //http: (config) => new HttpFactory(config)
-}
+export const FACTORIES = selector()

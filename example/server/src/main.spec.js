@@ -1,8 +1,7 @@
-import { main } from '../src/main.js'
+import { main } from './main.js'
  
 describe('Main', () => {
   it('defines a main function', () => {
-    expect(main).toBeTruthy()                              
+    expect(main).toBeTruthy()
   })                                                       
 })                                                         
-                                                            
