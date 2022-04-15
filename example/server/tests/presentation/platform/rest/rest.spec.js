@@ -9,18 +9,20 @@ const accessToken = () => {
   return (
     // secret: dev
     // Payload:
-    // {
-    //     "tid": "001",
-    //     "uid": "001",
-    //     "tenant": "Default",
-    //     "name": "johndoe",
-    //     "email": "john@doe.com"
-    // }
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
-    "eyJ0aWQiOiIwMDEiLCJ1aWQiOiIwMDEiLCJ0ZW" +
-    "5hbnQiOiJEZWZhdWx0IiwibmFtZSI6ImpvaG5kb" +
-    "2UiLCJlbWFpbCI6ImpvaG5AZG9lLmNvbSJ9.ytpW" +
-    "Kst-PB6ebHVAVrqp6-gO4AE3HKppv2tOzsNMtng"
+    //{
+      //"tid": "T01",
+      //"uid": "U01",
+      //"tenant": "knowark",
+      //"name": "johndoe",
+      //"email": "john@knowark.com",
+      //"organization": "Knowark"
+    //}
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
+    "eyJ0aWQiOiJUMDEiLCJ1aWQiOiJVMDEiLCJ0ZW5h" +
+    "bnQiOiJrbm93YXJrIiwibmFtZSI6ImpvaG5kb2UiL" +
+    "CJlbWFpbCI6ImpvaG5Aa25vd2Fyay5jb20iLCJvcmd" +
+    "hbml6YXRpb24iOiJLbm93YXJrIn0.dAFUA6dTd_Cxx" +
+    "nlijkcDHFdGHFBnT_Ydx25FoMKQGx8"
   )
 }
 
@@ -65,6 +67,7 @@ describe('RestApplication', () => {
     const result = await server.get('/settings').set(
       'Authorization', token)
 
+    expect(result.status).toEqual(200)
     expect(Object(result.body) === result.body).toBeTruthy()
     expect(result.body).toEqual({ data: [] })
   })
@@ -86,9 +89,9 @@ describe('RestApplication', () => {
     expect(Object(response) === response).toBeTruthy()
     expect(response.data[0].id.length > 0).toBeTruthy()
     expect(response.data[0].createdAt > 0).toBeTruthy()
-    expect(response.data[0].createdBy).toEqual('001')
+    expect(response.data[0].createdBy).toEqual('U01')
     expect(response.data[0].updatedAt > 0).toBeTruthy()
-    expect(response.data[0].updatedBy).toEqual('001')
+    expect(response.data[0].updatedBy).toEqual('U01')
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')
   })
@@ -105,6 +108,7 @@ describe('RestApplication', () => {
     let result = await server.patch('/settings').send(data).set(
       'Authorization', token)
     const response = result.body
+    expect(result.status).toEqual(200)
     expect(response.data[0].id).toEqual('S001')
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')
@@ -133,10 +137,10 @@ describe('RestApplication', () => {
 
     expect(Object(result.body) === result.body).toBeTruthy()
     expect(result.body).toEqual({ data: [] })
-    expect(meta.authorization.id).toEqual('001')
-    expect(meta.authorization.tenantId).toEqual('001')
+    expect(meta.authorization.id).toEqual('U01')
+    expect(meta.authorization.tenantId).toEqual('T01')
     expect(meta.authorization.name).toEqual('johndoe')
-    expect(meta.authorization.email).toEqual('john@doe.com')
+    expect(meta.authorization.email).toEqual('john@knowark.com')
   })
 
   it('verifies Authorization header if a secret is provided', async () => {

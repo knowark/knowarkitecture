@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Contextor } from '#application/domain/common/index.js'
+import { Contextor, MemoryStorage } from '#application/domain/common/index.js'
 
 class MockContextConsumer {
   constructor(contextor) {
@@ -44,5 +44,16 @@ describe('Contextor', () => {
   it('raises an error if the context has not been initialized', () => {
     expect(() => contextor.context).toThrow(
       'Context has not been initialized')
+  })
+
+  it('provides an alternative MemoryStorage for testing convenience', () => {
+    let storage = new MemoryStorage()
+
+    const store = storage.getStore()
+    expect(store instanceof Map).toBeTruthy()
+
+    const customStore = new Map()
+    storage.run(customStore, () => {})
+    expect(storage._store).toBe(customStore)
   })
 })

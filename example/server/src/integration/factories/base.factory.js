@@ -20,7 +20,7 @@ export class BaseFactory extends Factory {
   }
 
   authorizer (contextor) {
-    return new Authorizer()
+    return new Authorizer({ contextor })
   }
 
   locator (authorizer) {

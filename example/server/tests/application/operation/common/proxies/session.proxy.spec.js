@@ -1,28 +1,18 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Authorizer, User } from '#application/domain/common/index.js'
+import { 
+  Authorizer, Contextor, MemoryStorage, User 
+} from '#application/domain/common/index.js'
 import { TenantSupplier } from '#application/general/suppliers/index.js'
 import { SessionProxy } from '#application/operation/common/proxies/index.js'
-
-class MockStorage {
-  getStore () {
-    return this._store
-  }
-
-  run (store, callback) {
-    this._store = store
-    this._callback = callback
-    return callback()
-  }
-}
-
 
 describe('SessionProxy', () => {
   let proxy = null
 
   beforeEach(() => {
-    const storage = new MockStorage()
+    const storage = new MemoryStorage()
+    const contextor = new Contextor({ storage })
     const tenantSupplier = new TenantSupplier()
-    const authorizer = new Authorizer({ storage }) 
+    const authorizer = new Authorizer({ contextor }) 
     proxy = new SessionProxy({ authorizer, tenantSupplier })
   })
 
@@ -37,8 +27,10 @@ describe('SessionProxy', () => {
         authorization: {
           id: 'U001',
           name: 'John Doe',
-          tenant: 'Knowark',
-          tenantId: 'T001'
+          email: 'jdoe@knowark.com',
+          tenant: 'knowark',
+          tenantId: 'T001',
+          organization: 'Knowark'
         }
       },
       data: []
@@ -46,7 +38,7 @@ describe('SessionProxy', () => {
 
     await proxy.proxy(mockMethod)(entry)
 
-    const store = proxy.authorizer.storage._store
-    expect(store.constructor).toBe(User)
+    const user = proxy.authorizer.user
+    expect(user instanceof User).toBeTruthy()
   })
 })

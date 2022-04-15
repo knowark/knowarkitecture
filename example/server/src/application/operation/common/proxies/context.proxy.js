@@ -7,11 +7,15 @@ export class ContextProxy {
   }
 
   proxy(method) {
-    return async (input) => {
-      [input] = validate(inputSchema, [input])
-
-      return this.contextor.initialize(
-        async () =>  method(input))
+    return async (entry) => {
+      const [input] = validate(inputSchema, [entry])
+      try {
+        return await this.contextor.initialize(
+          async () =>  method(input))
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
     }
   }
 }

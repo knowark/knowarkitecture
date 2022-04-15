@@ -13,7 +13,23 @@ export class Contextor {
     return context
   }
 
-  initialize (method) {
-    return this.storage.run(new Map(), method)
+  async initialize (method) {
+    return await this.storage.run(new Map(), method)
+  }
+}
+
+export class MemoryStorage {
+  constructor(store = new Map()) {
+    this._store = store
+  }
+
+  getStore () {
+    return this._store
+  }
+
+  async run (store, callback) {
+    this._store = store
+    this._callback = callback
+    return callback()
   }
 }

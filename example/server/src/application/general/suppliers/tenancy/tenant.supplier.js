@@ -1,12 +1,13 @@
+import { grab } from '@knowark/validarkjs/lib/index.js'
 import { 
-  MemoryRepository
+  Repository, MemoryRepository
 } from '@knowark/modelark/lib/repository/index.js'
 import { Tenant } from './tenant.js'
 
 export class TenantSupplier {
-  constructor({ repository = new MemoryRepository(
-    { model: Tenant }) } = {}) {
-    this.repository = repository
+  constructor(dependencies = {}) {
+    this.repository = grab(dependencies, Repository,
+      new MemoryRepository({ model: Tenant }))
   }
 
   async ensure ({ tid, tenant, organization }) {

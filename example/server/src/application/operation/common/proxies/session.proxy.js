@@ -10,20 +10,15 @@ export class SessionProxy {
   }
 
   proxy(method) {
-    return async (entry) => {
-
+    return async (input) => {
       const [authorization] = validate(
-        authorizationSchema, [entry.meta?.authorization])
+        authorizationSchema, [input.meta?.authorization])
 
-      const tenant = this.tenantSupplier.ensure(authorization)
+      await this.tenantSupplier.ensure(authorization)
 
-      const user = new User(authorization)
+      this.authorizer.user = new User(authorization)
 
-      //const context = {
-        //user: new User(authorization)
-      //}
-
-      return this.authorizer.enter(user, async () =>  method(entry))
+      return method(input)
     }
   }
 }
@@ -33,8 +28,8 @@ const authorizationSchema = {
   "*name": String,
   "*tenant": String,
   "*tenantId": String,
-  "email": String,
-  "organization": String,
+  "*email": String,
+  "*organization": String,
   "zone": String,
   "active": Boolean,
 }

@@ -1,19 +1,21 @@
-import { AsyncLocalStorage } from 'async_hooks'
+import { grab } from '@knowark/validarkjs/lib/index.js'
+import { Contextor } from '../contextor.js'
 import { User } from './user.js'
 
 export class Authorizer {
-  constructor ({ storage = new AsyncLocalStorage() } = {}) {
-    this.storage = storage
+  constructor (dependencies) {
+    this.contextor = grab(dependencies, Contextor)
   }
 
   get user () {
-    return this.storage.getStore()
+    return this.contextor.context.get('user')
   }
 
-  enter (user, action) {
-    if (user.constructor !== User) {
-      throw new Error('Please provide a "User" instance')
+  set user (value) {
+    if (!(value instanceof User)) {
+      throw new Error(
+        `Value should be a "User" instance. Got "${typeof value}"`)
     }
-    return this.storage.run(user, action)
+    return this.contextor.context.set('user', value)
   }
 }

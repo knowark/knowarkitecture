@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from '@jest/globals'
+import { jest, describe, it, expect, beforeEach } from '@jest/globals'
 import { Contextor } from '#application/domain/common/index.js'
 import { ContextProxy } from '#application/operation/common/proxies/index.js'
 
@@ -40,5 +40,25 @@ describe('ContextProxy', () => {
 
     const store = proxy.contextor.storage._store
     expect(store instanceof Map).toBeTruthy()
+  })
+
+  it('throws on any error inside the method chain', async () => {
+    jest.spyOn(console, 'error').mockImplementation(() => {})
+    const mockMethod = async (input) => { throw new Error('Any Error') }
+    const input = {
+      meta: {},
+      data: []
+    }
+
+    let catched = false
+    try {
+      await proxy.proxy(mockMethod)(input)
+    } catch (error) {
+      catched = true
+      expect(error.message).toEqual('Any Error')
+    }
+
+    expect(catched).toBeTruthy()
+    console.error.mockRestore()
   })
 })
