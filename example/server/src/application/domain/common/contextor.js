@@ -1,15 +1,19 @@
 import { AsyncLocalStorage } from 'async_hooks'
 
 export class Contextor {
-  constructor() {
-    this.storage = new AsyncLocalStorage()
+  constructor({ storage = new AsyncLocalStorage() } = {}) {
+    this.storage = storage
   }
 
-  context() {
-    return this.storage.getStore()
+  get context () {
+    const context = this.storage.getStore()
+    if (context === undefined) {
+      throw new Error('Context has not been initialized')
+    }
+    return context
   }
 
-  run(context, method) {
-    return this.storage.run(context, method)
+  initialize (method) {
+    return this.storage.run(new Map(), method)
   }
 }

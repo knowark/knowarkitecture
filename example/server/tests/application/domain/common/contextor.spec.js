@@ -7,9 +7,7 @@ class MockContextConsumer {
   }
 
   showContext() {
-    const context = this.contextor.context()
-    context.consumed = true
-    return context
+    return this.contextor.context
   }
 }
 
@@ -29,18 +27,22 @@ describe('Contextor', () => {
     expect(storage.constructor.name).toEqual('AsyncLocalStorage')
   })
 
-  it('establishes the execution context for the application', () => {
+  it('can be initialized inside a method chain', async () => {
     const consumer = new MockContextConsumer(contextor)
-    const context = { id: 'I001', tid: 'T001', consumed: false }
     let consumedContext = null
     const method = async () => {
       consumedContext = consumer.showContext()
       return consumedContext
     }
 
-    contextor.run(context, method)
+    const result = await contextor.initialize(method)
 
-    expect(consumedContext).toEqual({
-      id: 'I001', tid: 'T001', consumed: true })
+    expect(consumedContext instanceof Map).toBeTruthy()
+    expect(result instanceof Map).toBeTruthy()
+  })
+
+  it('raises an error if the context has not been initialized', () => {
+    expect(() => contextor.context).toThrow(
+      'Context has not been initialized')
   })
 })

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { Authorizer, User } from '#application/domain/common/index.js'
+import { TenantSupplier } from '#application/general/suppliers/index.js'
 import { SessionProxy } from '#application/operation/common/proxies/index.js'
 
 class MockStorage {
@@ -20,8 +21,9 @@ describe('SessionProxy', () => {
 
   beforeEach(() => {
     const storage = new MockStorage()
+    const tenantSupplier = new TenantSupplier()
     const authorizer = new Authorizer({ storage }) 
-    proxy = new SessionProxy({ authorizer })
+    proxy = new SessionProxy({ authorizer, tenantSupplier })
   })
 
   it('can be instantiated', () => {

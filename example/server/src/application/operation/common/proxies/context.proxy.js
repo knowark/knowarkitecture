@@ -3,10 +3,9 @@ import { User } from '#application/domain/common/index.js'
 import { Authorizer } from '#application/domain/common/index.js'
 import { TenantSupplier } from '#application/general/suppliers/index.js'
 
-export class SessionProxy {
+export class ContextProxy {
   constructor(dependencies) {
-    this.authorizer = grab(dependencies, Authorizer)
-    this.tenantSupplier = grab(dependencies, TenantSupplier)
+    this.contextor = grab(dependencies, Contextor)
   }
 
   proxy(method) {
@@ -16,11 +15,13 @@ export class SessionProxy {
 
       const tenant = this.tenantSupplier.ensure(authorization)
 
+      console.log('Tenant>>>', tenant)
+
       const user = new User(authorization)
 
-      //const context = {
-        //user: new User(authorization)
-      //}
+      const context = {
+        user: new User(authorization)
+      }
 
       return this.authorizer.enter(user, async () =>  method(entry))
     }

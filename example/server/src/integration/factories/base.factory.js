@@ -3,6 +3,7 @@ import {
   Authorizer, Locator
 } from '#application/domain/common/index.js'
 import { MemoryPortal } from '#application/domain/services/index.js'
+import { TenantSupplier } from '#application/general/suppliers/index.js'
 import {
   StandardInformer
 } from '#application/operation/informers/index.js'
@@ -26,8 +27,12 @@ export class BaseFactory extends Factory {
     return new MemoryPortal({ locator })
   }
 
-  sessionProxy (authorizer) {
-    return new SessionProxy({ authorizer })
+  tenantSupplier () {
+    return new TenantSupplier()
+  }
+
+  sessionProxy (authorizer, tenantSupplier) {
+    return new SessionProxy({ authorizer, tenantSupplier })
   }
 
   wrapper (sessionProxy) {
