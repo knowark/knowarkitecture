@@ -9,7 +9,6 @@ describe('Selector', function () {
     const names = ['base', 'check', 'json']
     for (const name of names) {
       const factory = factories[name](config) 
-      console.log('factory:::', factory)
       expect(factory instanceof Factory)
     }
   })

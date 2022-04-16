@@ -35,6 +35,9 @@ describe('Locator', () => {
 
   it('provides a system locator', () => {
     const systemLocator = new SystemLocator()
+    const systemUser = new SystemUser()
     expect(systemLocator.user instanceof SystemUser).toBeTruthy()
+    expect(systemLocator.location()).toEqual(systemUser.tenantId)
+    expect(systemLocator.reference()).toEqual(systemUser.id)
   })
 })

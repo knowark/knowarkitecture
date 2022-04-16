@@ -17,7 +17,8 @@ export class Locator extends Locator_ {
 }
 
 export class SystemLocator extends Locator_ {
-  constructor() {
+  constructor () {
+    super()
     this.user = new SystemUser()
   }
 

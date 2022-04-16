@@ -1,6 +1,5 @@
 export const config = {
   port: Number(process.env.TUTORARK_PORT || 6291),
-  //auto: bool(os.environ.get('TUTORARK_AUTO') or True),
   factory: process.env.TUTORARK_FACTORY || 'check',
   tenancy: {
     json: {
@@ -13,11 +12,4 @@ export const config = {
   secret: {
     token: process.env.TUTORARK_TOKEN_SECRET || ''
   },
-  //zones: {
-  //"default": {
-  //"dsn": os.environ.get('TUTORARK_ZONES_DEFAULT_DSN') or ('')
-  //}
-  //}
 }
-
-console.log('config', config)
