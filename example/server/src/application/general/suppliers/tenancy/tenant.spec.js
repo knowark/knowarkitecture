@@ -8,7 +8,8 @@ describe('Tenant', () => {
     tenant = new Tenant({
       id: 'T001',
       name: 'Knowark',
-      slug: 'knowark'
+      slug: 'knowark',
+      namespace: 'T001'
     })
   })
 
@@ -20,6 +21,7 @@ describe('Tenant', () => {
     expect(tenant.id).toEqual('T001')
     expect(tenant.name).toEqual('Knowark')
     expect(tenant.slug).toEqual('knowark')
+    expect(tenant.namespace).toEqual('T001')
   })
 
   it('defines default attributes', () => {
@@ -27,5 +29,6 @@ describe('Tenant', () => {
     expect(tenant.id.length > 0).toBeTruthy()
     expect(tenant.name).toEqual('')
     expect(tenant.slug).toEqual('')
+    expect(tenant.namespace).toEqual('')
   })
 })

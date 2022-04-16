@@ -5,5 +5,6 @@ export class Tenant extends Entity {
         super(attributes)
         this.name = attributes.name || ''
         this.slug = attributes.slug || ''
+        this.namespace = attributes.namespace || ''
     }
 }

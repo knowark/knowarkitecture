@@ -1,3 +1,4 @@
+import { uuid32encode } from '@knowark/modelark/lib/common/index.js'
 import { grab } from '@knowark/validarkjs/lib/index.js'
 import { 
   Repository, MemoryRepository
@@ -10,16 +11,19 @@ export class TenantSupplier {
       new MemoryRepository({ model: Tenant }))
   }
 
-  async ensure ({ tid, tenant, organization }) {
-    const data = [{
-      id: tid,
+  async ensure ({ tenantId, tenant, organization }) {
+    const data = {
+      id: tenantId,
       name: organization,
-      slug: tenant
-    }]
-    let [entity] = await this.repository.find(data)
-    if (!entity) {
-      [entity] = await this.repository.add(data)
+      slug: tenant,
+      namespace: uuid32encode(tenantId) || tenantId
     }
+    let [entity] = await this.repository.find([data])
+    if (!entity) {
+      [entity] = await this.repository.add(new Tenant(data))
+    }
+
+    console.log('Entity Tenant::', entity)
 
     return entity
   }

@@ -15,11 +15,12 @@ describe('TenantSupplier', () => {
   })
 
   it('creates a tenant given its id and name', async () => {
-    const tid = 'T007'
+    const tenantId = 'T007'
     const tenant = 'svg'
     const organization = 'Grupo SVG'
 
-    const entity = await tenantSupplier.ensure({ tid, tenant, organization })
+    const entity = await tenantSupplier.ensure(
+      { tenantId, tenant, organization })
 
     expect(entity.id).toEqual('T007')
     expect(entity.slug).toEqual('svg')
@@ -27,15 +28,18 @@ describe('TenantSupplier', () => {
   })
 
   it('retrieves a tenant if it already exists', async () => {
-    const tid = 'T007'
+    const tenantId = 'T007'
     const tenant = 'svg'
     const organization = 'Grupo SVG'
 
-    let entity = await tenantSupplier.ensure({ tid, tenant, organization })
-    entity = await tenantSupplier.ensure({ tid, tenant, organization })
+    let entity = await tenantSupplier.ensure(
+      { tenantId, tenant, organization })
+    entity = await tenantSupplier.ensure(
+      { tenantId, tenant, organization })
 
     expect(entity.id).toEqual('T007')
     expect(entity.slug).toEqual('svg')
     expect(entity.name).toEqual('Grupo SVG')
+    expect(entity.namespace).toEqual('T007')
   })
 })
