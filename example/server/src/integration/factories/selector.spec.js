@@ -6,9 +6,11 @@ describe('Selector', function () {
     const config = {}
     const factories = selector()
 
-    const names = ['base', 'check']
+    const names = ['base', 'check', 'json']
     for (const name of names) {
-      expect(factories[name](config) instanceof Factory)
+      const factory = factories[name](config) 
+      console.log('factory:::', factory)
+      expect(factory instanceof Factory)
     }
   })
 })

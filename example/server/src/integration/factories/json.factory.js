@@ -5,6 +5,7 @@ import {
 
 export class JsonFactory extends BaseFactory {                                                     
   tenantRepository () {
-    return new JsonTenantRepository()
+    const attributes = this.config.tenancy.json
+    return new JsonTenantRepository(attributes)
   }
 }

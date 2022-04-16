@@ -8,7 +8,7 @@ clean:
 	rm -rf ./.cache .mypy_cache ./schema/.mypy_cache .coverage
 
 serve:
-	tutorark serve
+	export echo $$(cat ${HOME}/.env | xargs) && tutorark serve
 
 check:
 	npm run check

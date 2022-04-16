@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { Locator, User } from '#application/domain/common/index.js'
+import { User, SystemUser } from './authorizer/index.js'
+import { Locator, SystemLocator } from './locator.js'
 
 class MockAuthorizer {
   get user () {
@@ -30,5 +31,10 @@ describe('Locator', () => {
   it('retrieves the reference based on the current context', () => {
     const reference = locator.reference()
     expect(reference).toEqual('U001')
+  })
+
+  it('provides a system locator', () => {
+    const systemLocator = new SystemLocator()
+    expect(systemLocator.user instanceof SystemUser).toBeTruthy()
   })
 })

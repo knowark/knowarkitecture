@@ -6,7 +6,7 @@ export const config = {
     json: {
       directory: process.env.TUTORARK_TENANCY_JSON_DIRECTORY || (
         process.env.HOME + '/data'),
-      collection: process.env.TUTORARK_TENANCY_JSON_COLLECTION
+      collection: process.env.TUTORARK_TENANCY_JSON_COLLECTION || 'tenants'
     },
     dsn: process.env.TUTORARK_TENANCY_DSN
   },
@@ -19,3 +19,5 @@ export const config = {
   //}
   //}
 }
+
+console.log('config', config)
