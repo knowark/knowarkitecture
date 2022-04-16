@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
-import { User } from '#application/domain/common/authorizer/index.js'
+import { User, SystemUser, AnonymousUser, ZERO_ID, ONE_ID } from './user.js'
 
 describe('User', () => {
     let user = null
@@ -44,10 +44,21 @@ describe('User', () => {
         expect(user.active).toEqual(true)
     })
 
-    //it('defines default attributes', () => {
-        //course = new Course()
-        //expect(course.id.length > 0).toBeTruthy()
-        //expect(course.name).toEqual('')
-        //expect(course.description).toEqual('')
-    //})
+    it('defines a system user', () => {
+        user = new SystemUser()
+        expect(user.id).toEqual(ZERO_ID)
+        expect(user.name).toEqual('system')
+        expect(user.tenant).toEqual('system')
+        expect(user.tenantId).toEqual(ZERO_ID)
+        expect(user.organization).toEqual('system')
+    })
+
+    it('defines an anonymous user', () => {
+        user = new AnonymousUser()
+        expect(user.id).toEqual(ONE_ID)
+        expect(user.name).toEqual('anonymous')
+        expect(user.tenant).toEqual('anonymous')
+        expect(user.tenantId).toEqual(ONE_ID)
+        expect(user.organization).toEqual('anonymous')
+    })
 })

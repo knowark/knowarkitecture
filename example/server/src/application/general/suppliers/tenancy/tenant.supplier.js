@@ -23,8 +23,6 @@ export class TenantSupplier {
       [entity] = await this.repository.add(new Tenant(data))
     }
 
-    console.log('Entity Tenant::', entity)
-
     return entity
   }
 }

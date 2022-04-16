@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 import { Injectark } from '@knowark/injectarkjs'
 import { BaseFactory } from './base.factory.js'
 
@@ -7,6 +7,7 @@ const TEST_CASES = [
     ['Authorizer', 'Authorizer'],
     ['Locator', 'Locator'],
     ['Portal', 'MemoryPortal'],
+    ['TenantRepository', 'MemoryTenantRepository'],
     ['SessionProxy', 'SessionProxy'],
     ['Wrapper', 'Wrapper'],
     ['StandardInformer', 'StandardInformer'],

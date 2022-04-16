@@ -3,7 +3,9 @@ import {
   Contextor, Authorizer, Locator
 } from '#application/domain/common/index.js'
 import { MemoryPortal } from '#application/domain/services/index.js'
-import { TenantSupplier } from '#application/general/suppliers/index.js'
+import {
+  TenantSupplier, MemoryTenantRepository 
+} from '#application/general/suppliers/index.js'
 import {
   StandardInformer
 } from '#application/operation/informers/index.js'
@@ -31,8 +33,12 @@ export class BaseFactory extends Factory {
     return new MemoryPortal({ locator })
   }
 
-  tenantSupplier () {
-    return new TenantSupplier()
+  tenantRepository () {
+    return new MemoryTenantRepository()
+  }
+
+  tenantSupplier (tenantRepository) {
+    return new TenantSupplier({ repository: tenantRepository })
   }
 
   contextProxy (contextor) {
