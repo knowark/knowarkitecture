@@ -6,7 +6,8 @@ class MockAuthorizer {
   get user () {
     return new User({
       id: 'U001',
-      tenantId: 'T001'
+      tenantId: 'T001',
+      namespace: 'N001'
     })
   }
 }
@@ -25,7 +26,7 @@ describe('Locator', () => {
 
   it('retrieves the location based on the current context', () => {
     const location = locator.location()
-    expect(location).toEqual('T001')
+    expect(location).toEqual('N001')
   })
 
   it('retrieves the reference based on the current context', () => {
@@ -37,7 +38,7 @@ describe('Locator', () => {
     const systemLocator = new SystemLocator()
     const systemUser = new SystemUser()
     expect(systemLocator.user instanceof SystemUser).toBeTruthy()
-    expect(systemLocator.location()).toEqual(systemUser.tenantId)
+    expect(systemLocator.location()).toEqual(systemUser.namespace)
     expect(systemLocator.reference()).toEqual(systemUser.id)
   })
 })

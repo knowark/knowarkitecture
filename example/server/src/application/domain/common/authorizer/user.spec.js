@@ -40,6 +40,7 @@ describe('User', () => {
         expect(user.tenant).toEqual('')
         expect(user.tenantId).toEqual('')
         expect(user.organization).toEqual('')
+        expect(user.namespace).toEqual('')
         expect(user.zone).toEqual('')
         expect(user.active).toEqual(true)
     })
@@ -51,6 +52,7 @@ describe('User', () => {
         expect(user.tenant).toEqual('system')
         expect(user.tenantId).toEqual(ZERO_ID)
         expect(user.organization).toEqual('system')
+        expect(user.namespace).toEqual('system')
     })
 
     it('defines an anonymous user', () => {
@@ -60,5 +62,6 @@ describe('User', () => {
         expect(user.tenant).toEqual('anonymous')
         expect(user.tenantId).toEqual(ONE_ID)
         expect(user.organization).toEqual('anonymous')
+        expect(user.namespace).toEqual('anonymous')
     })
 })

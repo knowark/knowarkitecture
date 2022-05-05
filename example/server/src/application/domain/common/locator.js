@@ -8,7 +8,7 @@ export class Locator extends Locator_ {
   }
 
   location () {
-    return this.authorizer.user.tenantId
+    return this.authorizer.user.namespace
   }
 
   reference () {
@@ -23,7 +23,7 @@ export class SystemLocator extends Locator_ {
   }
 
   location () {
-    return this.user.tenantId
+    return this.user.namespace
   }
 
   reference () {

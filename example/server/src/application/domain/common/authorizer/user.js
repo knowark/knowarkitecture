@@ -1,3 +1,5 @@
+import { uuid32encode } from '@knowark/modelark/lib/common/common.js'
+
 export class User {
     constructor(attributes = {}) {
         this.id = attributes.id || ''
@@ -6,9 +8,10 @@ export class User {
         this.tenant = attributes.tenant || ''
         this.tenantId = attributes.tenantId || ''
         this.organization = attributes.organization || ''
-        // TODO: this.namespace = attributes.namespace || ''
         this.zone = attributes.zone || ''
         this.active = attributes.active || true
+        this.namespace = (attributes.namespace ||
+            uuid32encode(this.tenantId) || '')
     }
 }
 
@@ -22,6 +25,7 @@ export class SystemUser extends User {
         this.tenant = 'system'
         this.tenantId = ZERO_ID 
         this.organization = 'system'
+        this.namespace = 'system'
     }
 }
 
@@ -35,5 +39,6 @@ export class AnonymousUser extends User {
         this.tenant = 'anonymous'
         this.tenantId = ONE_ID 
         this.organization = 'anonymous'
+        this.namespace = 'anonymous'
     }
 }

@@ -16,6 +16,7 @@ export class Authorizer {
       throw new Error(
         `Value should be a "User" instance. Got "${typeof value}"`)
     }
+
     return this.contextor.context.set('user', value)
   }
 }
