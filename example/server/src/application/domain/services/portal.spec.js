@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from '@jest/globals'
 import { Portal, MemoryPortal } from '#application/domain/services/portal.js'
-import * as models from '#application/domain/models'
+import * as models from '#application/domain/models/index.js'
 
 describe('Portal', () => {
     let portal = null
@@ -8,9 +8,9 @@ describe('Portal', () => {
     beforeEach(() => {
         portal = new Portal()
     })
-    
+
     it('can be instantiated', () => {
-      expect(portal).toBeTruthy()
+        expect(portal).toBeTruthy()
     })
 })
 
@@ -20,9 +20,9 @@ describe('MemoryPortal', () => {
     beforeEach(() => {
         portal = new MemoryPortal()
     })
-    
+
     it('can be instantiated', () => {
-      expect(portal).toBeTruthy()
+        expect(portal).toBeTruthy()
     })
 
     it('retrieves a repository for each model', () => {
