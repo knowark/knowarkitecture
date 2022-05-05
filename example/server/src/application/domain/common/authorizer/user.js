@@ -11,7 +11,7 @@ export class User {
         this.zone = attributes.zone || ''
         this.active = attributes.active || true
         this.namespace = (attributes.namespace ||
-            uuid32encode(this.tenantId) || '')
+            uuid32encode(this.tenantId) || this.tenantId)
     }
 }
 

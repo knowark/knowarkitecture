@@ -1,10 +1,11 @@
-import { describe, it, expect, beforeEach } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 import { Injectark } from '@knowark/injectarkjs'
 import { config } from '#integration/core/index.js'
 import { JsonFactory } from './json.factory.js'
 
 const TEST_CASES = [
-  ['TenantRepository', 'JsonTenantRepository']
+  ['TenantRepository', 'JsonTenantRepository'],
+  ['Portal', 'JsonPortal']
 ]
 
 describe('JsonFactory', function () {

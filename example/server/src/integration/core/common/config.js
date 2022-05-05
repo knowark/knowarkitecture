@@ -12,4 +12,10 @@ export const config = {
   secret: {
     token: process.env.TUTORARK_TOKEN_SECRET || ''
   },
+  data: {
+    json: {
+      directory: process.env.TUTORARK_DATA_JSON_DIRECTORY || (
+        process.env.HOME + '/data'),
+    },
+  }
 }
