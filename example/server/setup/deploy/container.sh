@@ -2,9 +2,7 @@
 
 CONTAINER=tutorark
 
-lxc launch ubuntu:20.04 $CONTAINER
-
-lxc config device add $CONTAINER config disk source=/home path=/mnt/home
+lxc launch ubuntu:20.04 $CONTAINER -p base
 
 sleep 3
 
@@ -13,4 +11,4 @@ lxc exec $CONTAINER -- /bin/bash -c "curl -fsSL \
 
 lxc exec $CONTAINER -- apt update -y
 
-lxc exec $CONTAINER -- apt install -y build-essential nodejs
+lxc exec $CONTAINER -- apt install -y nodejs
