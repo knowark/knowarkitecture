@@ -42,4 +42,15 @@ describe('TenantSupplier', () => {
     expect(entity.name).toEqual('Grupo SVG')
     expect(entity.namespace).toEqual('T007')
   })
+
+  it('searches the tenants by a domain', async () => {
+    const entity = await tenantSupplier.ensure(
+      { tenantId: 'T001', tenant: 'knowark', organization: 'Knowark' })
+
+    const tenants = await tenantSupplier.search([])
+
+    expect(tenants.length).toEqual(1)
+    expect(tenants[0]).toEqual(entity)
+
+  })
 })

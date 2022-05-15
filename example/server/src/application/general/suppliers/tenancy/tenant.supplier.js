@@ -25,4 +25,8 @@ export class TenantSupplier {
 
     return entity
   }
+
+  async search(domain) {
+    return await this.repository.search(domain)
+  }
 }
