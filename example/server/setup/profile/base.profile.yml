@@ -13,6 +13,13 @@ config:
       - python3-psycopg2
       - redis-server
     runcmd:
+      - [
+          sh,
+          -xc,
+          "curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -",
+        ]
+      - [apt-get, update]
+      - [apt-get, install, -y, nodejs]
       - "sed -i 's/#listen_addresses/listen_addresses/' /etc/postgresql/12/main/postgresql.conf"
       - "sed -i 's/localhost/*/' /etc/postgresql/12/main/postgresql.conf"
       - "sed -i 's/127.0.0.1\\/32/   0.0.0.0\\/0/' /etc/postgresql/12/main/pg_hba.conf"
