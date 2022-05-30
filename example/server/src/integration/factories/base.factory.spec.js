@@ -13,7 +13,7 @@ const TEST_CASES = [
     ['Wrapper', 'Wrapper'],
     ['StandardInformer', 'StandardInformer'],
     ['StandardManager', 'StandardManager'],
-    ['SessionManager', 'SessionManager'],
+    ['SetupManager', 'SetupManager'],
 ]
 
 describe('BaseFactory', function () {

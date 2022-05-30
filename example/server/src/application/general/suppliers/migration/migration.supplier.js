@@ -1,7 +1,5 @@
-
-
 export class MigrationSupplier {
-  async migrate (options = {}) {
+  async migrate (options) {
     throw new Error('Not implemented')
   }
 }
@@ -12,7 +10,7 @@ export class MemoryMigrationSupplier extends MigrationSupplier {
     this.options = null
   }
 
-  async migrate (options = {}) {
+  async migrate (options) {
     this.options = options
   }
 }

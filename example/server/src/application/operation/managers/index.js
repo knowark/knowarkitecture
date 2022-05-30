@@ -1,2 +1,2 @@
+export { SetupManager } from './setup.manager.js'
 export { StandardManager } from './standard.manager.js'
-export { SessionManager } from './session.manager.js'

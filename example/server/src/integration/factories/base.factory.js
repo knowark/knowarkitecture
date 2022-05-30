@@ -13,7 +13,7 @@ import {
   SessionProxy, ContextProxy, Wrapper
 } from '#application/operation/common/proxies/index.js'
 import {
-  StandardManager, SessionManager 
+  StandardManager, SetupManager 
 } from '#application/operation/managers/index.js'
 
 export class BaseFactory extends Factory {
@@ -61,7 +61,7 @@ export class BaseFactory extends Factory {
     return wrapper.wrap(new StandardManager({ portal }))
   }
 
-  sessionManager () {
-    return new SessionManager()
+  setupManager () {
+    return new SetupManager()
   }
 }
