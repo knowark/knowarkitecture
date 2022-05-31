@@ -1,5 +1,5 @@
 export class SetupManager {
-  constructor({ migrationSupplier } = {}) {
+  constructor({ migrationSupplier }) {
     this.migrationSupplier = migrationSupplier 
   }
 

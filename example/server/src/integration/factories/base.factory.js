@@ -4,7 +4,7 @@ import {
 } from '#application/domain/common/index.js'
 import { MemoryPortal } from '#application/domain/services/index.js'
 import {
-  TenantSupplier, MemoryTenantRepository 
+  TenantSupplier, MemoryTenantRepository, MemoryMigrationSupplier
 } from '#application/general/suppliers/index.js'
 import {
   StandardInformer
@@ -41,6 +41,10 @@ export class BaseFactory extends Factory {
     return new TenantSupplier({ repository: tenantRepository })
   }
 
+  migrationSupplier () {
+    return new MemoryMigrationSupplier()
+  }
+
   contextProxy (contextor) {
     return new ContextProxy({ contextor })
   }
@@ -61,7 +65,7 @@ export class BaseFactory extends Factory {
     return wrapper.wrap(new StandardManager({ portal }))
   }
 
-  setupManager () {
-    return new SetupManager()
+  setupManager (migrationSupplier) {
+    return new SetupManager({ migrationSupplier })
   }
 }

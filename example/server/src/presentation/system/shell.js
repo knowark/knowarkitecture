@@ -18,6 +18,13 @@ export class Shell {
         const app = new this.rest(
           { injector: this.injector })
         await app.run(options)
-      }).parse()
+      }).command('migrate',
+        'migrate database', async (options) => {
+          const setupManager = this.injector.resolve('SetupManager') 
+          const input = {
+            meta: {}
+          }
+          await setupManager.migrate(input)
+        }).parse()
   }
 }

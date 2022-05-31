@@ -10,6 +10,8 @@ const TEST_CASES = [
     ['Portal', 'MemoryPortal'],
     ['TenantRepository', 'MemoryTenantRepository'],
     ['SessionProxy', 'SessionProxy'],
+    ['TenantSupplier', 'TenantSupplier'],
+    ['MigrationSupplier', 'MemoryMigrationSupplier'],
     ['Wrapper', 'Wrapper'],
     ['StandardInformer', 'StandardInformer'],
     ['StandardManager', 'StandardManager'],

@@ -44,5 +44,15 @@ describe('Shell', () => {
 
     expect(shell.rest).toBe(MockRest)
     expect(expectedAttributes).toEqual({ injector: mockInjector })
+    expect(expectedOptions).not.toBeNull()
+  })
+
+  it('runs the migrate command', async () => {
+    const context = { argv: ['migrate'] }
+
+    await shell.run(context)
+
+    //expect(shell.rest).toBe(MockRest)
+    //expect(expectedAttributes).toEqual({ injector: mockInjector })
   })
 })
