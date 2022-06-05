@@ -1,0 +1,5 @@
+CREATE TABLE migrations (
+   id SERIAL PRIMARY KEY,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   version VARCHAR(255) NOT NULL
+);
