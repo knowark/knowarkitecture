@@ -1,11 +1,14 @@
 import pg from 'pg'
-import { describe, beforeAll, beforeEach, it, expect } from '@jest/globals'
+import {
+  describe, beforeAll, beforeEach, afterAll, afterEach, it, expect
+} from '@jest/globals'
 import { SqlPortal } from './sql.portal.js'
 import * as models from '#application/domain/models/index.js'
 import { SqlMigrationSupplier } from './sql.migration.supplier.js'
 
 describe('SqlPortal', () => {
   let locator = null
+  let connection = null
   let connector = null
   let portal = null
 
@@ -47,7 +50,7 @@ describe('SqlPortal', () => {
       }
     }
 
-    const connection = new pg.Client({
+    connection = new pg.Client({
       user: 'tutorark',
       password: 'tutorark',
       database: testingDatabase
@@ -62,6 +65,19 @@ describe('SqlPortal', () => {
 
     portal = new SqlPortal({ locator, connector })
 
+  })
+
+  afterEach(async () => {
+    await connection.end()
+    connection = null
+  })
+
+  afterAll(async () => {
+    const client = new pg.Client(
+      { user: user, password: user, database: 'postgres' })
+    await client.connect()
+    await client.query(`DROP DATABASE IF EXISTS ${testingDatabase}`)
+    await client.end()
   })
 
   it('can be instantiated', () => {

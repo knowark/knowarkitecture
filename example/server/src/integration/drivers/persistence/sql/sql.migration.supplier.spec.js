@@ -1,12 +1,12 @@
 import pg from 'pg'
 import {
-  describe, it, expect, beforeEach, beforeAll
+  describe, it, expect, beforeEach, beforeAll, afterAll
 } from '@jest/globals'
 import {
   SqlMigrationSupplier
 } from './sql.migration.supplier.js'
 
-xdescribe('SqlMigrationSupplier', () => {
+describe('SqlMigrationSupplier', () => {
   let migrationSupplier = null
   const testingDatabase = 'testing_migrations'
   const testingNamespace = 'sample'
@@ -26,6 +26,13 @@ xdescribe('SqlMigrationSupplier', () => {
 
   beforeEach(() => {
     migrationSupplier = new SqlMigrationSupplier()
+  })
+
+  afterAll(async () => {
+    const client = new pg.Client(setupConnection)
+    await client.connect()
+    await client.query(`DROP DATABASE IF EXISTS ${testingDatabase}`)
+    await client.end()
   })
 
   it('can be instantiated', () => {
@@ -55,5 +62,4 @@ xdescribe('SqlMigrationSupplier', () => {
     await client.end()
     expect(result.rows.length).toEqual(1)
   })
-
 })

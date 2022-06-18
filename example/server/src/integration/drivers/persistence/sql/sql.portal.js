@@ -3,7 +3,7 @@ import { Portal } from '#application/domain/services/portal.js'
 import * as models from '#application/domain/models/index.js'
 
 export class SqlPortal extends Portal {
-  constructor({ locator, connector } = {}) {
+  constructor({ locator, connector }) {
     const repositories = [
       new SqlRepository({ model: models.Course, locator, connector,
         collection: 'courses' }),
