@@ -88,9 +88,9 @@ describe('RestApplication', () => {
     const response = result.body
     expect(Object(response) === response).toBeTruthy()
     expect(response.data[0].id.length > 0).toBeTruthy()
-    expect(response.data[0].createdAt > 0).toBeTruthy()
+    expect(response.data[0].createdAt).toBeTruthy()
     expect(response.data[0].createdBy).toEqual('U01')
-    expect(response.data[0].updatedAt > 0).toBeTruthy()
+    expect(response.data[0].updatedAt).toBeTruthy()
     expect(response.data[0].updatedBy).toEqual('U01')
     expect(response.data[0].name).toEqual('color')
     expect(response.data[0].value).toEqual('#00ffff')

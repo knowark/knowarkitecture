@@ -1,0 +1,10 @@
+CREATE TABLE courses (
+   id uuid PRIMARY KEY,
+   status VARCHAR NOT NULL,
+   created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   created_by VARCHAR NOT NULL,
+   updated_by VARCHAR NOT NULL,
+   name VARCHAR NOT NULL,
+   description VARCHAR NOT NULL
+);

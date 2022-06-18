@@ -6,9 +6,9 @@ import {
   SqlMigrationSupplier
 } from './sql.migration.supplier.js'
 
-describe('SqlMigrationSupplier', () => {
+xdescribe('SqlMigrationSupplier', () => {
   let migrationSupplier = null
-  const testingDatabase = 'testing'
+  const testingDatabase = 'testing_migrations'
   const testingNamespace = 'sample'
   const setupConnection = {
     user: 'tutorark',
