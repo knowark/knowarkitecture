@@ -97,8 +97,21 @@ describe('SqlPortal', () => {
     const cases = {
       Course: [
         new models.Course({
+          id: '55785dca-f71e-46f0-8d1e-e3c58456c6a0',
           name: 'History',
           description: "Civilization's History" })
+      ],
+      Enrolment: [
+        new models.Enrolment({
+          courseId: '6b4c4495-7fd8-4316-95b8-dc96a9fb5d0c',
+          studentId: 'f8780a97-9f72-482e-b18a-c99d5b8400b7' 
+        })
+      ],
+      Lesson: [
+        new models.Lesson({
+          courseId: '58c2613d-6ddf-4224-b634-7b6f47d576f7',
+          name: 'The Rise of the Roman Empire',
+        })
       ]
     }
 
