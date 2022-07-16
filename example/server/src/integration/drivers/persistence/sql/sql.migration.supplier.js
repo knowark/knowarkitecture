@@ -27,8 +27,8 @@ export class SqlMigrationSupplier extends MigrationSupplier {
     let currentVersion = 0
     try {
       const result = await client.query(
-        `SELECT version FROM ${namespace}.migrations `
-        + `ORDER BY created_at DESC LIMIT 1`)
+        `SELECT "version" FROM ${namespace}."Migration" `
+        + `ORDER BY "createdAt" DESC LIMIT 1`)
       const [record] = result.rows
       currentVersion = parseInt(record.version)
     } catch (error) {
@@ -46,8 +46,8 @@ export class SqlMigrationSupplier extends MigrationSupplier {
         await client.query(`SET SCHEMA '${namespace}'`)
         await client.query(`${content}`)
         await client.query(
-          `INSERT INTO ${namespace}.migrations `
-          + `(version) VALUES ($1)`, [version])
+          `INSERT INTO ${namespace}."Migration" `
+          + `("version") VALUES ($1)`, [version])
       }
     }
 

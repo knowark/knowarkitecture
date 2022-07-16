@@ -72,13 +72,13 @@ describe('SqlPortal', () => {
     connection = null
   })
 
-  afterAll(async () => {
-    const client = new pg.Client(
-      { user: user, password: user, database: 'postgres' })
-    await client.connect()
-    await client.query(`DROP DATABASE IF EXISTS ${testingDatabase}`)
-    await client.end()
-  })
+  //afterAll(async () => {
+    //const client = new pg.Client(
+      //{ user: user, password: user, database: 'postgres' })
+    //await client.connect()
+    //await client.query(`DROP DATABASE IF EXISTS ${testingDatabase}`)
+    //await client.end()
+  //})
 
   it('can be instantiated', () => {
     portal = new SqlPortal({ locator, connector })
