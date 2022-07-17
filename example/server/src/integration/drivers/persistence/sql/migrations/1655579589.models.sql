@@ -1,10 +1,10 @@
 CREATE TABLE "Course" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "name" VARCHAR NOT NULL,
    "description" VARCHAR NOT NULL
@@ -12,11 +12,11 @@ CREATE TABLE "Course" (
 
 CREATE TABLE "Enrolment" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "courseId" UUID,
    "studentId" UUID
@@ -26,11 +26,11 @@ CREATE INDEX ON "Enrolment" ("studentId");
 
 CREATE TABLE "Lesson" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "courseId" UUID,
    "name" VARCHAR NOT NULL
@@ -39,11 +39,11 @@ CREATE INDEX ON "Lesson" ("courseId");
 
 CREATE TABLE "Setting" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "userId" UUID,
    "type" VARCHAR NOT NULL,
@@ -55,11 +55,11 @@ CREATE INDEX ON "Setting" ("userId");
 
 CREATE TABLE "Student" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "name" VARCHAR NOT NULL,
    "identification" VARCHAR NOT NULL,
@@ -68,11 +68,11 @@ CREATE TABLE "Student" (
 
 CREATE TABLE "Teacher" (
    "id" UUID PRIMARY KEY,
-   "status" VARCHAR NOT NULL,
-   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-   "createdBy" VARCHAR NOT NULL,
-   "updatedBy" VARCHAR NOT NULL,
+   "status" VARCHAR,
+   "createdAt" TIMESTAMPTZ,
+   "updatedAt" TIMESTAMPTZ,
+   "createdBy" UUID,
+   "updatedBy" UUID,
 
    "name" VARCHAR NOT NULL,
    "identification" VARCHAR NOT NULL,

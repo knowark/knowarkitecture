@@ -14,7 +14,7 @@ describe('SqlPortal', () => {
 
   const user = 'tutorark'
   const testingDatabase = 'testing_repositories'
-  const testingEditor = 'testing_editor'
+  const testingEditor = null
   const testingNamespace = 'organization'
 
   beforeAll(async () => {
