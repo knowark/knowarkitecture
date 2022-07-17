@@ -52,3 +52,29 @@ CREATE TABLE "Setting" (
    "description" VARCHAR NOT NULL
 );
 CREATE INDEX ON "Setting" ("userId");
+
+CREATE TABLE "Student" (
+   "id" UUID PRIMARY KEY,
+   "status" VARCHAR NOT NULL,
+   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   "createdBy" VARCHAR NOT NULL,
+   "updatedBy" VARCHAR NOT NULL,
+
+   "name" VARCHAR NOT NULL,
+   "identification" VARCHAR NOT NULL,
+   "email" VARCHAR NOT NULL
+);
+
+CREATE TABLE "Teacher" (
+   "id" UUID PRIMARY KEY,
+   "status" VARCHAR NOT NULL,
+   "createdAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   "updatedAt" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+   "createdBy" VARCHAR NOT NULL,
+   "updatedBy" VARCHAR NOT NULL,
+
+   "name" VARCHAR NOT NULL,
+   "identification" VARCHAR NOT NULL,
+   "email" VARCHAR NOT NULL
+);

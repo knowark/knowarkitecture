@@ -121,6 +121,22 @@ describe('SqlPortal', () => {
           name: 'menu.color',
           value: '#334455'
         })
+      ],
+      Student: [
+        new models.Student({
+          id: '5b8d437b-8c28-409a-945b-7681061cd59d',
+          name: 'John Doe',
+          identification: 'AP12345',
+          email: 'jdoe@example.com'
+        })
+      ],
+      Teacher: [
+        new models.Teacher({
+          id: '5b8d437b-8c28-409a-945b-7681061cd59d',
+          name: 'Richard Roe',
+          identification: 'AF67890',
+          email: 'rroe@example.com'
+        })
       ]
     }
 
