@@ -112,6 +112,15 @@ describe('SqlPortal', () => {
           courseId: '58c2613d-6ddf-4224-b634-7b6f47d576f7',
           name: 'The Rise of the Roman Empire',
         })
+      ],
+      Setting: [
+        new models.Setting({
+          id: 'b78135cd-2c25-4022-8ccc-2d6031582dd4',
+          userId: 'a1cef388-e89f-46ee-af4c-5793fdb118bb',
+          type: 'color',
+          name: 'menu.color',
+          value: '#334455'
+        })
       ]
     }
 
